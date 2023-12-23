@@ -18,13 +18,13 @@
             Class.forName("com.mysql.jdbc.Driver");	  
         try {
 //Step 2: 建立連線 
-           String url="jdbc:mysql://localhost/?serverTimezone=UTC";
+           String url="jdbc:mysql://localhost/opticshop";
            Connection con=DriverManager.getConnection(url,"root","1234");   				
 	        if(con.isClosed())
                 out.println("連線建立失敗");
             else{	
 //Step 3: 選擇資料庫
-                con.createStatement().execute("use `test`");  
+                //con.createStatement().execute("use `opticshop`");  
 //Step 4: 執行 SQL 指令        
             String sql = "INSERT INTO `member` (`username`, `password`, `email`, `birthday`, `gender`, `nearsighted`) " +
                        "VALUES ('"+name+"', '"+password+"', '"+email+"', '"+birthday+"', '"+gender+"', '"+nearsighted+"')";
@@ -39,7 +39,9 @@
                }
           }        
           catch (SQLException sExec) {
-              out.println("SQL錯誤"+sExec.toString());
+			  response.sendRedirect("/final/register.jsp?email=" + email + "&birthday=" + birthday + "&gender=" + gender + "&nearsighted=" + nearsighted);
+              //out.println("SQL錯誤"+sExec.toString());
+			  
           }
     }     
     catch (ClassNotFoundException err) {
