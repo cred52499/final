@@ -45,7 +45,12 @@ input[type="submit"]:hover {
 </style>
 </head>
 <body>
-
+<%
+String email=request.getParameter("email");
+String birthday=request.getParameter("birthday");
+String gender=request.getParameter("gender");
+String nearsighted=request.getParameter("nearsighted");
+%>
 <h1>Member Register</h1><br>
 
 <form action="getReg.jsp" method = "post">
@@ -56,19 +61,20 @@ input[type="submit"]:hover {
   <input type="password" id="password" name="password"><br><br>
 
   <label for="email">E-mail:</label>
-  <input type="text" id="email" name="email"><br><br>
+  <input type="text" id="email" name="email" value="<%=email%>" ><br><br>
 
   <label for="birthday">Birthday:</label>
-  <input type="text" id="birthday" name="birthday"><br><br>
+  <input type="date" id="birthday" name="birthday" value="<%=birthday%>" ><br><br>
 
   <label for="gender">Gender:</label>
   <select id="gender" name="gender">
-    <option value="male">Male</option>
-    <option value="female">Female</option>
+	<option value="" selected disabled hidden>Select one</option>
+    <option value="male" <% if("male".equals(gender)) { %> selected <% } %> >Male</option>
+    <option value="female" <% if("female".equals(gender)) { %> selected <% } %> >Female</option>
   </select><br><br>
   
   <label for="nearsighted">Nearsighted:</label>
-  <input type="text" id="nearsighted" name="nearsighted"><br><br>
+  <input type="text" id="nearsighted" name="nearsighted" value="<%=nearsighted%>"><br><br>
 
   <input type="submit" value="Submit">
 </form>
