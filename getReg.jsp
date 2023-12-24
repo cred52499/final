@@ -39,7 +39,8 @@
                }
           }        
           catch (SQLException sExec) {
-			  response.sendRedirect("/final/register.jsp?email=" + email + "&birthday=" + birthday + "&gender=" + gender + "&nearsighted=" + nearsighted);
+			  response.sendRedirect("/final/register.jsp?email=" + email + "&birthday=" + birthday + "&gender=" + gender
+									+ "&nearsighted=" + nearsighted + "&message=" + "The username has been used, please choose other username.");
               //out.println("SQL錯誤"+sExec.toString());
 			  
           }

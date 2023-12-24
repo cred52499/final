@@ -50,12 +50,18 @@ String email=request.getParameter("email");
 String birthday=request.getParameter("birthday");
 String gender=request.getParameter("gender");
 String nearsighted=request.getParameter("nearsighted");
+String message=request.getParameter("message");
 %>
 <h1>Member Register</h1><br>
 
 <form action="getReg.jsp" method = "post">
   <label for="username">Username:</label>
-  <input type="text" id="username" name="username"><br><br>
+  <input type="text" id="username" name="username"> 
+  <p><%if(message != null && !message.isEmpty())
+		{out.print(message);
+		}
+	%>
+	<br><br>
   
   <label for="password">Password:</label>
   <input type="password" id="password" name="password"><br><br>
