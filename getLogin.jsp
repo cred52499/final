@@ -36,7 +36,7 @@
 					if(dataset.next()){
 						Cookie usernameCookie = new Cookie("username",username);
 						usernameCookie.setMaxAge(-1);
-						response.addCookie(nameCookie);
+						response.addCookie(usernameCookie);
 						//session.setAttribute("username",request.getParameter("username"));
 						con.close();//結束資料庫連結
 						response.sendRedirect("user.jsp") ;
