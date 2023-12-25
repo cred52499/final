@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: test
+-- Host: 127.0.0.1    Database: opticshop
 -- ------------------------------------------------------
 -- Server version	8.0.34
 
@@ -27,13 +27,13 @@ CREATE TABLE `member` (
   `username` varchar(30) NOT NULL,
   `password` varchar(20) NOT NULL,
   `email` varchar(45) NOT NULL,
-  `birthday` varchar(45) DEFAULT NULL,
+  `birthday` date DEFAULT NULL,
   `gender` varchar(10) DEFAULT NULL,
   `nearsighted` int NOT NULL,
   PRIMARY KEY (`memberID`),
   UNIQUE KEY `username_UNIQUE` (`username`),
   UNIQUE KEY `memberID_UNIQUE` (`memberID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +42,7 @@ CREATE TABLE `member` (
 
 LOCK TABLES `member` WRITE;
 /*!40000 ALTER TABLE `member` DISABLE KEYS */;
-INSERT INTO `member` VALUES (2,'LewisHamilton','password','ham44@fmail.com','1997/03/14','male',300),(3,'劉曦鴻','password','ham44@fmail.com','1997/03/14','male',300);
+INSERT INTO `member` VALUES (2,'LewisHamilton','password','ham44@fmail.com','1997-03-14','male',300),(3,'劉曦鴻','password','ham44@fmail.com','1997-03-14','male',300),(37,'darren52499','abc','test@gmail.com','2023-12-13','female',156);
 /*!40000 ALTER TABLE `member` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-12-19 22:46:36
+-- Dump completed on 2023-12-25 22:16:22
