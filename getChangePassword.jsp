@@ -46,7 +46,7 @@
 				
 					pstmt.executeUpdate();
 					con.close();//結束資料庫連結
-					out.print(username + password);
+					out.print("Password changed successfully.");
 					}
 				}
 			}        
