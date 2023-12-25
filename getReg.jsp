@@ -6,7 +6,7 @@
     <head><title>get</title></head>
     <body>
     <%
-		String name = request.getParameter("username");
+		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		String email = request.getParameter("email");
 		String birthday = request.getParameter("birthday");
@@ -27,7 +27,7 @@
                 //con.createStatement().execute("use `opticshop`");  
 //Step 4: 執行 SQL 指令        
             String sql = "INSERT INTO `member` (`username`, `password`, `email`, `birthday`, `gender`, `nearsighted`) " +
-                       "VALUES ('"+name+"', '"+password+"', '"+email+"', '"+birthday+"', '"+gender+"', '"+nearsighted+"')";
+                       "VALUES ('"+username+"', '"+password+"', '"+email+"', '"+birthday+"', '"+gender+"', '"+nearsighted+"')";
                     //SQL語法，這裡需要用單引號, 59有無單引號都可
                     //con.createStatement().execute(sql);
             int no=con.createStatement().executeUpdate(sql); //可回傳異動數
@@ -37,13 +37,13 @@
 //Step 6: 關閉連線
                 con.close();
                }
-          }        
+        }        
           catch (SQLException sExec) {
 			  response.sendRedirect("/final/register.jsp?email=" + email + "&birthday=" + birthday + "&gender=" + gender
 									+ "&nearsighted=" + nearsighted + "&message=" + "The username has been used, please choose other username.");
               //out.println("SQL錯誤"+sExec.toString());
 			  
-          }
+        }
     }     
     catch (ClassNotFoundException err) {
           out.println("class錯誤"+err.toString());

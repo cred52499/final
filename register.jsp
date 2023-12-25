@@ -57,17 +57,16 @@ String message=request.getParameter("message");
 <form action="getReg.jsp" method = "post">
   <label for="username">Username:</label>
   <input type="text" id="username" name="username"> 
-  <p><%if(message != null && !message.isEmpty())
+  <p style="color:red;"><%if(message != null && !message.isEmpty())
 		{out.print(message);
 		}
-	%>
-	<br><br>
+	%> </p><br>
   
   <label for="password">Password:</label>
   <input type="password" id="password" name="password"><br><br>
 
   <label for="email">E-mail:</label>
-  <input type="text" id="email" name="email" value="<%=email%>" ><br><br>
+  <input type="text" id="email" name="email" value="<%if(email != null)out.print(email);%>" ><br><br>
 
   <label for="birthday">Birthday:</label>
   <input type="date" id="birthday" name="birthday" value="<%=birthday%>" ><br><br>
@@ -80,9 +79,12 @@ String message=request.getParameter("message");
   </select><br><br>
   
   <label for="nearsighted">Nearsighted:</label>
-  <input type="text" id="nearsighted" name="nearsighted" value="<%=nearsighted%>"><br><br>
+  <input type="text" id="nearsighted" name="nearsighted" value="<%if(nearsighted != null)out.print(nearsighted);%>"><br><br>
 
   <input type="submit" value="Submit">
+  <br>
+  <a href="/final/login.jsp">Already a member? Sign in here!</a>
+  
 </form>
 
 </body>
