@@ -49,7 +49,9 @@ input[type="submit"]:hover {
 String email=request.getParameter("email");
 String birthday=request.getParameter("birthday");
 String gender=request.getParameter("gender");
-String nearsighted=request.getParameter("nearsighted");
+String lnearsighted=request.getParameter("lnearsighted");
+String rnearsighted=request.getParameter("rnearsighted");
+
 String message=request.getParameter("message");
 %>
 <h1>Member Register</h1><br>
@@ -78,8 +80,21 @@ String message=request.getParameter("message");
     <option value="female" <% if("female".equals(gender)) { %> selected <% } %> >Female</option>
   </select><br><br>
   
-  <label for="nearsighted">Nearsighted:</label>
-  <input type="text" id="nearsighted" name="nearsighted" value="<%if(nearsighted != null)out.print(nearsighted);%>"><br><br>
+  <div style="display: flex; justify-content: center;">
+
+  <div style="margin-right: 10px; width: calc(50% - 5px);">
+    <label for="left_nearsighted">Left Eye Nearsighted:</label>
+    <input type="text" id="lnearsighted" name="lnearsighted" value="<%if(lnearsighted != null)out.print(lnearsighted);%>">
+  </div>
+
+  <div style="width: calc(50% - 5px);">  
+    <label for="right_nearsighted">Right Eye Nearsighted:</label>
+    <input type="text" id="rnearsighted" name="rnearsighted" value="<%if(rnearsighted != null)out.print(rnearsighted);%>">
+  </div>
+
+</div>
+
+<br><br>
 
   <input type="submit" value="Submit">
   <br>

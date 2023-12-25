@@ -11,7 +11,8 @@
 		String email = request.getParameter("email");
 		String birthday = request.getParameter("birthday");
 		String gender = request.getParameter("gender");
-		double nearsighted = Double.parseDouble(request.getParameter("nearsighted"));
+		double lnearsighted = Double.parseDouble(request.getParameter("lnearsighted"));
+		double rnearsighted = Double.parseDouble(request.getParameter("rnearsighted"));
 			
 		try {
 //Step 1: 載入資料庫驅動程式 
@@ -26,8 +27,8 @@
 //Step 3: 選擇資料庫
                 //con.createStatement().execute("use `opticshop`");  
 //Step 4: 執行 SQL 指令        
-            String sql = "INSERT INTO `member` (`username`, `password`, `email`, `birthday`, `gender`, `nearsighted`) " +
-                       "VALUES ('"+username+"', '"+password+"', '"+email+"', '"+birthday+"', '"+gender+"', '"+nearsighted+"')";
+            String sql = "INSERT INTO `member` (`username`, `password`, `email`, `birthday`, `gender`, `lnearsighted`, `rnearsighted`) " +
+                       "VALUES ('"+username+"', '"+password+"', '"+email+"', '"+birthday+"', '"+gender+"', '"+lnearsighted+"', '"+rnearsighted+"')";
                     //SQL語法，這裡需要用單引號, 59有無單引號都可
                     //con.createStatement().execute(sql);
             int no=con.createStatement().executeUpdate(sql); //可回傳異動數
@@ -40,7 +41,7 @@
         }        
           catch (SQLException sExec) {
 			  response.sendRedirect("/final/register.jsp?email=" + email + "&birthday=" + birthday + "&gender=" + gender
-									+ "&nearsighted=" + nearsighted + "&message=" + "The username has been used, please choose other username.");
+									+ "&lnearsighted=" + lnearsighted + "&rnearsighted=" + rnearsighted + "&message=" + "The username has been used, please choose other username.");
               //out.println("SQL錯誤"+sExec.toString());
 			  
         }
