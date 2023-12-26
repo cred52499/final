@@ -50,7 +50,7 @@ String message=request.getParameter("message");
 %>
 <h1>Member Login</h1><br>
 
-<form action="getLogin.jsp" method = "post">
+<form action="checkLogin.jsp" method = "post">
   <label for="username">Username:</label>
   <input type="text" id="username" name="username"> 
   <p style="color:red;"><%if(message != null && !message.isEmpty())
@@ -64,7 +64,7 @@ String message=request.getParameter("message");
   <input type="submit" value="Login"> </input>
   <br>
   <a href="/final/register.jsp">New member? Register here!</a>
-  <a href="/final/forgetpassword.jsp" style="float:right">Forget password.</a>
+  <a href="/final/recover.jsp" style="float:right">Forget password.</a>
 </form>
 
 </body>

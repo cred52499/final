@@ -65,7 +65,7 @@ if(request.getParameter("duplicated") != null){
 %>
 <h1>Member Register</h1><br>
 
-<form action="getReg.jsp" method = "post">
+<form action="checkRegister.jsp" method = "post">
   <label for="username">Username:</label>
   <input type="text" id="username" name="username" value="<%if(username != null)out.print(username);%>"> 
   <p style="color:red;"><%if(messageUsername != null && !messageUsername.isEmpty())
