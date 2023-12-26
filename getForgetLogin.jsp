@@ -21,16 +21,16 @@
 			}
 			
             else{
-				if(username == null && username.equals("")){
+				if(username == null || username.equals("")){
 					response.sendRedirect("/final/login.jsp?&message=Incorrect credentials.");
 				}				
-				else if(email == null && email.equals("")){
+				else if(email == null || email.equals("")){
 					response.sendRedirect("/final/login.jsp?&message=Incorrect credentials.");
 				}
-				else if(birthday == null && birthday.equals("")){
+				else if(birthday == null || birthday.equals("")){
 					response.sendRedirect("/final/login.jsp?&message=Incorrect credentials.");
 				}
-				else if(gender == null && gender.equals("")){
+				else if(gender == null || gender.equals("")){
 					response.sendRedirect("/final/login.jsp?&message=Incorrect credentials.");
 				}
 				else{

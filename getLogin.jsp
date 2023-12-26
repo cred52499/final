@@ -19,10 +19,10 @@
 			}
 			
             else{	 
-				if(username == null && username.equals("")){
+				if(username == null || username.equals("")){
 					response.sendRedirect("/final/login.jsp?&message=Please enter your username.");
 				}
-				else if(password == null && password.equals("")){
+				else if(password == null || password.equals("")){
 					response.sendRedirect("/final/login.jsp?&message=Please enter your password.");
 				}
 				else{
