@@ -3,7 +3,7 @@
 <%@page import = "java.sql.*" %>
 
 <html>
-    <head><title>get</title></head>
+    <head><title>Success!</title></head>
     <body>
     <%
 		String username = request.getParameter("username");
