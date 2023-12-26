@@ -46,29 +46,49 @@ input[type="submit"]:hover {
 </head>
 <body>
 <%
+String username=request.getParameter("username");
 String email=request.getParameter("email");
 String birthday=request.getParameter("birthday");
 String gender=request.getParameter("gender");
 String lnearsighted=request.getParameter("lnearsighted");
 String rnearsighted=request.getParameter("rnearsighted");
 
-String message=request.getParameter("message");
+String messageUsername=request.getParameter("messageUsername");
+String messagePassword=request.getParameter("messagePassword");
+String messageEmail=request.getParameter("messageEmail");
+boolean isDup = false;
+if(request.getParameter("duplicated") != null){
+	if(request.getParameter("duplicated").equals("true")){
+		isDup = Boolean.parseBoolean(request.getParameter("duplicated"));
+	}
+}
 %>
 <h1>Member Register</h1><br>
 
 <form action="getReg.jsp" method = "post">
   <label for="username">Username:</label>
-  <input type="text" id="username" name="username"> 
-  <p style="color:red;"><%if(message != null && !message.isEmpty())
-		{out.print(message);
+  <input type="text" id="username" name="username" value="<%if(username != null)out.print(username);%>"> 
+  <p style="color:red;"><%if(messageUsername != null && !messageUsername.isEmpty())
+		{out.print(messageUsername);
+		}
+		else if(isDup){
+			out.print(messageUsername);
 		}
 	%> </p><br>
   
   <label for="password">Password:</label>
-  <input type="password" id="password" name="password"><br><br>
+  <input type="password" id="password" name="password">
+  <p style="color:red;"><%if(messagePassword != null && !messagePassword.isEmpty())
+		{out.print(messagePassword);
+		} 
+	%> </p><br>
 
   <label for="email">E-mail:</label>
-  <input type="text" id="email" name="email" value="<%if(email != null)out.print(email);%>" ><br><br>
+  <input type="text" id="email" name="email" value="<%if(email != null)out.print(email);%>">
+  <p style="color:red;"><%if(messageEmail != null && !messageEmail.isEmpty())
+		{out.print(messageEmail);
+		}
+	%> </p><br>
 
   <label for="birthday">Birthday:</label>
   <input type="date" id="birthday" name="birthday" value="<%=birthday%>" ><br><br>
@@ -84,12 +104,12 @@ String message=request.getParameter("message");
 
   <div style="margin-right: 10px; width: calc(50% - 5px);">
     <label for="left_nearsighted">Left Eye Nearsighted:</label>
-    <input type="text" id="lnearsighted" name="lnearsighted" value="<%if(lnearsighted != null)out.print(lnearsighted);%>">
+    <input type="number" id="lnearsighted" name="lnearsighted" value="<%if(lnearsighted != null)out.print(lnearsighted);%>">
   </div>
 
   <div style="width: calc(50% - 5px);">  
     <label for="right_nearsighted">Right Eye Nearsighted:</label>
-    <input type="text" id="rnearsighted" name="rnearsighted" value="<%if(rnearsighted != null)out.print(rnearsighted);%>">
+    <input type="number" id="rnearsighted" name="rnearsighted" value="<%if(rnearsighted != null)out.print(rnearsighted);%>">
   </div>
 
 </div>
