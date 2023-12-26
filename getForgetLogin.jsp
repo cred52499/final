@@ -22,16 +22,16 @@
 			
             else{
 				if(username == null || username.equals("")){
-					response.sendRedirect("/final/login.jsp?&message=Incorrect credentials.");
+					response.sendRedirect("/final/forgetpassword.jsp?&message=Incorrect credentials.");
 				}				
 				else if(email == null || email.equals("")){
-					response.sendRedirect("/final/login.jsp?&message=Incorrect credentials.");
+					response.sendRedirect("/final/forgetpassword.jsp?&message=Incorrect credentials.");
 				}
 				else if(birthday == null || birthday.equals("")){
-					response.sendRedirect("/final/login.jsp?&message=Incorrect credentials.");
+					response.sendRedirect("/final/forgetpassword.jsp?&message=Incorrect credentials.");
 				}
 				else if(gender == null || gender.equals("")){
-					response.sendRedirect("/final/login.jsp?&message=Incorrect credentials.");
+					response.sendRedirect("/final/forgetpassword.jsp?&message=Incorrect credentials.");
 				}
 				else{
 					String sql = "SELECT * FROM `member` WHERE `username`=? AND `email`=? AND `birthday`=? AND `gender`=?";
@@ -54,7 +54,7 @@
 					
 					else{
 						con.close();//結束資料庫連結
-						response.sendRedirect("/final/login.jsp?&message=Username or password incorrect, please try again.");
+						response.sendRedirect("/final/forgetpassword.jsp?&message=Incorrect credentials.");
 						
 					}
 				}
