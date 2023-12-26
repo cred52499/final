@@ -44,7 +44,7 @@
 							 "VALUES ('"+username+"', '"+password+"', '"+email+"', '"+birthday+"', '"+gender+"', '"+lnearsighted+"', '"+rnearsighted+"')";
 				int no=con.createStatement().executeUpdate(sql); 
 				if (no>0){
-					out.println("新增成功");
+					out.println("新增成功，點擊<a href = '/final/login.jsp'>這裏</a>回到登入界面");
 				}
 				con.close();
             }
