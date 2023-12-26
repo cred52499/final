@@ -39,7 +39,7 @@
 						response.addCookie(usernameCookie);
 						//session.setAttribute("username",request.getParameter("username"));
 						con.close();//結束資料庫連結
-						response.sendRedirect("user.jsp") ;
+						response.sendRedirect("/final/user.jsp") ;
 					}
 					
 					else{
