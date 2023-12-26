@@ -46,10 +46,6 @@ input[type="submit"]:hover {
 </head>
 <body>
 <%
-String email=request.getParameter("email");
-String birthday=request.getParameter("birthday");
-String gender=request.getParameter("gender");
-String nearsighted=request.getParameter("nearsighted");
 String message=request.getParameter("message");
 %>
 <h1>Forget password?</h1><br>
@@ -73,6 +69,12 @@ String message=request.getParameter("message");
 
   <input type="submit" value="Submit"> </input>
   <br>
+	<p style="color:red;">
+		<%if(message != null && !message.isEmpty()){
+			out.print(message);
+			}
+		%>
+	</p>
 </form>
 
 </body>
