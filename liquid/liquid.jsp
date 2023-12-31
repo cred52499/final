@@ -61,7 +61,7 @@
 		%>
 		<section class="card">
 			<a href="goodspage.jsp?idLiquid=<%= dataset.getString("idLiquid") %>">
-			<img src="image/<%=dataset.getString("liquidname")%>.png" height="300px" width="300px">
+			<img src="image/<%=dataset.getString("idLiquid")%>.png" height="300px" width="300px">
 			<h3><%=dataset.getString("liquidname")%></h3></a>
 			<p> </p><br>
 			<h4><%="$" + dataset.getString("liquidprice")%></h4>
