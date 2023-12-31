@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<%@page contentType="text/html"%> 
+<%@page pageEncoding="UTF-8"%>
+<%@ page import = "java.sql.*" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -59,16 +62,50 @@
     </style>
 </head>
 <body>
+    <%
+	String idColoredLens = request.getParameter("idColoredLens");
+			
+	try {
+        Class.forName("com.mysql.jdbc.Driver");	  
+		String url="jdbc:mysql://localhost/opticshop";
+		Connection con=DriverManager.getConnection(url,"root","1234"); 
+			
+	    if(con.isClosed()){
+            out.println("連線建立失敗");
+		}
+			
+        else{	 
+			String sql = "SELECT * FROM `coloredlens` WHERE `idColoredLens`=?";
+			PreparedStatement pstmt = null;
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1,idColoredLens);
+				
+			ResultSet dataset = pstmt.executeQuery();
+			dataset.next();
+			
+	%>
   <section>
   <table class="infor">
     <tr>
       <td>
-        <img class="pp" src="image/111111.jpg" width="350px" height="400px">
+        <img class="pp" src="image/<%=dataset.getString("idColoredLens")%>.png?time=<%=System.currentTimeMillis()%>" width="350px" height="400px">
       </td>
       <td>
         <ul>
-          <li><h3>商品名稱</h3></li>
-          <li><h3>規格說明<br>  <br>含水量:<br>  <br>基弧:<br>  <br>鏡片直徑:<br>  <br>著色直徑:<br></h3></li>
+          <li><h3>商品名稱：<%=dataset.getString("coloredLensName")%></h3></li>
+          <li><h3>規格說明<br>  
+		  <br>含水量:<%=dataset.getString("coloredLensWaterContent")%>%<br>  
+		  <br>基弧:<%=dataset.getString("coloredLensBaseCurve")%>mm<br>  
+		  <br>鏡片直徑:<%=dataset.getString("coloredLensDiameter")%>mm<br>  
+		  <br>著色直徑:<%=dataset.getString("coloredLensGraphicDiameter")%>mm<br></h3></li>
+	<%}
+		}
+       
+	catch (ClassNotFoundException err) {
+          out.println("class錯誤"+err.toString());
+	}
+
+    %>
         </ul>
       </td>
     </tr>
