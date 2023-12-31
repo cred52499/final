@@ -34,7 +34,7 @@
 				while(dataset.next()){
   %>
       <section class="card">
-        <a href="goodspage1.html">
+        <a href="goodspage.jsp?idLiquid=<%= dataset.getString("idLiquid") %>">
         <img src="image/<%=dataset.getString("liquidname")%>.png" height="300px" width="300px">
         <h3><%=dataset.getString("liquidname")%></h3></a>
         <p> </p><br>

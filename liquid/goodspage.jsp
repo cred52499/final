@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<%@page contentType="text/html"%> 
+<%@page pageEncoding="UTF-8"%>
+<%@ page import = "java.sql.*" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -59,16 +62,53 @@
     </style>
 </head>
 <body>
+    <%
+	String idLiquid = request.getParameter("idLiquid");
+			
+	try {
+        Class.forName("com.mysql.jdbc.Driver");	  
+		String url="jdbc:mysql://localhost/opticshop";
+		Connection con=DriverManager.getConnection(url,"root","1234"); 
+			
+	    if(con.isClosed()){
+            out.println("連線建立失敗");
+		}
+			
+        else{	 
+			String sql = "SELECT * FROM `liquid` WHERE `idLiquid`=?";
+			PreparedStatement pstmt = null;
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1,idLiquid);
+				
+			ResultSet dataset = pstmt.executeQuery();
+			dataset.next();
+			
+	%>
+
+	
   <section>
   <table class="infor">
     <tr>
       <td>
-        <img class="pp" src="image/111111.jpg" width="350px" height="400px">
+        <img class="pp" src="image/<%=dataset.getString("liquidname")%>.png" width="350px" height="400px">
       </td>
       <td>
         <ul>
-          <li><h3>商品名稱</h3></li>
-          <li><h3>規格說明<br>  <br>全成分:<br>  <br>產品特點:<br>  <br>適應症:<br>  <br>注意事項:<br></h3></li>
+          <li><h3>商品名稱: <%=dataset.getString("liquidname")%></h3></li>
+          <li><h3>規格說明:<br>  
+			<br>全成分:<%=dataset.getString("liquidContent")%><br>  
+			<br>產品特點:<%=dataset.getString("liquidSpecial")%><br>  
+			<br>適應症:<%=dataset.getString("liquidForUse")%><br>  
+			<br>注意事項:<%=dataset.getString("liquidWarning")%><br></h3></li>
+			
+	<%}
+		}
+       
+	catch (ClassNotFoundException err) {
+          out.println("class錯誤"+err.toString());
+	}
+
+    %>
         </ul>
       </td>
     </tr>
@@ -262,5 +302,6 @@ function updateRating() {
 }
 
     </script>
+
 </body>
 </html>
