@@ -70,6 +70,7 @@
 			<h4><%="$" + dataset.getString("coloredLensPrice")%></h4>
 			<p> </p><br>
 			<button class="add-to-cart-btn">加入購物車</button>
+			<h3 class="text1">庫存數量:<%=dataset.getString("coloredLensStock")%></a></h3>
 		</section>  
 		<%
 	  				}
