@@ -83,9 +83,7 @@
 			ResultSet dataset = pstmt.executeQuery();
 			dataset.next();
 			
-	%>
-
-	
+	%>	
   <section>
   <table class="infor">
     <tr>
@@ -99,8 +97,7 @@
 			<br>全成分:<%=dataset.getString("liquidContents")%><br>  
 			<br>產品特點:<%=dataset.getString("liquidFeatures")%><br>  
 			<br>適應症:<%=dataset.getString("liquidIndications")%><br>  
-			<br>注意事項:<%=dataset.getString("liquidNotes")%><br></h3></li>
-			
+			<br>注意事項:<%=dataset.getString("liquidNotes")%><br></h3></li>			
 	<%}
 		}
        
