@@ -23,16 +23,16 @@
             <li><a href="../liquid/liquid.jsp"><h4>保養液</h4></a></li>
           </ul>
         </li>
-        <li><a href="aboutuss/aboutus.html"><h3>關於我們</h3></a>
+        <li><a href="../aboutUs/aboutus.html"><h3>關於我們</h3></a>
         </li>
-        <li><a href="place_design/place.html"><h3>門市據點</h3></a></li>
+        <li><a href="../location/location.html"><h3>門市據點</h3></a></li>
         <li><form class="search-form">
             <input type="text" class="search-input" placeholder="Search...">
             <button type="submit" class="search-button">Search</button>
         </form>
         </a></li>
         <li><a href="shpcart/shpcart copy.html"><h3>購物車</h3></a></li>
-        <li><a href="login/login.html"><h3>登入</h3></a></li>
+        <li><a href="../login.jsp"><h3>登入</h3></a></li>
         <li><a href="member/member.html"><h3>會員</h3></a></li>
         <li><a href=""><h3>登入者 您好</h3></a></li>
       </ul>
