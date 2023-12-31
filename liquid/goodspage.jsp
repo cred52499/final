@@ -96,10 +96,10 @@
         <ul>
           <li><h3>商品名稱: <%=dataset.getString("liquidname")%></h3></li>
           <li><h3>規格說明:<br>  
-			<br>全成分:<%=dataset.getString("liquidContent")%><br>  
-			<br>產品特點:<%=dataset.getString("liquidSpecial")%><br>  
-			<br>適應症:<%=dataset.getString("liquidForUse")%><br>  
-			<br>注意事項:<%=dataset.getString("liquidWarning")%><br></h3></li>
+			<br>全成分:<%=dataset.getString("liquidContents")%><br>  
+			<br>產品特點:<%=dataset.getString("liquidFeatures")%><br>  
+			<br>適應症:<%=dataset.getString("liquidIndications")%><br>  
+			<br>注意事項:<%=dataset.getString("liquidNotes")%><br></h3></li>
 			
 	<%}
 		}
