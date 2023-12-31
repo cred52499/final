@@ -22,8 +22,8 @@
           <ul>
             <li><a href="brand_zone/brand_design/brand.html"><h4>品牌</h4></a></li>
             <li><a href="color/layout_demo.html"><h4>彩色隱形眼鏡</h4></a></li>
-            <li><a href="transparent/test.html"><h4>透明隱形眼鏡</h4></a></li>
-            <li><a href="maintenance/haha.html"><h4>保養液</h4></a></li>
+            <li><a href="../transparentLens/transparentLens.jsp"><h4>透明隱形眼鏡</h4></a></li>
+            <li><a href="liquid.jsp"><h4>保養液</h4></a></li>
           </ul>
         </li>
         <li><a href="aboutuss/aboutus.html"><h3>關於我們</h3></a>
@@ -61,7 +61,7 @@
 		%>
 		<section class="card">
 			<a href="goodspage.jsp?idLiquid=<%= dataset.getString("idLiquid") %>">
-			<img src="image/<%=dataset.getString("idLiquid")%>.png" height="300px" width="300px">
+			<img src="image/<%=dataset.getString("idLiquid")%>.png?time=<%=System.currentTimeMillis()%>" height="300px" width="300px">
 			<h3><%=dataset.getString("liquidname")%></h3></a>
 			<p> </p><br>
 			<h4><%="$" + dataset.getString("liquidprice")%></h4>
