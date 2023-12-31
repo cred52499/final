@@ -90,7 +90,7 @@
   <table class="infor">
     <tr>
       <td>
-        <img class="pp" src="image/<%=dataset.getString("liquidname")%>.png" width="350px" height="400px">
+        <img class="pp" src="image/<%=dataset.getString("idLiquid")%>.png" width="350px" height="400px">
       </td>
       <td>
         <ul>
