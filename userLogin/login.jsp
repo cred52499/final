@@ -2,6 +2,7 @@
 <%@page contentType="text/html"%> 
 <%@page pageEncoding="UTF-8"%>
 <%@ page import = "java.sql.*" %>
+<%@ page import = "java.net.URLEncoder"%>
 
 <html>
 <head>
@@ -47,10 +48,15 @@ input[type="submit"]:hover {
 <body>
 <%
 String message=request.getParameter("message");
+String redirectUrl = request.getParameter("redirectUrl");
+if(redirectUrl == null || redirectUrl.equals("")){
+	redirectUrl = "..";
+}
+String encodedUrl = URLEncoder.encode(redirectUrl, "UTF-8");
 %>
 <h1>Member Login</h1><br>
 
-<form action="checkLogin.jsp" method = "post">
+<form action="checkLogin.jsp?&redirectUrl=<%=encodedUrl%>" method = "post">
   <label for="username">Username:</label>
   <input type="text" id="username" name="username"> 
   <p style="color:red;"><%if(message != null && !message.isEmpty())
