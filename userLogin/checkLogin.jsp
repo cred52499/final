@@ -9,8 +9,8 @@
     <head><title>Login Success!</title></head>
     <body>
     <%
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
+		String memberUsername = request.getParameter("memberUsername");
+		String memberPassword = request.getParameter("memberPassword");
 		
 		String redirectUrl = request.getParameter("redirectUrl");
 			
@@ -24,27 +24,30 @@
 			}
 			
             else{	 
-				if(username == null || username.equals("")){
+				if(memberUsername == null || memberUsername.equals("")){
 					response.sendRedirect("login.jsp?&message=Please enter your username.");
 				}
-				else if(password == null || password.equals("")){
+				else if(memberPassword == null || memberPassword.equals("")){
 					response.sendRedirect("login.jsp?&message=Please enter your password.");
 				}
 				else{
-					String sql = "SELECT * FROM `member` WHERE `username`=? AND `password`=?";
+					String sql = "SELECT * FROM `member` WHERE `memberUsername`=? AND `memberPassword`=?";
 					PreparedStatement pstmt = null;
 					pstmt=con.prepareStatement(sql);
-					pstmt.setString(1,username);
-					pstmt.setString(2,password);
+					pstmt.setString(1,memberUsername);
+					pstmt.setString(2,memberPassword);
 				
 					ResultSet dataset = pstmt.executeQuery();
 					if(dataset.next()){
-						Cookie usernameCookie = new Cookie("username",username);
+						Cookie usernameCookie = new Cookie("memberUsername",memberUsername);
+						Cookie nameCookie = new Cookie("memberName",dataset.getString("memberName"));
 						usernameCookie.setMaxAge(-1);
+						usernameCookie.setPath("/");
+						nameCookie.setMaxAge(-1);
+						nameCookie.setPath("/");
 						response.addCookie(usernameCookie);
-						//session.setAttribute("username",request.getParameter("username"));
+						response.addCookie(nameCookie);
 						con.close();//結束資料庫連結
-						//out.print(redirectUrl);
 						response.sendRedirect(redirectUrl);
 					}
 					
