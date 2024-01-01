@@ -32,7 +32,7 @@
         </form>
         </a></li>
         <li><a href="shpcart/shpcart copy.html"><h3>購物車</h3></a></li>
-        <li><a href="../login.jsp"><h3>登入</h3></a></li>
+        <li><a href="../userLogin/login.jsp?&redirectUrl=../coloredLens/coloredLens.jsp"><h3>登入</h3></a></li>
         <li><a href="member/member.html"><h3>會員</h3></a></li>
         <li><a href=""><h3>登入者 您好</h3></a></li>
       </ul>
