@@ -53,7 +53,7 @@
 					
 					else{
 						con.close();//結束資料庫連結
-						response.sendRedirect("/final/userLogin/login.jsp?&message=Username or password incorrect, please try again.");
+						response.sendRedirect("login.jsp?&message=Username or password incorrect, please try again.");
 						
 					}
 				}

@@ -118,7 +118,7 @@ if(request.getParameter("duplicated") != null){
 
   <input type="submit" value="Submit">
   <br>
-  <a href="/final/login.jsp">Already a member? Sign in here!</a>
+  <a href="login.jsp">Already a member? Sign in here!</a>
   
 </form>
 

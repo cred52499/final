@@ -36,8 +36,8 @@
 				while(dataset.next()){
 		%>
 		<section class="card">
-			<a href="goodspage.jsp?idTransparentLens=<%= dataset.getString("idTransparentLens")%>">
-			<img src="image/<%=dataset.getString("idTransparentLens")%>.png?time=<%=System.currentTimeMillis()%>" height="300px" width="300px">
+			<a href="goodspage.jsp?transparentLensID=<%= dataset.getString("transparentLensID")%>">
+			<img src="image/<%=dataset.getString("transparentLensID")%>.png?time=<%=System.currentTimeMillis()%>" height="300px" width="300px">
 			<h3><%=dataset.getString("transparentLensnAME")%></h3></a>
 			<p> </p><br>
 			<h4><%="$" + dataset.getString("transparentLensPrice")%></h4>

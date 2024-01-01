@@ -69,8 +69,8 @@ String encodedUrl = URLEncoder.encode(redirectUrl, "UTF-8");
 
   <input type="submit" value="Login"> </input>
   <br>
-  <a href="/final/register.jsp">New member? Register here!</a>
-  <a href="/final/recover.jsp" style="float:right">Forget password.</a>
+  <a href="register.jsp">New member? Register here!</a>
+  <a href="recover.jsp" style="float:right">Forget password.</a>
 </form>
 
 </body>
