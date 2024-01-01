@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `opticshop` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `opticshop`;
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: opticshop
@@ -16,6 +14,37 @@ USE `opticshop`;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `coloredlens`
+--
+
+DROP TABLE IF EXISTS `coloredlens`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `coloredlens` (
+  `idColoredLens` int NOT NULL,
+  `coloredLensName` varchar(100) NOT NULL,
+  `coloredLensPrice` decimal(10,2) NOT NULL,
+  `coloredLensStock` int NOT NULL,
+  `coloredLensWaterContent` decimal(10,2) DEFAULT NULL,
+  `coloredLensBaseCurve` decimal(10,2) DEFAULT NULL,
+  `coloredLensDiameter` decimal(10,2) DEFAULT NULL,
+  `coloredLensGraphicDiameter` decimal(10,2) DEFAULT NULL,
+  PRIMARY KEY (`idColoredLens`),
+  UNIQUE KEY `idColoredLens_UNIQUE` (`idColoredLens`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `coloredlens`
+--
+
+LOCK TABLES `coloredlens` WRITE;
+/*!40000 ALTER TABLE `coloredlens` DISABLE KEYS */;
+INSERT INTO `coloredlens` VALUES (1,'Hydron海昌百變濾藍光彩色日拋10片裝-星光可可',320.00,1,55.00,6.00,2.00,2.00),(2,'Hydron海昌百變濾藍光彩色日拋10片裝-星光焦糖',320.00,2,34.56,6.70,2.00,4.00),(3,'Hydron海昌百變濾藍光彩色日拋10片裝-星光黑',320.00,3,57.00,5.00,2.00,5.00),(4,'Hydron海昌星眸心機彩色日拋10片裝-心機琥珀',270.00,0,12.00,7.00,3.00,23.00),(5,'Hydron海昌百變濾藍光彩色日拋10片裝-星光咖',320.00,5,64.00,2.00,6.00,5.00),(6,'Hydron海昌百變彩色日拋10片裝-百變棕',280.00,7,32.00,7.00,5.00,3.00),(7,'Hydron海昌百變彩色日拋10片裝-時尚澄',280.00,6,12.00,3.00,2.00,1.00),(8,'Hydron海昌星眸彩色日拋10片裝-大銀河墨',220.00,3,35.00,6.00,1.00,23.00),(9,'Hydron海昌星眸彩色日拋10片裝-大銀河咖',220.00,89,22.00,8.00,2.00,5.00),(10,'Hydron海昌星眸彩色日拋10片裝-星鑽黑',220.00,2,6.60,5.00,31.00,2.00),(11,'Hydron海昌星眸彩色日拋10片裝-蜜糖棕',220.00,5,85.00,4.00,12.00,4.00),(12,'Hydron海昌星眸心機彩色日拋10片裝-心機抹茶',270.00,7,14.00,2.00,10.00,5.00);
+/*!40000 ALTER TABLE `coloredlens` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `liquid`
@@ -89,16 +118,16 @@ DROP TABLE IF EXISTS `transparentlens`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `transparentlens` (
-  `idtransparentLens` int NOT NULL,
-  `transparentLensName` varchar(45) NOT NULL,
+  `idTransparentLens` int NOT NULL,
+  `transparentLensName` varchar(100) NOT NULL,
   `transparentLensPrice` decimal(10,2) NOT NULL,
   `transparentLensStock` int NOT NULL,
-  `transparentLensWaterContent` int DEFAULT NULL,
-  `transparentLensBaseCurve` int DEFAULT NULL,
-  `transparentLensDiameter` int DEFAULT NULL,
-  `transparentLensGraphicDiameter` int DEFAULT NULL,
-  PRIMARY KEY (`idtransparentLens`),
-  UNIQUE KEY `idtransparentLens_UNIQUE` (`idtransparentLens`)
+  `transparentLensWaterContent` decimal(10,2) DEFAULT NULL,
+  `transparentLensBaseCurve` decimal(10,2) DEFAULT NULL,
+  `transparentLensDiameter` decimal(10,2) DEFAULT NULL,
+  `transparentLensGraphicDiameter` decimal(10,2) DEFAULT NULL,
+  PRIMARY KEY (`idTransparentLens`),
+  UNIQUE KEY `idtransparentLens_UNIQUE` (`idTransparentLens`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -108,6 +137,7 @@ CREATE TABLE `transparentlens` (
 
 LOCK TABLES `transparentlens` WRITE;
 /*!40000 ALTER TABLE `transparentlens` DISABLE KEYS */;
+INSERT INTO `transparentlens` VALUES (1,'Hydron海昌真水感濾藍光清透日拋30片裝',440.00,1,35.00,3.50,15.50,10.00),(2,'Hydron海昌真水感濾藍光清透日拋10片裝',190.00,2,35.70,4.50,17.00,11.00),(3,'LARGAN星歐透明日拋30片裝(升級版)',290.00,3,23.00,3.60,15.00,12.00),(4,'Hydron海昌純粹氧矽水膠日拋30片裝',499.00,0,23.00,5.00,11.00,13.20),(5,'Hydron海昌真水感透明日拋30片裝',399.00,4,50.00,7.40,11.50,15.50),(6,'Capell卡沛兒睛亮透明日拋30片裝',350.00,5,47.70,2.00,13.00,32.00),(7,'AQUAMAX水滋氧PMB透明日拋30片裝',350.00,4,55.00,45.00,22.00,13.00),(8,'CooperVision酷柏UltraFlex Air奧克拉優氧矽水膠日拋30片裝8.6mm',450.00,8,33.00,23.00,51.00,41.00),(9,'Ticon帝康光漾瞬間非球面透明日拋30片裝',390.00,3,44.20,22.00,14.00,12.50),(10,'Miacare美若康O2Cellence澄氧透明日拋20片裝',580.00,7,58.00,1.00,12.50,13.00),(11,'HBaush+Lomb博士倫ULTRA輕水氧奧澈矽水膠透明日拋30片裝',950.00,5,12.00,23.00,23.00,14.50),(12,'Ticon帝康國民日拋(非球面透明日拋)20片裝',260.00,5,75.00,2.00,23.00,15.00);
 /*!40000 ALTER TABLE `transparentlens` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -120,4 +150,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-01-01  1:00:54
+-- Dump completed on 2024-01-01 15:06:53
