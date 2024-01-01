@@ -63,7 +63,7 @@
 </head>
 <body>
     <%
-	String idColoredLens = request.getParameter("idColoredLens");
+	String coloredLensID = request.getParameter("coloredLensID");
 			
 	try {
         Class.forName("com.mysql.jdbc.Driver");	  
@@ -75,10 +75,10 @@
 		}
 			
         else{	 
-			String sql = "SELECT * FROM `coloredlens` WHERE `idColoredLens`=?";
+			String sql = "SELECT * FROM `coloredlens` WHERE `coloredLensID`=?";
 			PreparedStatement pstmt = null;
 			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1,idColoredLens);
+			pstmt.setString(1,coloredLensID);
 				
 			ResultSet dataset = pstmt.executeQuery();
 			dataset.next();
@@ -88,7 +88,7 @@
   <table class="infor">
     <tr>
       <td>
-        <img class="pp" src="image/<%=dataset.getString("idColoredLens")%>.png?time=<%=System.currentTimeMillis()%>" width="350px" height="400px">
+        <img class="pp" src="image/<%=dataset.getString("coloredLensID")%>.png?time=<%=System.currentTimeMillis()%>" width="350px" height="400px">
       </td>
       <td>
         <ul>

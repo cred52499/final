@@ -63,7 +63,7 @@
 </head>
 <body>
 	<%
-	String idTransparentLens = request.getParameter("idTransparentLens");
+	String transparentLensID = request.getParameter("transparentLensID");
 			
 	try {
         Class.forName("com.mysql.jdbc.Driver");	  
@@ -75,10 +75,10 @@
 		}
 			
         else{	 
-			String sql = "SELECT * FROM `transparentlens` WHERE `idTransparentLens`=?";
+			String sql = "SELECT * FROM `transparentlens` WHERE `transparentLensID`=?";
 			PreparedStatement pstmt = null;
 			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1,idTransparentLens);
+			pstmt.setString(1,transparentLensID);
 				
 			ResultSet dataset = pstmt.executeQuery();
 			dataset.next();
