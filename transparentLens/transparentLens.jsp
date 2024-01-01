@@ -13,8 +13,56 @@
 
   <body>
     <header>
-      <h1>透明隱形眼鏡專區</h1>
-    </header>
+      <ul>
+        <li><a href="#"><h3>產品目錄</h3></a>
+          <ul>
+            <li><a href="brand_zone/brand_design/brand.html"><h4>品牌</h4></a></li>
+            <li><a href="../coloredLens/coloredLens.jsp"><h4>彩色隱形眼鏡</h4></a></li>
+            <li><a href="../transparentLens/transparentLens.jsp"><h4>透明隱形眼鏡</h4></a></li>
+            <li><a href="../liquid/liquid.jsp"><h4>保養液</h4></a></li>
+          </ul>
+        </li>
+        <li><a href="../aboutUs/aboutus.html"><h3>關於我們</h3></a>
+        </li>
+        <li><a href="../location/location.html"><h3>門市據點</h3></a></li>
+        <li><form class="search-form">
+            <input type="text" class="search-input" placeholder="Search...">
+            <button type="submit" class="search-button">Search</button>
+        </form>
+        </a></li>
+        <li><a href="shpcart/shpcart copy.html"><h3>購物車</h3></a></li>
+        <%
+		Cookie[] cookies = request.getCookies();
+		String memberName = "";
+		if(cookies != null){
+			int count = cookies.length;
+			for(int i=0; i < count; i++){
+				if(cookies[i].getName().equals("memberName")){
+					memberName = cookies[i].getValue();
+				}
+			}
+		}
+		if(memberName == null || memberName.equals("")){%>
+		<li><a href="../userLogin/login.jsp?&redirectUrl=../transparentLens/transparentLens.jsp"><h3>登入</h3></a></li>
+		<%
+			}
+		else{
+		%>
+		<li><a href=""><h3>你好<%=memberName%></h3></a></li>
+		<li><a href="../userLogin/logout.jsp"><h3>登出</h3></a></li>
+		<%
+		}
+		%>
+        <li><a href="member/member.html"><h3>會員</h3></a></li>
+		</ul>
+		
+		
+		
+	</header>
+	
+	<nav>
+     <h1>透明隱形眼鏡專區</h1>
+    </nav>
 
     <main>
     	<%
