@@ -1,6 +1,9 @@
 <%@page contentType="text/html"%> 
 <%@page pageEncoding="UTF-8"%>
 <%@ page import = "java.sql.*" %>
+<%@ page import = "java.net.URLEncoder"%>
+<%@ page import = "java.net.URLDecoder"%>
+<%@ page import = "java.nio.charset.StandardCharsets" %>
 
 <html>
     <head><title>Login Success!</title></head>
@@ -8,6 +11,8 @@
     <%
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
+		
+		String redirectUrl = request.getParameter("redirectUrl");
 			
 		try {
             Class.forName("com.mysql.jdbc.Driver");	  
@@ -20,10 +25,10 @@
 			
             else{	 
 				if(username == null || username.equals("")){
-					response.sendRedirect("/final/login.jsp?&message=Please enter your username.");
+					response.sendRedirect("login.jsp?&message=Please enter your username.");
 				}
 				else if(password == null || password.equals("")){
-					response.sendRedirect("/final/login.jsp?&message=Please enter your password.");
+					response.sendRedirect("login.jsp?&message=Please enter your password.");
 				}
 				else{
 					String sql = "SELECT * FROM `member` WHERE `username`=? AND `password`=?";
@@ -39,12 +44,13 @@
 						response.addCookie(usernameCookie);
 						//session.setAttribute("username",request.getParameter("username"));
 						con.close();//結束資料庫連結
-						response.sendRedirect("/final/user.jsp") ;
+						//out.print(redirectUrl);
+						response.sendRedirect(redirectUrl);
 					}
 					
 					else{
 						con.close();//結束資料庫連結
-						response.sendRedirect("/final/login.jsp?&message=Username or password incorrect, please try again.");
+						response.sendRedirect("/final/userLogin/login.jsp?&message=Username or password incorrect, please try again.");
 						
 					}
 				}
