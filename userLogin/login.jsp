@@ -57,15 +57,15 @@ String encodedUrl = URLEncoder.encode(redirectUrl, "UTF-8");
 <h1>Member Login</h1><br>
 
 <form action="checkLogin.jsp?&redirectUrl=<%=encodedUrl%>" method = "post">
-  <label for="username">Username:</label>
-  <input type="text" id="username" name="username"> 
+  <label for="memberUsername">Username:</label>
+  <input type="text" id="memberUsername" name="memberUsername"> 
   <p style="color:red;"><%if(message != null && !message.isEmpty())
 		{out.print(message);
 		}
 	%> </p><br>
   
-  <label for="password">Password:</label>
-  <input type="password" id="password" name="password"><br><br>
+  <label for="memberPassword">Password:</label>
+  <input type="password" id="memberPassword" name="memberPassword"><br><br>
 
   <input type="submit" value="Login"> </input>
   <br>
