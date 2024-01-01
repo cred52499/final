@@ -32,9 +32,30 @@
         </form>
         </a></li>
         <li><a href="shpcart/shpcart copy.html"><h3>購物車</h3></a></li>
-        <li><a href="../userLogin/login.jsp?&redirectUrl=../coloredLens/coloredLens.jsp"><h3>登入</h3></a></li>
+		<%
+		Cookie[] cookies = request.getCookies();
+		String memberName = "";
+		if(cookies != null){
+			int count = cookies.length;
+			for(int i=0; i < count; i++){
+				if(cookies[i].getName().equals("memberName")){
+					memberName = cookies[i].getValue();
+				}
+			}
+		}
+		if(memberName == null || memberName.equals("")){%>
+		<li><a href="../userLogin/login.jsp?&redirectUrl=../coloredLens/coloredLens.jsp"><h3>登入</h3></a></li>
+		<%
+			}
+		else{
+		%>
+		<li><a href=""><h3>你好<%=memberName%></h3></a></li>
+		<li><a href="../userLogin/logout.jsp"><h3>登出</h3></a></li>
+		<%
+		}
+		%>
+        
         <li><a href="member/member.html"><h3>會員</h3></a></li>
-        <li><a href=""><h3>登入者 您好</h3></a></li>
       </ul>
     </header>
     <nav>
