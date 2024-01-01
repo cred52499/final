@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<
+<%@page contentType="text/html"%> 
+<%@page pageEncoding="UTF-8"%>
+<%@page import = "java.sql.*"%>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,27 +9,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
     <title>final project</title>
-	<%
-	Cookie cookies[] = request.getCookies();
-	int count = cookies.length;
-	boolean acceptedTOS = false;
 
-	for(int i=0; i < count; i++){
-		if(cookies[i].getName().equals("acceptedTOS")){
-			acceptedTOS = cookies[i].getValue();
-		}
-	}
-	if(acceptedTOS == false){
-	%>
     <script>
         window.onload = function() {
         openDialog();
     };
 
     </script>
-	<%
-	}
-	%>
+ 	
+ 
 </head>
 <div id="overlay">
     <div id="dialog">
@@ -38,7 +28,7 @@
   </div>
 <div>
 <body>
-    
+
         <header>
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
         </header>
@@ -62,9 +52,30 @@
                         </form>
                     </li>
                     <li><a href="shpcart/shpcart copy.html">購物車</a></li>
-                    <li><a href="UserLogin/login.html">登入</a></li>
-                    <li><a href="member/member.html">會員</a></li>
-                    <li><a href="">登入者您好</a></li>
+					<li><a href="member/member.html">會員</a></li>
+					<%
+					Cookie[] cookies = request.getCookies();
+					String memberName = "";
+					if(cookies != null){
+						int count = cookies.length;
+						for(int i=0; i < count; i++){
+							if(cookies[i].getName().equals("memberName")){
+								memberName = cookies[i].getValue();
+							}
+						}
+					}
+					if(memberName == null || memberName.equals("")){%>
+                    <li><a href="userLogin/login.jsp">登入</a></li>
+					<%
+						}
+					else{
+					%>
+					<li><a href="">你好<%=memberName%></a></li>
+					<li><a href="userLogin/logout.jsp">登出</a></li>
+					<%
+					}
+					%>
+					
                 </ul>
             </div>
         </nav>
