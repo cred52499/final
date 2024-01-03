@@ -35,7 +35,7 @@
         </form>
         </a></li>
 		<li><a href="../location/location.html"><h3>門市據點</h3></a></li>
-        <li><a href="shpcart/shpcart copy.html"><h3>購物車</h3></a></li>
+        <li><a href="../cart/cart.html"><h3>購物車</h3></a></li>
 		<%
 		Cookie[] cookies = request.getCookies();
 		String memberName = "";

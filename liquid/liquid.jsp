@@ -37,10 +37,16 @@
         </form>
         </a></li>
 		<li><a href="../location/location.html"><h3>門市據點</h3></a></li>
-        <li><a href="shpcart/shpcart copy.html"><h3>購物車</h3></a></li>
+        <li><a href="../cart/cart.jsp"><h3>購物車</h3></a></li>
         <%
 		Cookie[] cookies = request.getCookies();
+		String sessionID = "";
+		sessionID = request.getSession().getId();
+		
 		String memberName = "";
+		String cartID = "";
+		String customerID = "";
+
 		if(cookies != null){
 			int count = cookies.length;
 			for(int i=0; i < count; i++){
@@ -48,6 +54,20 @@
 					memberName = cookies[i].getValue();
 				}
 			}
+			for(int i=0; i < count; i++){
+				if(cookies[i].getName().equals("cartID")){
+					cartID = cookies[i].getValue();
+				}
+			}
+			for(int i=0; i < count; i++){
+				if(cookies[i].getName().equals("memberID")){
+					customerID = cookies[i].getValue();
+					//out.println(customerID);
+				}
+			}
+		}
+		if(customerID == null || customerID.equals("")){
+			customerID = sessionID;
 		}
 		if(memberName == null || memberName.equals("")){%>
 		<li><a href="../userLogin/login.jsp?&redirectUrl=../liquid/liquid.jsp"><h3>登入</h3></a></li>
@@ -107,7 +127,10 @@
 			<p> </p><br>
 			<form action="../cart/toCart.jsp" method="post">
 			<button class="add-to-cart-btn">加入購物車</button>
-			<input type="hidden" name="itemString" value="liquid&<%=dataset.getString("liquidID")%>|">
+			<input type="hidden" name="productCategory" value="liquid">
+			<input type="hidden" name="productID" value="<%=dataset.getString("liquidID")%>">
+			<input type="hidden" name="cartID" value="<%=cartID%>">
+			<input type="hidden" name="customerID" value="<%=customerID%>">
 			</form>
 			<h3 class="text1">庫存數量:<%=dataset.getString("liquidStock")%></a></h3>
 					

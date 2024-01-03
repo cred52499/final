@@ -11,15 +11,8 @@
     <title>final project</title>
     <script>
         window.onload = function() {
-            
-            <%
-                if(request.getParameter("cookie")!=null)
-                    session.setAttribute("remember", true);
-                Object remember = session.getAttribute("remember");
-                if (remember == null) 
-                    out.print("openDialog();");
-            %>
-        };
+        openDialog();
+    };
 
     </script>
 </head>
@@ -27,15 +20,84 @@
     <div id="dialog">
         <h2>請問您是否同意cookie條款</h2>
         <label for="agreeCheckbox">
-        <form id="form" method="POST" action="index.jsp">
-            <input type="hidden" name="cookie" value="true">
-            <input type="checkbox" id="agreeCheckbox" onchange="closeDialog()">我同意</label>
-        </form>
+        <input type="checkbox" id="agreeCheckbox" onchange="closeDialog()"> 我同意</label>
     </div>
   </div>
 <div>
 <body>
 
+<%	
+	String sessionID = "";
+	sessionID = request.getSession().getId();
+	long millis=System.currentTimeMillis(); 
+	Date date = new Date(millis);
+	String memberName = "";
+	String cartID = "";
+	String memberID = "";
+	String customerID = "";
+	
+	Cookie[] cookies = request.getCookies();
+	if(cookies != null){
+		int count = cookies.length;
+		for(int i=0; i < count; i++){
+			if(cookies[i].getName().equals("memberID")){
+				memberID = cookies[i].getValue();
+				out.print("get cookie memberID: " + memberID);
+			}
+		}
+	}
+
+	
+	//out.print(sessionID);
+	try {
+			Class.forName("com.mysql.jdbc.Driver");
+			try {	
+				String url="jdbc:mysql://localhost/opticshop";
+				Connection con=DriverManager.getConnection(url,"root","1234");
+				if(con.isClosed())
+				   out.println("連線建立失敗！");
+				else{
+					if(memberID == null || memberID.equals("")){
+						customerID = sessionID;//注意，這邊應該是讀session存的ID
+					}
+					else{
+						customerID = memberID;
+					}
+					
+					try{
+						String sql1="INSERT IGNORE into `cart` (`customerID`,`dateCreated`)";//寫入購物車
+						sql1+="VALUES('"+customerID+"','"+date+"')";      
+					
+						con.createStatement().executeUpdate(sql1);
+						out.print("已寫入購物車");
+					}
+					catch (SQLException sExec) {
+						out.println("1111 錯誤！"+sExec.toString()); 
+					}
+					out.println(customerID); 
+					String sql2 = "SELECT * FROM `cart` WHERE `customerID`=?";
+					PreparedStatement pstmt = null;
+					pstmt=con.prepareStatement(sql2);
+					pstmt.setString(1,customerID);
+					ResultSet dataset = pstmt.executeQuery();
+					if(dataset.next()){
+					cartID = dataset.getString("cartID");
+					Cookie cartCookie = new Cookie("cartID",cartID);
+					cartCookie.setMaxAge(-1);
+					response.addCookie(cartCookie);
+					}
+					con.close();
+				}
+			}
+				
+			catch (SQLException sExec) {
+				out.println("2222 錯誤！"+sExec.toString()); 
+			}
+		}
+	catch (ClassNotFoundException err) {
+		  out.println("class 錯誤！"+err.toString()); 
+		}
+%>
         <header>
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
         </header>
@@ -52,10 +114,8 @@
                     <li><a href="aboutUs/aboutus.html">關於我們</a>
                     </li>
                     <li><a href="location/location.html">門市據點</a></li>
-                    <li><a href="cart/cart.html">購物車</a></li>
+                    <li><a href="cart/cart.jsp">購物車</a></li>
 					<%
-					Cookie[] cookies = request.getCookies();
-					String memberName = "";
 					if(cookies != null){
 						int count = cookies.length;
 						for(int i=0; i < count; i++){
@@ -71,7 +131,7 @@
 					else{
 					%>
 					<li><a href="">你好<%=memberName%></a></li>
-					<li><a href="member/member.jsp">會員</a></li>
+					<li><a href="member/member.html">會員</a></li>
 					<li><a href="userLogin/logout.jsp">登出</a></li>
 					<%
 					}
