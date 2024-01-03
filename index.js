@@ -34,7 +34,6 @@ function closeDialog() {
         alert("感謝您的同意！");
         document.getElementById('overlay').style.display = 'none'; 
         document.getElementById('form').submit();
-    } else {
+    } else 
         alert("很抱歉，您似乎不同意。");
-    }
 }
