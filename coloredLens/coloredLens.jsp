@@ -82,12 +82,12 @@
 			
             else{
 				if(searchString != null && !searchString.equals("")){
-					sql = "SELECT * FROM `coloredlens` WHERE `coloredLensName` LIKE ?";			
+					sql = "SELECT * FROM `coloredlens` WHERE `coloredLensName` LIKE ? AND `coloredLensStock` > 0";			
 					pstmt=con.prepareStatement(sql);
 					pstmt.setString(1, "%" + searchString + "%");
 				}
 				else{
-					sql = "SELECT * FROM `coloredlens`";
+					sql = "SELECT * FROM `coloredlens` WHERE `coloredLensStock` > 0";
 					pstmt=con.prepareStatement(sql);
 				}
 				

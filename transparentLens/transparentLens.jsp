@@ -89,7 +89,7 @@
 					pstmt.setString(1, "%" + searchString + "%");
 				}
 				else{
-					sql = "SELECT * FROM `transparentlens`";
+					sql = "SELECT * FROM `transparentlens` WHERE `transparentLensStock` > 0";
 					pstmt=con.prepareStatement(sql);
 				}
 				

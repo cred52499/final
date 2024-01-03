@@ -90,7 +90,7 @@
 					pstmt.setString(1, "%" + searchString + "%");
 				}
 				else{
-					sql = "SELECT * FROM `liquid`";
+					sql = "SELECT * FROM `liquid` WHERE `liquidstock` > 0";
 					pstmt=con.prepareStatement(sql);
 				}
 				
