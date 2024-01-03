@@ -120,8 +120,13 @@
 					<input type="hidden" name="memberID" value="<%=memberID%>">
 					<input type="hidden" name="productID" value="<%=productID%>">
 					<input type="hidden" name="rate" id="rate">
-					<input type="submit" value="送出">
-                </form>
+					<%
+						if(memberName == null || memberName.equals("")){
+							out.print("<input type=\"submit\" value=\"送出\"></form>");
+						} else {
+							out.print("</form><form method=\"POST\" action=\"../userLogin/login.jsp\"> <input type=\"submit\" value=\"請先登入\"> </form>");
+						}
+					%>
             </div>
         </section>
             <div class="comments1">
