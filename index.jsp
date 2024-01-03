@@ -11,7 +11,13 @@
     <title>final project</title>
     <script>
         window.onload = function() {
-        openDialog();
+        <%
+                if(request.getParameter("cookie")!=null)
+                    session.setAttribute("remember", true);
+                Object remember = session.getAttribute("remember");
+                if (remember == null) 
+                    out.print("openDialog();");
+            %>
     };
 
     </script>
@@ -20,7 +26,10 @@
     <div id="dialog">
         <h2>請問您是否同意cookie條款</h2>
         <label for="agreeCheckbox">
-        <input type="checkbox" id="agreeCheckbox" onchange="closeDialog()"> 我同意</label>
+        <form id="form" method="POST" action="index.jsp">
+            <input type="hidden" name="cookie" value="true">
+            <input type="checkbox" id="agreeCheckbox" onchange="closeDialog()">我同意</label>
+        </form>
     </div>
   </div>
 <div>
