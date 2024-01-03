@@ -85,12 +85,12 @@
 			
             else{
 				if(searchString != null && !searchString.equals("")){
-					sql = "SELECT * FROM `liquid` WHERE `liquidName` LIKE ?";			
+					sql = "SELECT * FROM `liquid` WHERE `liquidName` LIKE ? AND `liquidStock` > 0";			
 					pstmt=con.prepareStatement(sql);
 					pstmt.setString(1, "%" + searchString + "%");
 				}
 				else{
-					sql = "SELECT * FROM `liquid`";
+					sql = "SELECT * FROM `liquid` WHERE `liquidStock` > 0";
 					pstmt=con.prepareStatement(sql);
 				}
 				
@@ -109,7 +109,7 @@
 			<button class="add-to-cart-btn">加入購物車</button>
 			<input type="hidden" name="itemString" value="liquid&<%=dataset.getString("liquidID")%>|">
 			</form>
-			<h3 class="text1">庫存數量:<%=dataset.getString("liquidstock")%></a></h3>
+			<h3 class="text1">庫存數量:<%=dataset.getString("liquidStock")%></a></h3>
 					
 		</section>  
 		<%
