@@ -64,7 +64,7 @@
                     Class.forName("com.mysql.jdbc.Driver");
                     String url="jdbc:mysql://localhost/opticshop";
 			        Connection con=DriverManager.getConnection(url,"root","1234"); 
-                    String sql1 = "SELECT `liquidID`, `liquidName` FROM `liquid`";
+                    String sql1 = "SELECT `productID`, `productName` FROM `liquid`";
                     ResultSet rs1 =con.createStatement().executeQuery(sql1);
                     while( rs1.next() ) {
                         out.print("<option value=" + rs1.getString(1) + ">" + rs1.getString(2) + "</option>");
@@ -77,7 +77,7 @@
             <form action="edit_coloredlens.jsp" method="post">
                 <select name="goods">
                     <%
-                    sql1 = "SELECT `coloredLensID`, `coloredLensName` FROM `coloredlens`";
+                    sql1 = "SELECT `productID`, `productName` FROM `coloredlens`";
                     rs1 =con.createStatement().executeQuery(sql1);
                     while( rs1.next() ) {
                         out.print("<option value=" + rs1.getString(1) + ">" + rs1.getString(2) + "</option>");
@@ -90,7 +90,7 @@
             <form action="edit_transparentlens.jsp" method="post">
                 <select name="goods">
                     <%
-                    sql1 = "SELECT `transparentLensID`, `transparentLensName` FROM `transparentlens`";
+                    sql1 = "SELECT `productID`, `productName` FROM `transparentlens`";
                     rs1 =con.createStatement().executeQuery(sql1);
                     while( rs1.next() ) {
                         out.print("<option value=" + rs1.getString(1) + ">" + rs1.getString(2) + "</option>");
