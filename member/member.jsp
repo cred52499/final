@@ -15,78 +15,47 @@
     <script src="member.js"></script>
 </head>
 
-<body onload="displayData(),displayShoppingList(shoppingData),displaytextarea() ">
+<body>
     <header>
     </header>
     <div class="containermember">
 	<%
-	Class.forName("com.mysql.jdbc.Driver")
-	String url="jdbc:mysql://localhost/?serverTimezone=UTC"
-	Connection con=DriverManager.getConnection(url,"root","1234");
-	%>
-        <div class="per">
-            <form method="post" action="">
+	try {
+		Class.forName("com.mysql.jdbc.Driver");
+    try {
+        String url = "jdbc:mysql://localhost/?serverTimezone=UTC";
+        Connection con = DriverManager.getConnection(url, "root", "1234");
+        if (con.isClosed()) {
+            out.println("連線建立失敗");
+        } else {
+            con.createStatement().execute("use `opticshop`");
+			String sql = "SELECT memberUsername, memberGender, memberBirthday, memberLeftNearsighted, memberRightNearsighted, memberEmail FROM member";
+			ResultSet resultSet = con.createStatement().executeQuery(sql);
+			
+			if (resultSet.next()) {
+                // Retrieve values from the result set
+                String username = resultSet.getString("memberUsername");
+                String gender = resultSet.getString("memberGender");
+                String birthday = resultSet.getString("memberBirthday");
+                String left = resultSet.getString("memberLeftNearsighted");
+                String right = resultSet.getString("memberRightNearsighted");
+                String email = resultSet.getString("memberEmail");
                 
-                <fieldset>
-                    <legend><h2>會員基本資料</h2></legend>
-                    <table class="pertable" border="1">
-                        <tr>
-                            <th>帳號</th>
-                            <td><input type="text" name="id" id="id"></td>
-                        </tr>
-                        <tr>
-                            <th>性別</th>
-                            <td><input type="radio" class="sex" name="gender" value="男">男<input type="radio" class="sex" name="gender" value="女">女</td>
-                        </tr>
-                        <tr>
-                            <th>生日</th>
-                            <td><input type="date" name="birth" id="birth"></td>
-                        </tr>
-
-                        <tr>
-                            <th>度數</th>
-                            <td>
-                                左眼:
-                                <select size="1" name="lefteye" id="lefteye">  <!--先放這樣，根據商品的度數還會在增加-->
-                                    <option>1.00</option>
-                                    <option>1.25</option>
-                                    <option>1.50</option>
-                                    <option>1.75</option>
-                                </select>
-                                右眼:
-                                <select size="1" name="righteye" id="righteye"> <!--先放這樣，根據商品的度數還會在增加-->
-                                    <option>1.00</option>
-                                    <option>1.25</option>
-                                    <option>1.50</option>
-                                    <option>1.75</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>地址</th>
-                            <td><input type="text" id="address"></td>
-                        </tr>
-                    </table>
-                    <input type="button" value="更新資料" onclick="updateData()">
-                </fieldset>
-            </form>       
-        </div>    
-        <div class="shp" id="shoppingList"> <!--購物清單-->
-                <!--顯示紀錄位置-->
-        </div>
-        <div class="art">
-            <form class="textarea" id="textarea" action="" method=""> <!--記事本表單-->
-                <table class="arttable">
-                    <tr>
-                        <th style="text-align: left;">記事本</th>    
-                    </tr>
-                    <tr>
-                        <td><textarea></textarea></td>
-                    </tr>
-                </table>
-                <input type="button" value="記錄" onclick="updatetextarea()">
-            </form>
-        </div>
-    </div>
+                out.println("Username: " + username);
+                out.println("Gender: " + gender);
+                out.println("Birthday: " + birthday);
+                out.println("Left: " + left);
+                out.println("Right: " + right);
+                out.println("Email: " + email);
+			}
+            con.close();
+        }
+    } catch (SQLException e) {
+        out.println("SQL錯誤: " + e.toString());
+    }
+	} catch (ClassNotFoundException err) {
+		out.println("Class錯誤: " + err.toString());
+	}
+%>
 </body>
 </html>
