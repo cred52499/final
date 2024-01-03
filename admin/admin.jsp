@@ -55,7 +55,7 @@
             </form>
         </section>
         <section class="product-management">
-            <h2>產品管理</h2>
+            <h2>商品管理</h2>
             <h3>保養液</h3>
             <form action="edit_liquid.jsp" method="post">
                 <select name="goods">

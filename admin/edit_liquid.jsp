@@ -23,7 +23,7 @@
                     String id = request.getParameter("goods");
                     String url="jdbc:mysql://localhost/opticshop";
 			        Connection con=DriverManager.getConnection(url,"root","1234"); 
-                    String sql1 = "SELECT * FROM `liquid` WHERE idLiquid = '"+id+"' LIMIT 1";
+                    String sql1 = "SELECT * FROM `liquid` WHERE liquidID = '"+id+"' LIMIT 1";
                     ResultSet rs1 =con.createStatement().executeQuery(sql1);
                     rs1.next();
                     out.print("<input type=\"hidden\" name=\"goods\" value=\""+id+"\">");
@@ -44,7 +44,7 @@
             </form><form action="product_delete.jsp" method="post">
                 <input type="hidden" name="delete" value="liquid">
                 <input type="hidden" name="id" value="<%=id%>">
-                <input type="hidden" name="tableid" value="idLiquid">
+                <input type="hidden" name="tableid" value="liquidID">
                 <button type="submit">刪除此產品</button>
             </form>
         </section>
@@ -59,7 +59,7 @@
             String note = request.getParameter("notes");
             String stock = request.getParameter("stock");
             String instock = request.getParameter("instock");
-            sql1 ="INSERT INTO `liquid` (`idLiquid`,`liquidName`,`liquidPrice`,`liquidContents`,`liquidFeatures`,`liquidIndications`,`liquidNotes`,`liquidStock`)"+"values('"+id+"','"+name+"','"+price+"','"+content+"','"+features+"','"+indi+"','"+note+"','"+stock+"')" + " ON DUPLICATE KEY UPDATE liquidName = '"+name+"', liquidPrice = '"+price+"', liquidContents = '"+content+"', liquidFeatures = '"+features+"', liquidIndications = '"+indi+"', liquidNotes = '"+note+"', liquidStock = '"+stock+"', instock = '"+(instock==null ? "0" : "1")+"';"; 
+            sql1 ="INSERT INTO `liquid` (`liquidID`,`liquidName`,`liquidPrice`,`liquidContents`,`liquidFeatures`,`liquidIndications`,`liquidNotes`,`liquidStock`)"+"values('"+id+"','"+name+"','"+price+"','"+content+"','"+features+"','"+indi+"','"+note+"','"+stock+"')" + " ON DUPLICATE KEY UPDATE liquidName = '"+name+"', liquidPrice = '"+price+"', liquidContents = '"+content+"', liquidFeatures = '"+features+"', liquidIndications = '"+indi+"', liquidNotes = '"+note+"', liquidStock = '"+stock+"', instock = '"+(instock==null ? "0" : "1")+"';"; 
             con.createStatement().executeUpdate(sql1);
             out.print("<script>alert('修改成功');location.href='admin.jsp'</script>");
         }

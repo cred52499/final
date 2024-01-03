@@ -23,7 +23,7 @@
                     String id = request.getParameter("goods");
                     String url="jdbc:mysql://localhost/opticshop";
 			        Connection con=DriverManager.getConnection(url,"root","1234"); 
-                    String sql1 = "SELECT * FROM `coloredlens` WHERE idColoredLens = '"+id+"' LIMIT 1";
+                    String sql1 = "SELECT * FROM `coloredlens` WHERE coloredLensID = '"+id+"' LIMIT 1";
                     ResultSet rs1 =con.createStatement().executeQuery(sql1);
                     rs1.next();
                     out.print("<input type=\"hidden\" name=\"goods\" value=\""+id+"\">");
@@ -44,7 +44,7 @@
             </form><form action="product_delete.jsp" method="post">
                 <input type="hidden" name="delete" value="coloredlens">
                 <input type="hidden" name="id" value="<%=id%>">
-                <input type="hidden" name="tableid" value="idColoredLens">
+                <input type="hidden" name="tableid" value="coloredLensID">
                 <button type="submit">刪除此產品</button>
             </form>
         </section>
@@ -59,7 +59,7 @@
             String gd = request.getParameter("graphicdiameter");
             String stock = request.getParameter("stock");
             String instock = request.getParameter("instock");
-            sql1 ="INSERT INTO `coloredlens` (`idColoredLens`,`coloredLensName`,`coloredLensPrice`,`coloredLensWaterContents`,`coloredLensBaseCurve`,`coloredLensDiameter`,`coloredLensGraphicDiameter`,`coloredLensStock`)"+"values('"+id+"','"+name+"','"+price+"','"+content+"','"+basecurve+"','"+dia+"','"+gd+"','"+stock+"')" + " ON DUPLICATE KEY UPDATE coloredLensName = '"+name+"', coloredLensPrice = '"+price+"', coloredLensWaterContents = '"+content+"', coloredLensBaseCurve = '"+basecurve+"', coloredLensDiameter = '"+dia+"', coloredLensGraphicDiameter = '"+gd+"', coloredLensStock = '"+stock+"', instock = '"+(instock==null ? "0" : "1")+"';"; 
+            sql1 ="INSERT INTO `coloredlens` (`coloredLensID`,`coloredLensName`,`coloredLensPrice`,`coloredLensWaterContents`,`coloredLensBaseCurve`,`coloredLensDiameter`,`coloredLensGraphicDiameter`,`coloredLensStock`)"+"values('"+id+"','"+name+"','"+price+"','"+content+"','"+basecurve+"','"+dia+"','"+gd+"','"+stock+"')" + " ON DUPLICATE KEY UPDATE coloredLensName = '"+name+"', coloredLensPrice = '"+price+"', coloredLensWaterContents = '"+content+"', coloredLensBaseCurve = '"+basecurve+"', coloredLensDiameter = '"+dia+"', coloredLensGraphicDiameter = '"+gd+"', coloredLensStock = '"+stock+"', instock = '"+(instock==null ? "0" : "1")+"';"; 
             con.createStatement().executeUpdate(sql1);
             out.print("<script>alert('修改成功');location.href='admin.jsp'</script>");
         }

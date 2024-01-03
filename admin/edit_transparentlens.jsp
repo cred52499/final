@@ -23,7 +23,7 @@
                     String id = request.getParameter("goods");
                     String url="jdbc:mysql://localhost/opticshop";
 			        Connection con=DriverManager.getConnection(url,"root","1234"); 
-                    String sql1 = "SELECT * FROM `coloredlens` WHERE idColoredLens = '"+id+"' LIMIT 1";
+                    String sql1 = "SELECT * FROM `transparentlens` WHERE transparentsLensID = '"+id+"' LIMIT 1";
                     ResultSet rs1 =con.createStatement().executeQuery(sql1);
                     rs1.next();
                     out.print("<input type=\"hidden\" name=\"goods\" value=\""+id+"\">");
@@ -44,7 +44,7 @@
             </form><form action="product_delete.jsp" method="post">
                 <input type="hidden" name="delete" value="transparentlens">
                 <input type="hidden" name="id" value="<%=id%>">
-                <input type="hidden" name="tableid" value="idTransparentsLens">
+                <input type="hidden" name="tableid" value="transparentsLensID">
                 <button type="submit">刪除此產品</button>
             </form>
         </section>
