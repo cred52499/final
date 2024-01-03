@@ -105,12 +105,12 @@
 			
             else{
 				if(searchString != null && !searchString.equals("")){
-					sql = "SELECT * FROM `liquid` WHERE `liquidName` LIKE ? AND `liquidStock` > 0";			
+					sql = "SELECT * FROM `liquid` WHERE `productid` LIKE ? AND `productStock` > 0";			
 					pstmt=con.prepareStatement(sql);
 					pstmt.setString(1, "%" + searchString + "%");
 				}
 				else{
-					sql = "SELECT * FROM `liquid` WHERE `liquidStock` > 0";
+					sql = "SELECT * FROM `liquid` WHERE `productStock` > 0";
 					pstmt=con.prepareStatement(sql);
 				}
 				
@@ -119,20 +119,20 @@
 				while(dataset.next()){
 		%>
 		<section class="card">
-			<a href="goodspage.jsp?liquidID=<%= dataset.getString("liquidID") %>">
-			<img src="image/<%=dataset.getString("liquidID")%>.png?time=<%=System.currentTimeMillis()%>" height="300px" width="300px">
-			<h3><%=dataset.getString("liquidname")%></h3></a>
+			<a href="goodspage.jsp?productID=<%= dataset.getString("productid") %>">
+			<img src="image/<%=dataset.getString("productID")%>.png?time=<%=System.currentTimeMillis()%>" height="300px" width="300px">
+			<h3><%=dataset.getString("productName")%></h3></a>
 			<p> </p><br>
-			<h4><%="$" + dataset.getString("liquidprice")%></h4>
+			<h4><%="$" + dataset.getString("productprice")%></h4>
 			<p> </p><br>
 			<form action="../cart/toCart.jsp" method="post">
 			<button class="add-to-cart-btn">加入購物車</button>
 			<input type="hidden" name="productCategory" value="liquid">
-			<input type="hidden" name="productID" value="<%=dataset.getString("liquidID")%>">
+			<input type="hidden" name="productID" value="<%=dataset.getString("productID")%>">
 			<input type="hidden" name="cartID" value="<%=cartID%>">
 			<input type="hidden" name="customerID" value="<%=customerID%>">
 			</form>
-			<h3 class="text1">庫存數量:<%=dataset.getString("liquidStock")%></a></h3>
+			<h3 class="text1">庫存數量:<%=dataset.getString("productStock")%></a></h3>
 					
 		</section>  
 		<%
