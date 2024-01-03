@@ -2,35 +2,36 @@
 <%@page contentType="text/html"%> 
 <%@page pageEncoding="UTF-8"%>
 <%@ page import = "java.sql.*"%>
+
 <html lang="en">
-  <head>
+	<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>個人網頁排版</title>
     <link rel="stylesheet" href="styles.css?time=<%=System.currentTimeMillis()%>">
-  </head>
+	</head>
 
 
   <body>
     <header>
       <ul>
+		<li><a href=".."><h3>首頁</h3></a>
         <li><a href="#"><h3>產品目錄</h3></a>
           <ul>
-            <li><a href="brand_zone/brand_design/brand.html"><h4>品牌</h4></a></li>
             <li><a href="../coloredLens/coloredLens.jsp"><h4>彩色隱形眼鏡</h4></a></li>
             <li><a href="../transparentLens/transparentLens.jsp"><h4>透明隱形眼鏡</h4></a></li>
-            <li><a href="liquid.jsp"><h4>保養液</h4></a></li>
+            <li><a href="../liquid/liquid.jsp"><h4>保養液</h4></a></li>
           </ul>
         </li>
         <li><a href="../aboutUs/aboutus.html"><h3>關於我們</h3></a>
         </li>
-        <li><a href="../location/location.html"><h3>門市據點</h3></a></li>
         <li><form class="search-form">
             <input type="text" class="search-input" placeholder="Search...">
             <button type="submit" class="search-button">Search</button>
         </form>
         </a></li>
+		<li><a href="../location/location.html"><h3>門市據點</h3></a></li>
         <li><a href="shpcart/shpcart copy.html"><h3>購物車</h3></a></li>
         <%
 		Cookie[] cookies = request.getCookies();
@@ -49,12 +50,12 @@
 			}
 		else{
 		%>
-		<li><a href=""><h3>你好<%=memberName%></h3></a></li>
+		<li><a><h3>你好，<%=memberName%></h3></a></li>
+		<li><a href="member/member.html"><h3>會員</h3></a></li>
 		<li><a href="../userLogin/logout.jsp"><h3>登出</h3></a></li>
 		<%
 		}
 		%>
-        <li><a href="member/member.html"><h3>會員</h3></a></li>
 		</ul>
 		
 		
@@ -90,7 +91,10 @@
 			<p> </p><br>
 			<h4><%="$" + dataset.getString("liquidprice")%></h4>
 			<p> </p><br>
+			<form action="../cart/toCart.jsp" method="post">
 			<button class="add-to-cart-btn">加入購物車</button>
+			<input type="hidden" name="itemString" value="liquid&<%=dataset.getString("liquidID")%>|">
+			</form>
 			<h3 class="text1">庫存數量:<%=dataset.getString("liquidstock")%></a></h3>
 					
 		</section>  

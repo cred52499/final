@@ -7,17 +7,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="index.css?time=<%=System.currentTimeMillis()%>">
     <title>final project</title>
-
     <script>
         window.onload = function() {
         openDialog();
     };
 
     </script>
- 	
- 
 </head>
 <div id="overlay">
     <div id="dialog">
@@ -46,13 +43,7 @@
                     <li><a href="aboutUs/aboutus.html">關於我們</a>
                     </li>
                     <li><a href="location/location.html">門市據點</a></li>
-                    <li><form class="search-form">
-                        <input type="text" class="search-input" placeholder="Search....">
-                        <button type="submit" class="search-button">Search</button>
-                        </form>
-                    </li>
                     <li><a href="shpcart/shpcart copy.html">購物車</a></li>
-					<li><a href="member/member.html">會員</a></li>
 					<%
 					Cookie[] cookies = request.getCookies();
 					String memberName = "";
@@ -71,6 +62,7 @@
 					else{
 					%>
 					<li><a href="">你好<%=memberName%></a></li>
+					<li><a href="member/member.html">會員</a></li>
 					<li><a href="userLogin/logout.jsp">登出</a></li>
 					<%
 					}
@@ -116,27 +108,38 @@
             </div>
             <div class="m02">
                 <div class="gragh">
-                    <a href=""><img src="img/ad01.jpeg" style="width: 250px;height: 250px;"></a>
-                    <a href=""><img src="img/ad01.jpeg" style="width: 250px;height: 250px;"></a>
-                    <a href=""><img src="img/ad01.jpeg" style="width: 250px;height: 250px;"></a>
+                    <div class="card-container">
+                        <a href="introduction/vippage.html"><img src="img/會員權益1.png" style="width: 300px;height: 300px;"></a>
+                        <a href="introduction/teach.html"><img src="img/下單教學(1).png" style="width: 300px;height: 300px;"></a>
+                        <a href="https://www.youtube.com/watch?v=K2XzOz_e9qI&t=31s"><img src="img/衛教保健1.png" style="width: 300px;height: 300px;"></a>
+                    </div>
                 </div>
             </div>
             <div class="m03">
-                <div class="graph">
-                <a href="introduction/vippage.html"><img src="img/會員權益介紹.png" style="width: 300px;height: 300px;"></a>
-                <a href="introduction/teach.html"><img src="img/下單教學.png" style="width: 300px;height: 300px;"></a>
-                <a href="https://www.youtube.com/watch?v=K2XzOz_e9qI"><img src="img/衛教保健.png" style="width: 300px;height: 300px;"></a>
+                <div class="graph01">
+                    <a href="activity/activity/act01/act01.html"><img src="activity/activity/act01/image/act01.jpg" style="width: 350px;height: 450px;"></a>
+                    <a href="activity/activity/act02/act02.html"><img src="activity/activity/act02/image/act02.jpg" style="width: 350px;height: 450px;"></a>
+                    <a href="activity/activity/act03/act03.html"><img src="activity/activity/act03/image/act03.jpg" style="width: 350px;height: 450px;"></a>
                 </div>
             </div>
-            <div class="m04">
             
-            </div>
             <div class="act">
                 <div class="gragh">
-                    <a href="promotion/act01/act01.html"><img src="promotion/act01/image/act01.jpg" style="width: 350px;height: 250px;"></a>
-                    <a href="promotion/act02/act02.html"><img src="promotion/act02/image/act02.jpg" style="width: 350px;height: 250px;"></a>
-                    <a href="promotion/act03/act03.html"><img src="promotion/act03/image/act03.jpg" style="width: 350px;height: 250px;"></a>
-            </div> 
+                    <div class="map">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1270.2788791790574!2d121.24351152577623!3d24.957450344334042!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346822143c046009%3A0x63e3ef21e3beebac!2z6LOH6KiK566h55CG5a2457O7!5e0!3m2!1szh-TW!2stw!4v1704098187362!5m2!1szh-TW!2stw" width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    <div class="shpname">
+                        <section>
+                          <div class="outside">
+                              <img src="image/route.jpg" class="imgposition" />
+                              <img src="image/web.jpg" class="imgposition" />  
+                            <h2>中原資管店</h2>
+                            <p>營業時間11:00~20:00<br>
+                              中原大學資管樓</p>  
+                          </div>
+                        </section>
+                        <hr color="black">  
+                </div> 
             </div>
         </main>
         <footer>
