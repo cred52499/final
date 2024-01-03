@@ -18,6 +18,32 @@ USE `opticshop`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `campaign`
+--
+
+DROP TABLE IF EXISTS `campaign`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `campaign` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `href` varchar(45) NOT NULL,
+  `img` varchar(45) NOT NULL,
+  `text` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `campaign`
+--
+
+LOCK TABLES `campaign` WRITE;
+/*!40000 ALTER TABLE `campaign` DISABLE KEYS */;
+INSERT INTO `campaign` VALUES (1,'activity/activity/act01/act01.html','activity/activity/act01/image/act01.jpg','聖誕瞳樂！全館打折！'),(2,'activity/activity/act02/act02.html','activity/activity/act02/image/act02.jpg','2024 新年快樂！'),(3,'activity/activity/act03/act03.html','activity/activity/act03/image/act03.jpg','聖誕節過不了 可以過剩單節^^');
+/*!40000 ALTER TABLE `campaign` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `cart`
 --
 
@@ -31,7 +57,7 @@ CREATE TABLE `cart` (
   PRIMARY KEY (`cartID`),
   UNIQUE KEY `cartID_UNIQUE` (`cartID`),
   UNIQUE KEY `customerID_UNIQUE` (`customerID`)
-) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=87 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -130,7 +156,7 @@ CREATE TABLE `comment` (
 
 LOCK TABLES `comment` WRITE;
 /*!40000 ALTER TABLE `comment` DISABLE KEYS */;
-INSERT INTO `comment` VALUES (1,'transparentlens','1',37,5,''),(2,'transparentlens','1',37,5,'123');
+INSERT INTO `comment` VALUES (1,'transparentlens','1',37,5,'我有大麻煩了'),(2,'transparentlens','1',37,5,'123');
 /*!40000 ALTER TABLE `comment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -241,4 +267,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-01-04  5:12:05
+-- Dump completed on 2024-01-04  7:56:17
