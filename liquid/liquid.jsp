@@ -12,7 +12,12 @@
     <link rel="stylesheet" href="styles.css?time=<%=System.currentTimeMillis()%>">
 	</head>
 
-
+	<%
+	String searchString=request.getParameter("searchString");
+	if(searchString == null || searchString.equals("")){
+		searchString = "";
+	}
+	%>
   <body>
     <header>
       <ul>
@@ -26,8 +31,8 @@
         </li>
         <li><a href="../aboutUs/aboutus.html"><h3>關於我們</h3></a>
         </li>
-        <li><form class="search-form">
-            <input type="text" class="search-input" placeholder="Search...">
+        <li><form action="liquid.jsp" class="search-form" method="post">
+            <input type="text" class="search-input" placeholder="Search..." name="searchString" value="<%=searchString%>">
             <button type="submit" class="search-button">Search</button>
         </form>
         </a></li>
@@ -67,19 +72,28 @@
 	
 	<main>
 		<%
+		String sql = "";
   		try {
             Class.forName("com.mysql.jdbc.Driver");	  
 			String url="jdbc:mysql://localhost/opticshop";
 			Connection con=DriverManager.getConnection(url,"root","1234"); 
+			PreparedStatement pstmt = null;
 			
 	        if(con.isClosed()){
                 out.println("連線建立失敗");
 			}
 			
-            else{	 
-				String sql = "SELECT * FROM `liquid`";
-				PreparedStatement pstmt = null;
-				pstmt=con.prepareStatement(sql);
+            else{
+				if(searchString != null && !searchString.equals("")){
+					sql = "SELECT * FROM `liquid` WHERE `liquidName` LIKE ?";			
+					pstmt=con.prepareStatement(sql);
+					pstmt.setString(1, "%" + searchString + "%");
+				}
+				else{
+					sql = "SELECT * FROM `liquid`";
+					pstmt=con.prepareStatement(sql);
+				}
+				
 				
 				ResultSet dataset = pstmt.executeQuery();
 				while(dataset.next()){

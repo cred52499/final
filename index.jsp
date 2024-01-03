@@ -34,7 +34,6 @@
                 <ul>
                     <li><a href="#">產品目錄</h5></a>
                     <ul>
-                        <li><a href="brand_zone/brand_design/brand.html">品牌</a></li>
                         <li><a href="coloredLens/coloredLens.jsp">彩色隱形眼鏡</a></li>
                         <li><a href="transparentLens/transparentLens.jsp">透明隱形眼鏡</a></li>
                         <li><a href="liquid/liquid.jsp">保養液</a></li>
@@ -43,7 +42,7 @@
                     <li><a href="aboutUs/aboutus.html">關於我們</a>
                     </li>
                     <li><a href="location/location.html">門市據點</a></li>
-                    <li><a href="shpcart/shpcart copy.html">購物車</a></li>
+                    <li><a href="cart/cart.html">購物車</a></li>
 					<%
 					Cookie[] cookies = request.getCookies();
 					String memberName = "";
