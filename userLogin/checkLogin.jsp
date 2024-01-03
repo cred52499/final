@@ -41,12 +41,17 @@
 					if(dataset.next()){
 						Cookie usernameCookie = new Cookie("memberUsername",memberUsername);
 						Cookie nameCookie = new Cookie("memberName",dataset.getString("memberName"));
+						Cookie idCookie = new Cookie("memberID",dataset.getString("memberID"));
 						usernameCookie.setMaxAge(-1);
 						usernameCookie.setPath("/");
 						nameCookie.setMaxAge(-1);
 						nameCookie.setPath("/");
+						idCookie.setMaxAge(-1);
+						idCookie.setPath("/");
 						response.addCookie(usernameCookie);
 						response.addCookie(nameCookie);
+						response.addCookie(idCookie);
+
 						con.close();//結束資料庫連結
 						response.sendRedirect(redirectUrl);
 					}
