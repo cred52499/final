@@ -1,8 +1,8 @@
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
--- Host: localhost    Database: opticshop
+-- Host: 127.0.0.1    Database: opticshop
 -- ------------------------------------------------------
--- Server version	8.2.0
+-- Server version	8.0.34
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -16,6 +16,62 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `cart`
+--
+
+DROP TABLE IF EXISTS `cart`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `cart` (
+  `cartID` int NOT NULL AUTO_INCREMENT,
+  `customerID` varchar(45) NOT NULL,
+  `dateCreated` date NOT NULL,
+  PRIMARY KEY (`cartID`),
+  UNIQUE KEY `cartID_UNIQUE` (`cartID`),
+  UNIQUE KEY `customerID_UNIQUE` (`customerID`)
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cart`
+--
+
+LOCK TABLES `cart` WRITE;
+/*!40000 ALTER TABLE `cart` DISABLE KEYS */;
+INSERT INTO `cart` VALUES (1,'D8A2360524D9A42B0CD21B01B6CDDF6A','2024-01-03'),(6,'B2FAA88CA667BD54F2B8141CE671B149','2024-01-03'),(14,'5A8D62FB21CE1C32B2F4834B5F848EF6','2024-01-03'),(15,'FD84A00459A9D2B0BBD6240F5B3F53CA','2024-01-03'),(34,'41','2024-01-03'),(35,'599328B84485D34429CAC9C6E11F25AA','2024-01-03');
+/*!40000 ALTER TABLE `cart` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cartdetails`
+--
+
+DROP TABLE IF EXISTS `cartdetails`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `cartdetails` (
+  `cartDetailsID` int NOT NULL AUTO_INCREMENT,
+  `cartID` int NOT NULL,
+  `productCategory` varchar(45) NOT NULL,
+  `productID` int NOT NULL,
+  `quantity` int DEFAULT NULL,
+  PRIMARY KEY (`cartDetailsID`),
+  UNIQUE KEY `cartDetailsID_UNIQUE` (`cartDetailsID`),
+  UNIQUE KEY `cartID` (`cartID`,`productCategory`,`productID`)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cartdetails`
+--
+
+LOCK TABLES `cartdetails` WRITE;
+/*!40000 ALTER TABLE `cartdetails` DISABLE KEYS */;
+INSERT INTO `cartdetails` VALUES (1,15,'liquid',1,NULL),(4,15,'liquid',3,NULL),(9,15,'liquid',4,NULL),(12,15,'liquid',5,NULL),(16,34,'liquid',6,NULL),(19,34,'liquid',9,NULL),(20,34,'liquid',1,NULL),(22,34,'liquid',3,NULL);
+/*!40000 ALTER TABLE `cartdetails` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `coloredlens`
 --
 
@@ -23,17 +79,17 @@ DROP TABLE IF EXISTS `coloredlens`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `coloredlens` (
-  `idColoredLens` int NOT NULL AUTO_INCREMENT,
+  `coloredLensID` int NOT NULL,
   `coloredLensName` varchar(100) NOT NULL,
   `coloredLensPrice` decimal(10,2) NOT NULL,
   `coloredLensStock` int NOT NULL,
-  `coloredLensWaterContent` decimal(10,2) unsigned zerofill DEFAULT NULL,
-  `coloredLensBaseCurve` decimal(10,2) unsigned zerofill DEFAULT NULL,
-  `coloredLensDiameter` decimal(10,2) unsigned zerofill DEFAULT NULL,
-  `coloredLensGraphicDiameter` decimal(10,2) unsigned zerofill DEFAULT NULL,
-  PRIMARY KEY (`idColoredLens`),
-  UNIQUE KEY `idColoredLens_UNIQUE` (`idColoredLens`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `coloredLensWaterContent` decimal(10,2) DEFAULT NULL,
+  `coloredLensBaseCurve` decimal(10,2) DEFAULT NULL,
+  `coloredLensDiameter` decimal(10,2) DEFAULT NULL,
+  `coloredLensGraphicDiameter` decimal(10,2) DEFAULT NULL,
+  PRIMARY KEY (`coloredLensID`),
+  UNIQUE KEY `idColoredLens_UNIQUE` (`coloredLensID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +98,7 @@ CREATE TABLE `coloredlens` (
 
 LOCK TABLES `coloredlens` WRITE;
 /*!40000 ALTER TABLE `coloredlens` DISABLE KEYS */;
-INSERT INTO `coloredlens` VALUES (1,'Hydron海昌百變濾藍光彩色日拋10片裝-星光可可',320.00,1,00000055.00,00000006.00,00000002.00,00000002.00),(2,'Hydron海昌百變濾藍光彩色日拋10片裝-星光焦糖',320.00,2,00000034.56,00000006.70,00000002.00,00000004.00),(3,'Hydron海昌百變濾藍光彩色日拋10片裝-星光黑',320.00,3,00000057.00,00000005.00,00000002.00,00000005.00),(4,'Hydron海昌星眸心機彩色日拋10片裝-心機琥珀',270.00,0,00000012.00,00000007.00,00000003.00,00000023.00),(5,'Hydron海昌百變濾藍光彩色日拋10片裝-星光咖',320.00,5,00000064.00,00000002.00,00000006.00,00000005.00),(6,'Hydron海昌百變彩色日拋10片裝-百變棕',280.00,7,00000032.00,00000007.00,00000005.00,00000003.00),(7,'Hydron海昌百變彩色日拋10片裝-時尚澄',280.00,6,00000012.00,00000003.00,00000002.00,00000001.00),(8,'Hydron海昌星眸彩色日拋10片裝-大銀河墨',220.00,3,00000035.00,00000006.00,00000001.00,00000023.00),(9,'Hydron海昌星眸彩色日拋10片裝-大銀河咖',220.00,89,00000022.00,00000008.00,00000002.00,00000005.00),(10,'Hydron海昌星眸彩色日拋10片裝-星鑽黑',220.00,2,00000006.60,00000005.00,00000031.00,00000002.00),(11,'Hydron海昌星眸彩色日拋10片裝-蜜糖棕',220.00,5,00000085.00,00000004.00,00000012.00,00000004.00),(12,'Hydron海昌星眸心機彩色日拋10片裝-心機抹茶',270.00,7,00000014.00,00000002.00,00000010.00,00000005.00);
+INSERT INTO `coloredlens` VALUES (1,'Hydron海昌百變濾藍光彩色日拋10片裝-星光可可',320.00,1,55.00,6.00,2.00,2.00),(2,'Hydron海昌百變濾藍光彩色日拋10片裝-星光焦糖',320.00,2,34.56,6.70,2.00,4.00),(3,'Hydron海昌百變濾藍光彩色日拋10片裝-星光黑',320.00,3,57.00,5.00,2.00,5.00),(4,'Hydron海昌星眸心機彩色日拋10片裝-心機琥珀',270.00,0,12.00,7.00,3.00,23.00),(5,'Hydron海昌百變濾藍光彩色日拋10片裝-星光咖',320.00,5,64.00,2.00,6.00,5.00),(6,'Hydron海昌百變彩色日拋10片裝-百變棕',280.00,7,32.00,7.00,5.00,3.00),(7,'Hydron海昌百變彩色日拋10片裝-時尚澄',280.00,6,12.00,3.00,2.00,1.00),(8,'Hydron海昌星眸彩色日拋10片裝-大銀河墨',220.00,3,35.00,6.00,1.00,23.00),(9,'Hydron海昌星眸彩色日拋10片裝-大銀河咖',220.00,89,22.00,8.00,2.00,5.00),(10,'Hydron海昌星眸彩色日拋10片裝-星鑽黑',220.00,2,6.60,5.00,31.00,2.00),(11,'Hydron海昌星眸彩色日拋10片裝-蜜糖棕',220.00,5,85.00,4.00,12.00,4.00),(12,'Hydron海昌星眸心機彩色日拋10片裝-心機抹茶',270.00,7,14.00,2.00,10.00,5.00);
 /*!40000 ALTER TABLE `coloredlens` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -54,7 +110,7 @@ DROP TABLE IF EXISTS `liquid`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `liquid` (
-  `idLiquid` int NOT NULL AUTO_INCREMENT,
+  `liquidID` int NOT NULL AUTO_INCREMENT,
   `liquidName` varchar(45) NOT NULL,
   `liquidPrice` decimal(10,2) NOT NULL,
   `liquidStock` int NOT NULL,
@@ -62,8 +118,8 @@ CREATE TABLE `liquid` (
   `liquidFeatures` varchar(45) DEFAULT NULL,
   `liquidIndications` varchar(45) DEFAULT NULL,
   `liquidNotes` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`idLiquid`),
-  UNIQUE KEY `idLiquid_UNIQUE` (`idLiquid`),
+  PRIMARY KEY (`liquidID`),
+  UNIQUE KEY `idLiquid_UNIQUE` (`liquidID`),
   UNIQUE KEY `liquidName_UNIQUE` (`liquidName`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -87,17 +143,18 @@ DROP TABLE IF EXISTS `member`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `member` (
   `memberID` int NOT NULL AUTO_INCREMENT,
-  `username` varchar(30) NOT NULL,
-  `password` varchar(20) NOT NULL,
-  `email` varchar(45) NOT NULL,
-  `birthday` date DEFAULT NULL,
-  `gender` varchar(10) DEFAULT NULL,
-  `lnearsighted` int NOT NULL,
-  `rnearsighted` int NOT NULL,
+  `memberUsername` varchar(30) NOT NULL,
+  `memberName` varchar(45) NOT NULL,
+  `memberPassword` varchar(20) NOT NULL,
+  `memberEmail` varchar(45) NOT NULL,
+  `memberBirthday` date DEFAULT NULL,
+  `memberGender` varchar(10) DEFAULT NULL,
+  `memberLeftNearsighted` int NOT NULL DEFAULT '0',
+  `memberRightNearsighted` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`memberID`),
-  UNIQUE KEY `username_UNIQUE` (`username`),
+  UNIQUE KEY `username_UNIQUE` (`memberUsername`),
   UNIQUE KEY `memberID_UNIQUE` (`memberID`)
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -106,7 +163,7 @@ CREATE TABLE `member` (
 
 LOCK TABLES `member` WRITE;
 /*!40000 ALTER TABLE `member` DISABLE KEYS */;
-INSERT INTO `member` VALUES (2,'LewisHamilton','password','ham44@fmail.com','1997-03-14','male',300,0),(3,'劉曦鴻','password','ham44@fmail.com','1997-03-14','male',300,0),(37,'darren52499','abc','test@gmail.com','2023-12-13','female',156,0),(39,'leclerc','asdfg','lec@l3c.com','2023-12-15','male',500,0),(40,'schumi','password','schumi@gmail.com','2023-12-08','male',400,350),(41,'test','123','test@gmail.com','2023-12-01','male',12,13),(43,'asd','asd','test@gmail.com','2023-12-01','male',12,13),(44,'qwe','asd','test@gmail.com','2023-12-01','male',12,13),(52,'ew','ew','asd','2023-12-02','male',3,5),(54,'bg','bg','asd','2023-12-02','male',3,5),(56,'bv','12345','asd','2023-12-02','male',3,5),(57,'tyu','123','tyu','2023-12-08','male',350,350),(58,'test1','1234','test@gmail.com','2023-12-15','male',123,123),(59,'test2','12345','test@gmail.com','2023-12-01','male',123,123);
+INSERT INTO `member` VALUES (2,'LewisHamilton','Lewis','password','ham44@fmail.com','1997-03-14','male',300,0),(3,'劉曦鴻','','password','ham44@fmail.com','1997-03-14','male',300,0),(37,'darren52499','Darren','abc','test@gmail.com','2023-12-13','female',156,0),(41,'test','張三','123','test@gmail.com','2023-12-01','male',12,13),(43,'asd','李四','asd','test@gmail.com','2023-12-01','male',12,13);
 /*!40000 ALTER TABLE `member` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -118,17 +175,17 @@ DROP TABLE IF EXISTS `transparentlens`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `transparentlens` (
-  `idTransparentLens` int NOT NULL AUTO_INCREMENT,
+  `transparentLensID` int NOT NULL,
   `transparentLensName` varchar(100) NOT NULL,
   `transparentLensPrice` decimal(10,2) NOT NULL,
   `transparentLensStock` int NOT NULL,
-  `transparentLensWaterContent` decimal(10,2) unsigned zerofill DEFAULT '00000000.00',
-  `transparentLensBaseCurve` decimal(10,2) unsigned zerofill DEFAULT '00000000.00',
-  `transparentLensDiameter` decimal(10,2) unsigned zerofill DEFAULT '00000000.00',
-  `transparentLensGraphicDiameter` decimal(10,2) unsigned zerofill DEFAULT '00000000.00',
-  PRIMARY KEY (`idTransparentLens`),
-  UNIQUE KEY `idtransparentLens_UNIQUE` (`idTransparentLens`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `transparentLensWaterContent` decimal(10,2) DEFAULT NULL,
+  `transparentLensBaseCurve` decimal(10,2) DEFAULT NULL,
+  `transparentLensDiameter` decimal(10,2) DEFAULT NULL,
+  `transparentLensGraphicDiameter` decimal(10,2) DEFAULT NULL,
+  PRIMARY KEY (`transparentLensID`),
+  UNIQUE KEY `idtransparentLens_UNIQUE` (`transparentLensID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -137,7 +194,7 @@ CREATE TABLE `transparentlens` (
 
 LOCK TABLES `transparentlens` WRITE;
 /*!40000 ALTER TABLE `transparentlens` DISABLE KEYS */;
-INSERT INTO `transparentlens` VALUES (1,'Hydron海昌真水感濾藍光清透日拋30片裝',440.00,1,00000035.00,00000003.50,00000015.50,00000010.00),(2,'Hydron海昌真水感濾藍光清透日拋10片裝',190.00,2,00000035.70,00000004.50,00000017.00,00000011.00),(3,'LARGAN星歐透明日拋30片裝(升級版)',290.00,3,00000023.00,00000003.60,00000015.00,00000012.00),(4,'Hydron海昌純粹氧矽水膠日拋30片裝',499.00,0,00000023.00,00000005.00,00000011.00,00000013.20),(5,'Hydron海昌真水感透明日拋30片裝',399.00,4,00000050.00,00000007.40,00000011.50,00000015.50),(6,'Capell卡沛兒睛亮透明日拋30片裝',350.00,5,00000047.70,00000002.00,00000013.00,00000032.00),(7,'AQUAMAX水滋氧PMB透明日拋30片裝',350.00,4,00000055.00,00000045.00,00000022.00,00000013.00),(8,'CooperVision酷柏UltraFlex Air奧克拉優氧矽水膠日拋30片裝8.6mm',450.00,8,00000033.00,00000023.00,00000051.00,00000041.00),(9,'Ticon帝康光漾瞬間非球面透明日拋30片裝',390.00,3,00000044.20,00000022.00,00000014.00,00000012.50),(10,'Miacare美若康O2Cellence澄氧透明日拋20片裝',580.00,7,00000058.00,00000001.00,00000012.50,00000013.00),(11,'HBaush+Lomb博士倫ULTRA輕水氧奧澈矽水膠透明日拋30片裝',950.00,5,00000012.00,00000023.00,00000023.00,00000014.50),(12,'Ticon帝康國民日拋(非球面透明日拋)20片裝',260.00,5,00000075.00,00000002.00,00000023.00,00000015.00);
+INSERT INTO `transparentlens` VALUES (1,'Hydron海昌真水感濾藍光清透日拋30片裝',440.00,1,35.00,3.50,15.50,10.00),(2,'Hydron海昌真水感濾藍光清透日拋10片裝',190.00,2,35.70,4.50,17.00,11.00),(3,'LARGAN星歐透明日拋30片裝(升級版)',290.00,3,23.00,3.60,15.00,12.00),(4,'Hydron海昌純粹氧矽水膠日拋30片裝',499.00,0,23.00,5.00,11.00,13.20),(5,'Hydron海昌真水感透明日拋30片裝',399.00,4,50.00,7.40,11.50,15.50),(6,'Capell卡沛兒睛亮透明日拋30片裝',350.00,5,47.70,2.00,13.00,32.00),(7,'AQUAMAX水滋氧PMB透明日拋30片裝',350.00,4,55.00,45.00,22.00,13.00),(8,'CooperVision酷柏UltraFlex Air奧克拉優氧矽水膠日拋30片裝8.6mm',450.00,8,33.00,23.00,51.00,41.00),(9,'Ticon帝康光漾瞬間非球面透明日拋30片裝',390.00,3,44.20,22.00,14.00,12.50),(10,'Miacare美若康O2Cellence澄氧透明日拋20片裝',580.00,7,58.00,1.00,12.50,13.00),(11,'HBaush+Lomb博士倫ULTRA輕水氧奧澈矽水膠透明日拋30片裝',950.00,5,12.00,23.00,23.00,14.50),(12,'Ticon帝康國民日拋(非球面透明日拋)20片裝',260.00,5,75.00,2.00,23.00,15.00);
 /*!40000 ALTER TABLE `transparentlens` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -150,4 +207,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-01-03 15:48:36
+-- Dump completed on 2024-01-04  1:07:01
