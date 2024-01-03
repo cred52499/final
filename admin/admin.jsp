@@ -57,7 +57,7 @@
         <section class="product-management">
             <h2>產品管理</h2>
             <h3>保養液</h3>
-            <form action="add_liquid.jsp" method="post">
+            <form action="edit_liquid.jsp" method="post">
                 <select name="goods">
                     <%
                     try{
@@ -74,10 +74,10 @@
                 <button type="submit">修改</button>
             </form>
             <h3>彩色隱眼</h3>
-            <form action="add_coloredlens.jsp" method="post">
+            <form action="edit_coloredlens.jsp" method="post">
                 <select name="goods">
                     <%
-                    sql1 = "SELECT `idColoredLens`,`coloredLensName` FROM `coloredlens`";
+                    sql1 = "SELECT `idColoredLens`, `coloredLensName` FROM `coloredlens`";
                     rs1 =con.createStatement().executeQuery(sql1);
                     while( rs1.next() ) {
                         out.print("<option value=" + rs1.getString(1) + ">" + rs1.getString(2) + "</option>");
@@ -87,7 +87,7 @@
                 <button type="submit">修改</button>
             </form>
             <h3>透明隱眼</h3>
-            <form action="add_transparentlens.jsp" method="post">
+            <form action="edit_transparentlens.jsp" method="post">
                 <select name="goods">
                     <%
                     sql1 = "SELECT `idTransparentLens`, `transparentLensName` FROM `transparentlens`";
@@ -96,7 +96,6 @@
                         out.print("<option value=" + rs1.getString(1) + ">" + rs1.getString(2) + "</option>");
                     }
                     con.close();
-
                     } catch (ClassNotFoundException err){
                         out.println("class錯誤"+err.toString());
                     }
