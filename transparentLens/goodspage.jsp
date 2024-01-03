@@ -29,11 +29,14 @@
 			<%
 			Cookie[] cookies = request.getCookies();
 			String memberName = "";
+			String memberID = "";
 			if(cookies != null){
 				int count = cookies.length;
 				for(int i=0; i < count; i++){
 					if(cookies[i].getName().equals("memberName")){
 						memberName = cookies[i].getValue();
+					} else if(cookies[i].getName().equals("memberID")){
+						memberID = cookies[i].getValue();
 					}
 				}
 			}
@@ -56,7 +59,7 @@
     </nav>
 	
 	<%
-	String transparentLensID = request.getParameter("transparentLensID");
+	String transparentLensID = request.getParameter("productID");
 			
 	try {
         Class.forName("com.mysql.jdbc.Driver");	  
@@ -68,7 +71,7 @@
 		}
 			
         else{	 
-			String sql = "SELECT * FROM `transparentlens` WHERE `transparentLensID`=?";
+			String sql = "SELECT * FROM `transparentlens` WHERE `productID`=?";
 			PreparedStatement pstmt = null;
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1,transparentLensID);
@@ -83,11 +86,11 @@
 	<table class="infor">
 		<tr>
 		<td>
-			<img class="pp" src="image/<%=dataset.getString("transparentLensID")%>.png?time=<%=System.currentTimeMillis()%>" width="350px" height="400px">
+			<img class="pp" src="image/<%=dataset.getString("productID")%>.png?time=<%=System.currentTimeMillis()%>" width="350px" height="400px">
 		</td>
 			<td>
 			<ul class = "other">
-			<li><h3>商品名稱: <%=dataset.getString("transparentLensName")%><<br> 
+			<li><h3>商品名稱: <%=dataset.getString("productName")%><<br> 
 				<br> 規格說明:<br>  
 				<br>含水量:<%=dataset.getString("transparentLensWaterContent")%><br>  
 				<br>基弧:<%=dataset.getString("transparentLensBaseCurve")%><br>  
@@ -97,32 +100,34 @@
 		}
        
 	catch (ClassNotFoundException err) {
-          out.println("class錯誤"+err.toString());
+		out.println("class錯誤"+err.toString());
 	}
 
     %>
 			</ul>
 		</td>
 		</tr>
-
 	</table>
 		<section>
+			<div id="rating-value"></div>
 			<div class="fedback">
-                <form id="feedback"></form>
-                <h3>留言板</h3><br>
-                <h3>請輸入姓名:</h3><input type="text"><br>
-                <h3>   </h3><br>
-                <h3>請對商品評分</h3>
-                
-                <span class="star" data-rating="1">&#9733;</span>
-                <span class="star" data-rating="2">&#9733;</span>
-                <span class="star" data-rating="3">&#9733;</span>
-                <span class="star" data-rating="4">&#9733;</span>
-                <span class="star" data-rating="5">&#9733;</span><br>
-                <h3>   </h3><br>
-                <h3>請給予我們您的寶貴意見:</h3><textarea name="" id="" cols="60" rows="6"></textarea><br>
-                <h3>    </h3><br>
-                <button class="send">送出</button>
+                <form id="feedback" action="../admin/comment.jsp" method="POST"></form>
+					<h3>留言板</h3><br>
+					<h3>   </h3><br>
+					<h3>請對商品評分</h3>
+					<span class="star" data-rating="1">&#9733;</span>
+					<span class="star" data-rating="2">&#9733;</span>
+					<span class="star" data-rating="3">&#9733;</span>
+					<span class="star" data-rating="4">&#9733;</span>
+					<span class="star" data-rating="5">&#9733;</span><br>
+					<h3>   </h3><br>
+					<h3>請給予我們您的寶貴意見:</h3>
+					<textarea name="comment" cols="60" rows="6" form="feedback"></textarea><br>
+					<h3>    </h3><br>
+					<input type="hidden" name="type" value="transparentlens">
+					<input type="hidden" name="id" value="<%=memberID%>">
+					<input type="hidden" name="rate" id="rate">
+					<input id="btn" type="submit" value="送出">
                 </form>
             </div>
         </section>
@@ -188,58 +193,64 @@
     </footer>
     <script>
         const stars = document.querySelectorAll('.star');
-const ratingValue = document.getElementById('rating-value');
+		const ratingValue = document.getElementById('rating-value');
+		const btn = document.getElementById('btn');
+		const rate = document.getElementById('rate');
+		let rating = 0;
 
-let rating = 0;
+		btn.addEventListener('click', () => {
+			document.getElementById('feedback').submit();
+		});
 
-stars.forEach(star => {
- star.addEventListener('click', () => {
-   rating = parseInt(star.getAttribute('data-rating'));
-   updateRating();
- });
+		stars.forEach(star => {
+			star.addEventListener('click', () => {
+				rating = parseInt(star.getAttribute('data-rating'));
+				rate.value = parseInt(star.getAttribute('data-rating'));
+				updateRating();
+			});
 
- star.addEventListener('mouseover', () => {
-   resetStarsColor();
-   highlightStars(parseInt(star.getAttribute('data-rating')));
- });
+			star.addEventListener('mouseover', () => {
+				resetStarsColor();
+				highlightStars(parseInt(star.getAttribute('data-rating')));
+			});
 
- star.addEventListener('mouseout', () => {
-   resetStarsColor();
-   highlightStars(rating);
- });
-});
+			star.addEventListener('mouseout', () => {
+				resetStarsColor();
+				highlightStars(rating);
+			});
+		});
 
-function highlightStars(count) {
- for (let i = 0; i < count; i++) {
-   stars[i].classList.add('active');
- }
-}
+		function highlightStars(count) {
+		for (let i = 0; i < count; i++) {
+		stars[i].classList.add('active');
+		}
+		}
 
-function resetStarsColor() {
- stars.forEach(star => {
-   star.classList.remove('active');
- });
-}
+		function resetStarsColor() {
+		stars.forEach(star => {
+		star.classList.remove('active');
+		});
+		}
 
-function updateRating() {
- ratingValue.innerHTML = `你的評分是：${rating}顆星`;
-}
+		function updateRating() {
+		ratingValue.innerHTML = `你的評分是：${rating}顆星`;
+		}
 
-// 選取留言區塊和拉條
-const comments = document.querySelector('.comments');
-const scrollbar = document.getElementById('scrollbar');
+		// 選取留言區塊和拉條
+		const comments = document.querySelector('.comments');
+		const scrollbar = document.getElementById('scrollbar');
 
-// 更新拉條高度
-function updateScrollbar() {
-  const totalHeight = comments.scrollHeight;
-  const visibleHeight = comments.clientHeight;
-  const scrollHeight = totalHeight - visibleHeight;
-  const percentage = (comments.scrollTop / scrollHeight) * 100;
-  scrollbar.style.height = `${percentage}%`;
-}
+		// 更新拉條高度
+		function updateScrollbar() {
+		const totalHeight = comments.scrollHeight;
+		const visibleHeight = comments.clientHeight;
+		const scrollHeight = totalHeight - visibleHeight;
+		const percentage = (comments.scrollTop / scrollHeight) * 100;
+		scrollbar.style.height = `${percentage}%`;
+		}
 
-// 監聽滾動事件
-comments.addEventListener('scroll', updateScrollbar);
+		// 監聽滾動事件
+		comments.addEventListener('scroll', updateScrollbar);
 
 
 	</script>
