@@ -16,11 +16,10 @@
                 try{
                     request.setCharacterEncoding("UTF-8");
                     String id = request.getParameter("id");
-                    String tableId = request.getParameter("tableid");
                     String delete = request.getParameter("delete");
                     String url="jdbc:mysql://localhost/opticshop";
 			        Connection con=DriverManager.getConnection(url,"root","1234"); 
-                    String sql1 = "DELETE FROM `" + delete + "` WHERE " + tableId + " = '" + id + "' LIMIT 1";
+                    String sql1 = "DELETE FROM `" + delete + "` WHERE productID = '" + id + "' LIMIT 1";
                     con.createStatement().executeUpdate(sql1);
                     out.print("<script>alert('刪除成功');location.href='admin.jsp'</script>");
                     con.close();

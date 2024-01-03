@@ -68,17 +68,16 @@
 			
 	    if(con.isClosed()){
             out.println("連線建立失敗");
+			return;
 		}
-			
-        else{	 
-			String sql = "SELECT * FROM `transparentlens` WHERE `productID`=?";
-			PreparedStatement pstmt = null;
-			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1,productID);
+		String sql = "SELECT * FROM `transparentlens` WHERE `productID`=?";
+		PreparedStatement pstmt = null;
+		pstmt=con.prepareStatement(sql);
+		pstmt.setString(1,productID);
 				
-			ResultSet dataset = pstmt.executeQuery();
-			dataset.next();
-			
+		ResultSet dataset = pstmt.executeQuery();
+		dataset.next();
+
 	%>
 
 	<main>
@@ -96,22 +95,13 @@
 				<br>基弧:<%=dataset.getString("transparentLensBaseCurve")%><br>  
 				<br>鏡片直徑:<%=dataset.getString("transparentLensDiameter")%><br>  
 				<br>著色直徑:<%=dataset.getString("transparentLensGraphicDiameter")%><br></h3></li>	
-	<%}
-		}
-       
-	catch (ClassNotFoundException err) {
-		out.println("class錯誤"+err.toString());
-	}
-
-    %>
 			</ul>
 		</td>
 		</tr>
 	</table>
 		<section>
-			<div id="rating-value"></div>
 			<div class="fedback">
-                <form id="feedback" action="../admin/comment.jsp" method="POST"></form>
+                <form id="feedback" action="../admin/comment.jsp" method="POST">
 					<h3>留言板</h3><br>
 					<h3>   </h3><br>
 					<h3>請對商品評分</h3>
@@ -125,47 +115,39 @@
 					<textarea name="comment" cols="60" rows="6" form="feedback"></textarea><br>
 					<h3>    </h3><br>
 					<input type="hidden" name="type" value="transparentlens">
-					<input type="hidden" name="id" value="<%=memberID%>">
+					<input type="hidden" name="href" value="transparentLens/goodspage.jsp?productID=<%=productID%>">
+					<input type="hidden" name="memberID" value="<%=memberID%>">
+					<input type="hidden" name="productID" value="<%=productID%>">
 					<input type="hidden" name="rate" id="rate">
-					<input id="btn" type="submit" value="送出">
+					<input type="submit" value="送出">
                 </form>
             </div>
         </section>
             <div class="comments1">
                 <h3>顧客回饋</h3><br>
                 <div class="comments">
-					<div class="comment" id="comment1">
-                    <h4>林0珊</h4><span class="star" data-rating="1">&#9733;</span>
-                    <span class="star" data-rating="2">&#9733;</span>
-                    <span class="star" data-rating="3">&#9733;</span>
-                    <span class="star" data-rating="4">&#9733;</span>
-                    <span class="star" data-rating="5">&#9733;</span><br>
-                    <p>使用此商品保持眼部濕潤，讓我可以長時間配戴隱形眼鏡，而不感到乾澀。</p>
-					</div>
-                 <div class="comment" id="comment2">
-                    <h4>周0穎</h4><span class="star" data-rating="1">&#9733;</span>
-                    <span class="star" data-rating="2">&#9733;</span>
-                    <span class="star" data-rating="3">&#9733;</span>
-                    <span class="star" data-rating="4">&#9733;</span>
-                    <span class="star" data-rating="5">&#9733;</span><br>
-                    <p>真不錯</p> 
-                </div>
-                <div class="comment" id="comment3">
-                    <h4>彭0祐</h4><span class="star" data-rating="1">&#9733;</span>
-                    <span class="star" data-rating="2">&#9733;</span>
-                    <span class="star" data-rating="3">&#9733;</span>
-                    <span class="star" data-rating="4">&#9733;</span>
-                    <span class="star" data-rating="5">&#9733;</span><br>
-                    <p>太贊了</p>
-                </div>
-                <div class="comment" id="comment3">
-                    <h4>周0穎</h4><span class="star" data-rating="1">&#9733;</span>
-                    <span class="star" data-rating="2">&#9733;</span>
-                    <span class="star" data-rating="3">&#9733;</span>
-                    <span class="star" data-rating="4">&#9733;</span>
-                    <span class="star" data-rating="5">&#9733;</span><br>
-                    <p>真是太棒了，讓我可以長時間戴著而不感到乾澀。</p>
-                </div>
+					<%
+						sql = "SELECT * FROM `comment` WHERE `category` = 'transparentlens' AND `productID` = '"+productID+"' ORDER BY commentID DESC";
+						ResultSet rs =con.createStatement().executeQuery(sql);
+						int amt = 1;
+						while(rs.next()){
+							out.print("<div class=\"comment\" id=\"comment"+amt+"\">");
+							String memberNameQuery = "SELECT `memberUsername` FROM member WHERE memberID = '"+rs.getString(4)+"';";
+							ResultSet rs1 =con.createStatement().executeQuery(memberNameQuery);
+							rs1.next();
+							out.print("<h4>"+rs1.getString(1)+"</h4>");
+							int star = rs.getInt(5);
+							for(int i =0;i<star;i++)
+								out.print("<span class=\"star active\">&#9733;</span>");
+							for(int j=0;j<5-star;j++)
+								out.print("<span class=\"star\">&#9733;</span>");
+							out.print("<br><p>"+rs.getString(6)+"</p></div>");
+							amt++;
+						}
+					} catch (ClassNotFoundException err) {
+						out.println("class錯誤"+err.toString());
+					}
+					%>
                 </div>
                 <div class="scrollbar" id="scrollbar">
 
@@ -192,20 +174,15 @@
         </table>
     </footer>
     <script>
-        const stars = document.querySelectorAll('.star');
+        const stars = Array.from(document.querySelectorAll('.star')).filter(star => star.getAttribute('data-rating') != null);
 		const ratingValue = document.getElementById('rating-value');
-		const btn = document.getElementById('btn');
-		const rate = document.getElementById('rate');
+
 		let rating = 0;
-
-		btn.addEventListener('click', () => {
-			document.getElementById('feedback').submit();
-		});
-
+		
 		stars.forEach(star => {
 			star.addEventListener('click', () => {
 				rating = parseInt(star.getAttribute('data-rating'));
-				rate.value = parseInt(star.getAttribute('data-rating'));
+				document.getElementById("rate").value = rating;
 				updateRating();
 			});
 
@@ -221,19 +198,15 @@
 		});
 
 		function highlightStars(count) {
-		for (let i = 0; i < count; i++) {
-		stars[i].classList.add('active');
-		}
+			for (let i = 0; i < count; i++) {
+				stars[i].classList.add('active');
+			}
 		}
 
 		function resetStarsColor() {
-		stars.forEach(star => {
-		star.classList.remove('active');
-		});
-		}
-
-		function updateRating() {
-		ratingValue.innerHTML = `你的評分是：${rating}顆星`;
+			for (let i = 0; i < 5; i++) {
+				stars[i].classList.remove('active');
+			}
 		}
 
 		// 選取留言區塊和拉條
@@ -242,16 +215,15 @@
 
 		// 更新拉條高度
 		function updateScrollbar() {
-		const totalHeight = comments.scrollHeight;
-		const visibleHeight = comments.clientHeight;
-		const scrollHeight = totalHeight - visibleHeight;
-		const percentage = (comments.scrollTop / scrollHeight) * 100;
-		scrollbar.style.height = `${percentage}%`;
+			const totalHeight = comments.scrollHeight;
+			const visibleHeight = comments.clientHeight;
+			const scrollHeight = totalHeight - visibleHeight;
+			const percentage = (comments.scrollTop / scrollHeight) * 100;
+			scrollbar.style.height = `${percentage}%`;
 		}
 
 		// 監聽滾動事件
 		comments.addEventListener('scroll', updateScrollbar);
-
 
 	</script>
 	</body>

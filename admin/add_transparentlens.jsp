@@ -33,7 +33,7 @@
     	Class.forName("com.mysql.jdbc.Driver");
 		String url="jdbc:mysql://localhost/opticshop";
 		Connection con=DriverManager.getConnection(url,"root","1234");
-        String sql1 ="INSERT INTO `transparentlens` (`transparentLensName`,`transparentLensPrice`,`transparentLensStock`,`transparentLensWaterContent`,`transparentLensBaseCurve`,`transparentLensDiameter`,`transparentLensGraphicDiameter`)"+"values('"+name+"','"+price+"','"+stock+"','"+content+"','"+basecurve+"','"+dia+"','"+gd+"')"; 
+        String sql1 ="INSERT INTO `transparentlens` (`productName`,`productPrice`,`productStock`,`transparentLensWaterContent`,`transparentLensBaseCurve`,`transparentLensDiameter`,`transparentLensGraphicDiameter`)"+"values('"+name+"','"+price+"','"+stock+"','"+content+"','"+basecurve+"','"+dia+"','"+gd+"')"; 
         con.createStatement().executeUpdate(sql1);
         out.print("<script>alert('新增成功');location.href='admin.jsp'</script>");
        
