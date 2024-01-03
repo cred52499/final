@@ -1,0 +1,96 @@
+.a01 {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    width: max-content;
+}
+
+.a02 {
+    border: 1px solid black;
+    width: max-content;
+    text-align: center;
+    display: inline-block;
+    margin: 5px;
+}
+
+img .a02 {
+    width: 300px;
+    padding: 5px;
+}
+
+.title {
+    font-weight: bold;
+    margin: 20px;
+}
+
+button {
+    border: 2px solid;
+    margin: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.button {
+    border: 2px solid;
+    margin: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    box-shadow: 0 0 5px 5px inset;
+}
+
+.button:hover {
+    box-shadow: 0 0 5px 5px inset;
+}
+
+.cart {
+    width: 400px;
+    float: right;
+    text-align: center;
+    border: 1px solid black;
+    overflow-y: scroll;
+    height: 1000px;
+}
+
+.cartImg>img {
+    width: 200px;
+}
+
+/*000*/
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
