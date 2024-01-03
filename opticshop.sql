@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `opticshop` /*!40100 DEFAULT CHARACTER SET utf8mb3 */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `opticshop`;
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
 -- Host: localhost    Database: opticshop
@@ -16,6 +18,62 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `cart`
+--
+
+DROP TABLE IF EXISTS `cart`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `cart` (
+  `cartID` int NOT NULL AUTO_INCREMENT,
+  `customerID` varchar(45) NOT NULL,
+  `dateCreated` date NOT NULL,
+  PRIMARY KEY (`cartID`),
+  UNIQUE KEY `cartID_UNIQUE` (`cartID`),
+  UNIQUE KEY `customerID_UNIQUE` (`customerID`)
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cart`
+--
+
+LOCK TABLES `cart` WRITE;
+/*!40000 ALTER TABLE `cart` DISABLE KEYS */;
+INSERT INTO `cart` VALUES (1,'D8A2360524D9A42B0CD21B01B6CDDF6A','2024-01-03'),(6,'B2FAA88CA667BD54F2B8141CE671B149','2024-01-03'),(14,'5A8D62FB21CE1C32B2F4834B5F848EF6','2024-01-03'),(15,'FD84A00459A9D2B0BBD6240F5B3F53CA','2024-01-03'),(34,'41','2024-01-03'),(35,'599328B84485D34429CAC9C6E11F25AA','2024-01-03');
+/*!40000 ALTER TABLE `cart` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cartdetails`
+--
+
+DROP TABLE IF EXISTS `cartdetails`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `cartdetails` (
+  `cartDetailsID` int NOT NULL AUTO_INCREMENT,
+  `cartID` int NOT NULL,
+  `productCategory` varchar(45) NOT NULL,
+  `productID` int NOT NULL,
+  `quantity` int DEFAULT NULL,
+  PRIMARY KEY (`cartDetailsID`),
+  UNIQUE KEY `cartDetailsID_UNIQUE` (`cartDetailsID`),
+  UNIQUE KEY `cartID` (`cartID`,`productCategory`,`productID`)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cartdetails`
+--
+
+LOCK TABLES `cartdetails` WRITE;
+/*!40000 ALTER TABLE `cartdetails` DISABLE KEYS */;
+INSERT INTO `cartdetails` VALUES (1,15,'liquid',1,NULL),(4,15,'liquid',3,NULL),(9,15,'liquid',4,NULL),(12,15,'liquid',5,NULL),(16,34,'liquid',6,NULL),(19,34,'liquid',9,NULL),(20,34,'liquid',1,NULL),(22,34,'liquid',3,NULL);
+/*!40000 ALTER TABLE `cartdetails` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `coloredlens`
 --
 
@@ -23,7 +81,7 @@ DROP TABLE IF EXISTS `coloredlens`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `coloredlens` (
-  `idColoredLens` int NOT NULL AUTO_INCREMENT,
+  `coloredLensID` int NOT NULL AUTO_INCREMENT,
   `coloredLensName` varchar(100) NOT NULL,
   `coloredLensPrice` decimal(10,2) NOT NULL,
   `coloredLensStock` int NOT NULL,
@@ -32,8 +90,8 @@ CREATE TABLE `coloredlens` (
   `coloredLensDiameter` decimal(10,2) unsigned zerofill DEFAULT NULL,
   `coloredLensGraphicDiameter` decimal(10,2) unsigned zerofill DEFAULT NULL,
   `instock` tinyint(1) DEFAULT '0',
-  PRIMARY KEY (`idColoredLens`),
-  UNIQUE KEY `idColoredLens_UNIQUE` (`idColoredLens`)
+  PRIMARY KEY (`coloredLensID`),
+  UNIQUE KEY `idColoredLens_UNIQUE` (`coloredLensID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -55,7 +113,7 @@ DROP TABLE IF EXISTS `liquid`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `liquid` (
-  `idLiquid` int NOT NULL AUTO_INCREMENT,
+  `liquidID` int NOT NULL AUTO_INCREMENT,
   `liquidName` varchar(45) NOT NULL,
   `liquidPrice` decimal(10,2) NOT NULL,
   `liquidStock` int NOT NULL,
@@ -64,10 +122,10 @@ CREATE TABLE `liquid` (
   `liquidIndications` varchar(45) DEFAULT NULL,
   `liquidNotes` varchar(45) DEFAULT NULL,
   `instock` tinyint(1) DEFAULT '0',
-  PRIMARY KEY (`idLiquid`),
-  UNIQUE KEY `idLiquid_UNIQUE` (`idLiquid`),
+  PRIMARY KEY (`liquidID`),
+  UNIQUE KEY `idLiquid_UNIQUE` (`liquidID`),
   UNIQUE KEY `liquidName_UNIQUE` (`liquidName`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -76,7 +134,7 @@ CREATE TABLE `liquid` (
 
 LOCK TABLES `liquid` WRITE;
 /*!40000 ALTER TABLE `liquid` DISABLE KEYS */;
-INSERT INTO `liquid` VALUES (1,'Bausch+Lomb 博士倫Biotrue博士倫舒視能水漾平衡多效保養液300ML',240.00,1,'水','清爽','睡前使用','無',0),(2,'Bausch+Lomb 博士倫Biotrue博士倫舒視能舒潤液單支裝-30支',299.00,0,'蘆薈','清涼','乾燥時使用','不適用敏感肌',0),(3,'Bausch+Lomb 博士倫Renu博士倫瑞霖水漾清新多效保養液355ML',220.00,2,NULL,NULL,NULL,NULL,0),(4,'Bausch+Lomb 博士倫Boston博士倫博視頓先進護理液120ML',260.00,3,NULL,NULL,NULL,NULL,0),(5,'Bausch+Lomb 博士倫Boston博視頓新潔多功能護理液120ML',340.00,5,NULL,NULL,NULL,NULL,0),(6,'Bausch+Lomb 博士倫Boston博士倫博視頓舒潤液10ML',220.00,7,NULL,NULL,NULL,NULL,0),(7,'Bausch+Lomb 博士倫Boston博士倫博視頓酵素除蛋白清潔液5ML',220.00,6,NULL,NULL,NULL,NULL,0),(8,'Bausch+Lomb 博士倫Boston博士倫博視頓先進清潔液30ML',220.00,8,NULL,NULL,NULL,NULL,0),(9,'Hydron海昌美麗秘密長效保濕隱形眼鏡潤濕液15ml',120.00,5,NULL,NULL,NULL,NULL,0),(10,'Hydron海昌粉紅玻尿酸保養液360ml',240.00,3,NULL,NULL,NULL,NULL,0),(11,'海昌美麗主張無汞緩衝液360ml',30.00,4,NULL,NULL,NULL,NULL,0),(12,'Miacare美若康睛透多效保養液360ml',235.00,2,NULL,NULL,NULL,NULL,0);
+INSERT INTO `liquid` VALUES (1,'Bausch+Lomb 博士倫Biotrue博士倫舒視能水漾平衡多效保養液300ML',240.00,20,'水','清爽','睡前使用','無',1),(2,'Bausch+Lomb 博士倫Biotrue博士倫舒視能舒潤液單支裝-30支',299.00,0,'蘆薈','清涼','乾燥時使用','不適用敏感肌',0),(3,'Bausch+Lomb 博士倫Renu博士倫瑞霖水漾清新多效保養液355ML',220.00,2,NULL,NULL,NULL,NULL,0),(4,'Bausch+Lomb 博士倫Boston博士倫博視頓先進護理液120ML',260.00,3,NULL,NULL,NULL,NULL,0),(5,'Bausch+Lomb 博士倫Boston博視頓新潔多功能護理液120ML',340.00,5,NULL,NULL,NULL,NULL,0),(6,'Bausch+Lomb 博士倫Boston博士倫博視頓舒潤液10ML',220.00,7,NULL,NULL,NULL,NULL,0),(7,'Bausch+Lomb 博士倫Boston博士倫博視頓酵素除蛋白清潔液5ML',220.00,6,NULL,NULL,NULL,NULL,0),(8,'Bausch+Lomb 博士倫Boston博士倫博視頓先進清潔液30ML',220.00,8,NULL,NULL,NULL,NULL,0),(9,'Hydron海昌美麗秘密長效保濕隱形眼鏡潤濕液15ml',120.00,5,NULL,NULL,NULL,NULL,0),(10,'Hydron海昌粉紅玻尿酸保養液360ml',240.00,3,NULL,NULL,NULL,NULL,0),(11,'海昌美麗主張無汞緩衝液360ml',30.00,4,NULL,NULL,NULL,NULL,0),(12,'Miacare美若康睛透多效保養液360ml',235.00,2,NULL,NULL,NULL,NULL,0);
 /*!40000 ALTER TABLE `liquid` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -89,17 +147,18 @@ DROP TABLE IF EXISTS `member`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `member` (
   `memberID` int NOT NULL AUTO_INCREMENT,
-  `username` varchar(30) NOT NULL,
-  `password` varchar(20) NOT NULL,
-  `email` varchar(45) NOT NULL,
-  `birthday` date DEFAULT NULL,
-  `gender` varchar(10) DEFAULT NULL,
-  `lnearsighted` int NOT NULL,
-  `rnearsighted` int NOT NULL,
+  `memberUsername` varchar(30) NOT NULL,
+  `memberName` varchar(45) NOT NULL,
+  `memberPassword` varchar(20) NOT NULL,
+  `memberEmail` varchar(45) NOT NULL,
+  `memberBirthday` date DEFAULT NULL,
+  `memberGender` varchar(10) DEFAULT NULL,
+  `memberLeftNearsighted` int NOT NULL DEFAULT '0',
+  `memberRightNearsighted` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`memberID`),
-  UNIQUE KEY `username_UNIQUE` (`username`),
+  UNIQUE KEY `username_UNIQUE` (`memberUsername`),
   UNIQUE KEY `memberID_UNIQUE` (`memberID`)
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -108,7 +167,7 @@ CREATE TABLE `member` (
 
 LOCK TABLES `member` WRITE;
 /*!40000 ALTER TABLE `member` DISABLE KEYS */;
-INSERT INTO `member` VALUES (2,'LewisHamilton','password','ham44@fmail.com','1997-03-14','male',300,0),(3,'劉曦鴻','password','ham44@fmail.com','1997-03-14','male',300,0),(37,'darren52499','abc','test@gmail.com','2023-12-13','female',156,0),(39,'leclerc','asdfg','lec@l3c.com','2023-12-15','male',500,0),(40,'schumi','password','schumi@gmail.com','2023-12-08','male',400,350),(41,'test','123','test@gmail.com','2023-12-01','male',12,13),(43,'asd','asd','test@gmail.com','2023-12-01','male',12,13),(44,'qwe','asd','test@gmail.com','2023-12-01','male',12,13),(52,'ew','ew','asd','2023-12-02','male',3,5),(54,'bg','bg','asd','2023-12-02','male',3,5),(56,'bv','12345','asd','2023-12-02','male',3,5),(57,'tyu','123','tyu','2023-12-08','male',350,350),(58,'test1','1234','test@gmail.com','2023-12-15','male',123,123),(59,'test2','12345','test@gmail.com','2023-12-01','male',123,123);
+INSERT INTO `member` VALUES (2,'LewisHamilton','Lewis','password','ham44@fmail.com','1997-03-14','male',300,0),(3,'劉曦鴻','','password','ham44@fmail.com','1997-03-14','male',300,0),(37,'darren52499','Darren','abc','test@gmail.com','2023-12-13','female',156,0),(41,'test','張三','123','test@gmail.com','2023-12-01','male',12,13),(43,'asd','李四','asd','test@gmail.com','2023-12-01','male',12,13);
 /*!40000 ALTER TABLE `member` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -120,7 +179,7 @@ DROP TABLE IF EXISTS `transparentlens`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `transparentlens` (
-  `idTransparentLens` int NOT NULL AUTO_INCREMENT,
+  `transparentLensID` int NOT NULL AUTO_INCREMENT,
   `transparentLensName` varchar(100) NOT NULL,
   `transparentLensPrice` decimal(10,2) NOT NULL,
   `transparentLensStock` int NOT NULL,
@@ -129,8 +188,8 @@ CREATE TABLE `transparentlens` (
   `transparentLensDiameter` decimal(10,2) unsigned zerofill DEFAULT '00000000.00',
   `transparentLensGraphicDiameter` decimal(10,2) unsigned zerofill DEFAULT '00000000.00',
   `instock` tinyint(1) DEFAULT '0',
-  PRIMARY KEY (`idTransparentLens`),
-  UNIQUE KEY `idtransparentLens_UNIQUE` (`idTransparentLens`)
+  PRIMARY KEY (`transparentLensID`),
+  UNIQUE KEY `idtransparentLens_UNIQUE` (`transparentLensID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -153,4 +212,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-01-03 16:07:28
+-- Dump completed on 2024-01-04  1:47:12
