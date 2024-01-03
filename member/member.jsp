@@ -15,11 +15,27 @@
     <script src="member.js"></script>
 </head>
 
-<body>
+<body onload="displayData(),displayShoppingList(shoppingData),displaytextarea() ">
     <header>
     </header>
     <div class="containermember">
+        <div class="per">
+            <form method="post" action="updateMember.jsp">
+			
 	<%
+	String memberID = "";
+	String returnMessage = request.getParameter("returnMessage");
+	
+	Cookie[] cookies = request.getCookies();
+	if(cookies != null){
+		int count = cookies.length;
+		for(int i=0; i < count; i++){
+			if(cookies[i].getName().equals("memberID")){
+				memberID = cookies[i].getValue();
+				//out.print("get cookie memberID: " + memberID);
+			}
+		}
+	}
 	try {
 		Class.forName("com.mysql.jdbc.Driver");
     try {
@@ -29,25 +45,61 @@
             out.println("連線建立失敗");
         } else {
             con.createStatement().execute("use `opticshop`");
-			String sql = "SELECT memberUsername, memberGender, memberBirthday, memberLeftNearsighted, memberRightNearsighted, memberEmail FROM member";
+			String sql = "SELECT * FROM member WHERE memberID=" + memberID;
 			ResultSet resultSet = con.createStatement().executeQuery(sql);
 			
 			if (resultSet.next()) {
                 // Retrieve values from the result set
-                String username = resultSet.getString("memberUsername");
+				String name = resultSet.getString("memberName");
                 String gender = resultSet.getString("memberGender");
                 String birthday = resultSet.getString("memberBirthday");
                 String left = resultSet.getString("memberLeftNearsighted");
                 String right = resultSet.getString("memberRightNearsighted");
                 String email = resultSet.getString("memberEmail");
-                
-                out.println("Username: " + username);
-                out.println("Gender: " + gender);
-                out.println("Birthday: " + birthday);
-                out.println("Left: " + left);
-                out.println("Right: " + right);
-                out.println("Email: " + email);
-			}
+
+	%>  
+                <fieldset>
+                    <legend><h2>會員基本資料</h2></legend>
+                    <table class="pertable" border="1">
+                        <tr>
+                            <th>姓名</th>
+                            <td><input type="text" name="name" id="name" value = "<%=name%>"></td>
+                        </tr>
+                        <tr>
+                            <th>性別</th>
+                            <td><input type="radio" class="sex" name="gender" value="male" <%if(gender.equals("male")){%> checked <%}%> >男
+								<input type="radio" class="sex" name="gender" value="female" <%if(gender.equals("female")){%> checked <%}%> >女
+							</td>
+                        </tr>
+                        <tr>
+                            <th>生日</th>
+                            <td><input type="date" id="birthday" name="birthday" value="<%=birthday%>"></td>
+                        </tr>
+
+                        <tr>
+                            <th>度數</th>
+                            <td>
+                                左眼:
+								<input type="text" name="left" id="left" value = "<%=left%>">
+                                右眼:
+                                <input type="text" name="right" id="right" value = "<%=right%>">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Email</th>
+                            <td><input type="text" name="email" id="email" value = "<%=email%>"></td>
+                        </tr>
+                    </table>
+                    <input type="submit" value="更新資料">
+
+					<%
+					if(returnMessage != "" || !returnMessage.equals("")){
+						out.print("<th>" + returnMessage + "</th>");
+					}
+					%>
+                </fieldset>
+				<%
+							}
             con.close();
         }
     } catch (SQLException e) {
@@ -56,6 +108,26 @@
 	} catch (ClassNotFoundException err) {
 		out.println("Class錯誤: " + err.toString());
 	}
-%>
+				%>
+            </form>       
+        </div>    
+        <div class="shp" id="shoppingList"> <!--購物清單-->
+                <!--顯示紀錄位置-->
+        </div>
+        <div class="art">
+            <form class="textarea" id="textarea" action="" method=""> <!--記事本表單-->
+                <table class="arttable">
+                    <tr>
+                        <th style="text-align: left;">記事本</th>    
+                    </tr>
+                    <tr>
+                        <td><textarea></textarea></td>
+                    </tr>
+                </table>
+                <input type="button" value="記錄" onclick="updatetextarea()">
+            </form>
+        </div>
+    </div>
 </body>
 </html>
+
