@@ -2,6 +2,7 @@
 <%@page contentType="text/html"%> 
 <%@page pageEncoding="UTF-8"%>
 <%@page import = "java.sql.*"%>
+<%@page import = "java.util.Random"%>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -193,11 +194,36 @@
                     </div>
                 </div>
             </div>
-            <div class="m03">
-                <div class="graph01">
-                    <a href="activity/activity/act01/act01.html"><img src="activity/activity/act01/image/act01.jpg" style="width: 350px;height: 450px;"></a>
-                    <a href="activity/activity/act02/act02.html"><img src="activity/activity/act02/image/act02.jpg" style="width: 350px;height: 450px;"></a>
-                    <a href="activity/activity/act03/act03.html"><img src="activity/activity/act03/image/act03.jpg" style="width: 350px;height: 450px;"></a>
+                    <%
+                        Random random = new Random();
+                        String url="jdbc:mysql://localhost/opticshop";
+                        Connection con=DriverManager.getConnection(url,"root","1234");
+                        if(con.isClosed())
+                            out.println("連線建立失敗！");
+                        else {
+                            try{
+                                String sql="SELECT COUNT(*) FROM campaign;";
+                                ResultSet rs = con.createStatement().executeQuery(sql);
+                                rs.next();
+                                int count = rs.getInt(1);
+                                int num = random.nextInt(1,count+1);
+                                sql="SELECT * FROM campaign WHERE id = '" + num +"';";
+                                rs = con.createStatement().executeQuery(sql);
+                                rs.next();
+                                %>
+                                    <div class="m03">
+                                <%
+                                out.print("<div class=\"marquee\"><ul><li>"+rs.getString(4)+"</li></ul></div>");
+                                %>
+                                        <div class="graph01">
+                                <%  
+                                out.print("<a href=\""+rs.getString(2)+"\"><img src=\""+rs.getString(3)+"\" style=\"width: 650px;height: 450px;\"></a>");
+                            } catch (SQLException sExec) {
+                                out.println("1111 錯誤！"+sExec.toString()); 
+                            }
+                            con.close();
+                        }
+                    %>
                 </div>
             </div>
             
