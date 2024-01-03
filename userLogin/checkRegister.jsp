@@ -61,8 +61,8 @@
 									return;
 				}
 				
-				String sql = "INSERT INTO `member` (`memberUsername`, `memberPassword`, `memberName`, `memberEmail`, `memberBirthday`, `memberGender`, `memberLeftNearsighted`, `memberRightNearsighted`) " +
-							 "VALUES ('"+username+"', '"+password+"', '"+name+"', '"+email+"', '"+birthday+"', '"+gender+"', '"+lnearsighted+"', '"+rnearsighted+"')";
+				String sql = "INSERT INTO `member` (`memberUsername`, `memberName`, `memberPassword`, `memberEmail`, `memberBirthday`, `memberGender`, `memberLeftNearsighted`, `memberRightNearsighted`) " +
+							 "VALUES ('"+username+"', '"+name+"', '"+password+"', '"+email+"', '"+birthday+"', '"+gender+"', '"+lnearsighted+"', '"+rnearsighted+"')";
 				int no=con.createStatement().executeUpdate(sql); 
 				if (no>0){
 					out.println("新增成功，點擊<a href = 'login.jsp'>這裏</a>回到登入界面");
