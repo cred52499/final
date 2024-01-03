@@ -61,7 +61,7 @@
 					else{
 					%>
 					<li><a href="">你好<%=memberName%></a></li>
-					<li><a href="member/member.html">會員</a></li>
+					<li><a href="member/member.jsp">會員</a></li>
 					<li><a href="userLogin/logout.jsp">登出</a></li>
 					<%
 					}
