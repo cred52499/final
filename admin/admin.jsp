@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<%@page contentType="text/html"%> 
+<%@page pageEncoding="UTF-8"%>
+<%@ page import = "java.sql.*" %>
 <head>
     <meta charset="UTF-8">
     <title>後台管理</title>
@@ -11,15 +12,15 @@
     <header>
         <h1>後台管理系統</h1>
     </header>
-
+    
     <main>
+        <p><%=System.currentTimeMillis()%></p>
         <section class="product-add">
             <h2>新增商品</h2>
             <h3>保養液</h3>
-            <form action="upload_product_liquid.jsp" method="post">
+            <form action="add_liquid.jsp" method="post">
                 <input type="text" name="name" placeholder="商品名稱">
-                <input type="number" name="price" placeholder="商品價格">
-                <input type="text" name="image" placeholder="圖片路徑"><br>
+                <input type="number" name="price" placeholder="商品價格"><br>
                 <input name="content" placeholder="商品內容">
                 <input name="features" placeholder="商品特性">
                 <input name="indications" placeholder="商品指示">
@@ -29,10 +30,9 @@
                 <button type="submit">新增</button>
             </form>
             <h3>彩色隱眼</h3>
-            <form action="upload_product_coloredlens.jsp" method="post">
+            <form action="add_coloredlens.jsp" method="post">
                 <input type="text" name="name" placeholder="商品名稱">
-                <input type="number" name="price" placeholder="商品價格">
-                <input type="text" name="image" placeholder="圖片路徑"><br>
+                <input type="number" name="price" placeholder="商品價格"><br>
                 <input name="watercontent" placeholder="含水量">
                 <input name="basecurve" placeholder="基弧">
                 <input name="diameter" placeholder="鏡片直徑">
@@ -42,10 +42,9 @@
                 <button type="submit">新增</button>
             </form>
             <h3>透明隱眼</h3>
-            <form action="upload_product_transparentlens.jsp" method="post">
+            <form action="add_transparentlens.jsp" method="post">
                 <input type="text" name="name" placeholder="商品名稱">
-                <input type="number" name="price" placeholder="商品價格">
-                <input type="text" name="image" placeholder="圖片路徑"><br>
+                <input type="number" name="price" placeholder="商品價格"><br>
                 <input name="watercontent" placeholder="含水量">
                 <input name="basecurve" placeholder="基弧">
                 <input name="diameter" placeholder="鏡片直徑">
@@ -58,12 +57,13 @@
         <section class="product-management">
             <h2>產品管理</h2>
             <h3>保養液</h3>
-            <form action="modify_pd_liquid.jsp" method="post">
+            <form action="add_liquid.jsp" method="post">
                 <select name="goods">
                     <%
+                    try{
                     Class.forName("com.mysql.jdbc.Driver");
-                    String url="jdbc:mysql://localhost/?serverTimezone=UTC";
-                    Connection con=DriverManager.getConnection(url,"root","1234");
+                    String url="jdbc:mysql://localhost/opticshop";
+			        Connection con=DriverManager.getConnection(url,"root","1234"); 
                     String sql1 = "SELECT `idLiquid`, `liquidName` FROM `liquid`";
                     ResultSet rs1 =con.createStatement().executeQuery(sql1);
                     while( rs1.next() ) {
@@ -74,7 +74,7 @@
                 <button type="submit">修改</button>
             </form>
             <h3>彩色隱眼</h3>
-            <form action="modify_pd_coloredlens.jsp" method="post">
+            <form action="add_coloredlens.jsp" method="post">
                 <select name="goods">
                     <%
                     sql1 = "SELECT `idColoredLens`,`coloredLensName` FROM `coloredlens`";
@@ -87,7 +87,7 @@
                 <button type="submit">修改</button>
             </form>
             <h3>透明隱眼</h3>
-            <form action="modify_pd_transparentlens.jsp" method="post">
+            <form action="add_transparentlens.jsp" method="post">
                 <select name="goods">
                     <%
                     sql1 = "SELECT `idTransparentLens`, `transparentLensName` FROM `transparentlens`";
@@ -96,6 +96,10 @@
                         out.print("<option value=" + rs1.getString(1) + ">" + rs1.getString(2) + "</option>");
                     }
                     con.close();
+
+                    } catch (ClassNotFoundException err){
+                        out.println("class錯誤"+err.toString());
+                    }
                     %>
                 </select><br>
                 <button type="submit">修改</button>
