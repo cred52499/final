@@ -10,7 +10,12 @@
     <title>個人網頁排版</title>
     <link rel="stylesheet" href="styles.css?time=<%=System.currentTimeMillis()%>">
   </head>
-
+	<%
+	String searchString=request.getParameter("searchString");
+	if(searchString == null || searchString.equals("")){
+		searchString = "";
+	}
+	%>
   <body>
     <header>
       <ul>
@@ -24,8 +29,8 @@
         </li>
         <li><a href="../aboutUs/aboutus.html"><h3>關於我們</h3></a>
         </li>
-        <li><form class="search-form">
-            <input type="text" class="search-input" placeholder="Search...">
+        <li><form action="transparentLens.jsp" class="search-form" method="post">
+            <input type="text" class="search-input" placeholder="Search..." name="searchString" value="<%=searchString%>">
             <button type="submit" class="search-button">Search</button>
         </form>
         </a></li>
@@ -66,19 +71,27 @@
 
     <main>
     	<%
+		String sql = "";
   		try {
             Class.forName("com.mysql.jdbc.Driver");	  
 			String url="jdbc:mysql://localhost/opticshop";
 			Connection con=DriverManager.getConnection(url,"root","1234"); 
+			PreparedStatement pstmt = null;
 			
 	        if(con.isClosed()){
                 out.println("連線建立失敗");
 			}
 			
-            else{	 
-				String sql = "SELECT * FROM `transparentlens`";
-				PreparedStatement pstmt = null;
-				pstmt=con.prepareStatement(sql);
+            else{
+				if(searchString != null && !searchString.equals("")){
+					sql = "SELECT * FROM `transparentlens` WHERE `transparentLensName` LIKE ?";			
+					pstmt=con.prepareStatement(sql);
+					pstmt.setString(1, "%" + searchString + "%");
+				}
+				else{
+					sql = "SELECT * FROM `transparentlens`";
+					pstmt=con.prepareStatement(sql);
+				}
 				
 				ResultSet dataset = pstmt.executeQuery();
 				while(dataset.next()){
@@ -90,7 +103,11 @@
 			<p> </p><br>
 			<h4><%="$" + dataset.getString("transparentLensPrice")%></h4>
 			<p> </p><br>
+			<form action="../cart/toCart.jsp" method="post">
 			<button class="add-to-cart-btn">加入購物車</button>
+			<input type="hidden" name="itemString" value="liquid&<%=dataset.getString("transparentLensID")%>|">
+			</form>
+			<h3 class="text1">庫存數量:<%=dataset.getString("transparentLensStock")%></a></h3>
 		</section>  
 		<%
 	  				}
@@ -101,5 +118,20 @@
 			out.println("class錯誤"+err.toString());
 		}
 		%>
+	<footer>
+        <table>
+          <tr>
+            <td>
+              <a href="">關於品牌</a>
+            </td>
+            <td>
+              <a href="">客服中心</a>
+            </td>
+            <td>
+              <a href="">聯絡方式</a>
+            </td>
+          </tr>
+        </table>
+    </footer>
   </body>
 </html>
