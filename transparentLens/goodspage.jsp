@@ -56,7 +56,7 @@
     </nav>
 	
 	<%
-	String transparentLensID = request.getParameter("transparentLensID");
+	String productID = request.getParameter("productID");
 			
 	try {
         Class.forName("com.mysql.jdbc.Driver");	  
@@ -68,10 +68,10 @@
 		}
 			
         else{	 
-			String sql = "SELECT * FROM `transparentlens` WHERE `transparentLensID`=?";
+			String sql = "SELECT * FROM `transparentlens` WHERE `productID`=?";
 			PreparedStatement pstmt = null;
 			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1,transparentLensID);
+			pstmt.setString(1,productID);
 				
 			ResultSet dataset = pstmt.executeQuery();
 			dataset.next();
@@ -83,11 +83,11 @@
 	<table class="infor">
 		<tr>
 		<td>
-			<img class="pp" src="image/<%=dataset.getString("transparentLensID")%>.png?time=<%=System.currentTimeMillis()%>" width="350px" height="400px">
+			<img class="pp" src="image/<%=dataset.getString("productID")%>.png?time=<%=System.currentTimeMillis()%>" width="350px" height="400px">
 		</td>
 			<td>
 			<ul class = "other">
-			<li><h3>商品名稱: <%=dataset.getString("transparentLensName")%><<br> 
+			<li><h3>商品名稱: <%=dataset.getString("productName")%><<br> 
 				<br> 規格說明:<br>  
 				<br>含水量:<%=dataset.getString("transparentLensWaterContent")%><br>  
 				<br>基弧:<%=dataset.getString("transparentLensBaseCurve")%><br>  

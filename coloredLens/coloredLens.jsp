@@ -82,12 +82,12 @@
 			
             else{
 				if(searchString != null && !searchString.equals("")){
-					sql = "SELECT * FROM `coloredlens` WHERE `coloredLensName` LIKE ? AND `coloredLensStock` > 0";			
+					sql = "SELECT * FROM `coloredlens` WHERE `productName` LIKE ? AND `productStock` > 0";			
 					pstmt=con.prepareStatement(sql);
 					pstmt.setString(1, "%" + searchString + "%");
 				}
 				else{
-					sql = "SELECT * FROM `coloredlens` WHERE `coloredLensStock` > 0";
+					sql = "SELECT * FROM `coloredlens` WHERE `productStock` > 0";
 					pstmt=con.prepareStatement(sql);
 				}
 				
@@ -95,14 +95,14 @@
 				while(dataset.next()){
 		%>
 		<section class="card">
-			<a href="goodspage.jsp?coloredLensID=<%= dataset.getString("coloredLensID") %>">
-			<img src="image/<%=dataset.getString("coloredLensID")%>.png?time=<%=System.currentTimeMillis()%>" height="300px" width="300px">
-			<h3><%=dataset.getString("coloredLensName")%></h3></a>
+			<a href="goodspage.jsp?productID=<%= dataset.getString("productID") %>">
+			<img src="image/<%=dataset.getString("productID")%>.png?time=<%=System.currentTimeMillis()%>" height="300px" width="300px">
+			<h3><%=dataset.getString("productName")%></h3></a>
 			<p> </p><br>
-			<h4><%="$" + dataset.getString("coloredLensPrice")%></h4>
+			<h4><%="$" + dataset.getString("productPrice")%></h4>
 			<p> </p><br>
 			<button class="add-to-cart-btn">加入購物車</button>
-			<h3 class="text1">庫存數量:<%=dataset.getString("coloredLensStock")%></a></h3>
+			<h3 class="text1">庫存數量:<%=dataset.getString("productStock")%></a></h3>
 		</section>  
 		<%
 	  				}
