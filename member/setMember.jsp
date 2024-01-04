@@ -20,6 +20,8 @@
     </header>
     <div class="containermember">
         <div class="per">
+            <form method="post" action="updateMember.jsp">
+			
 	<%
 	String memberID = "";
 	String returnMessage = request.getParameter("returnMessage");
@@ -56,43 +58,45 @@
                 String email = resultSet.getString("memberEmail");
 
 	%>  
-				<fieldset>
+                <fieldset>
                     <legend><h2>會員基本資料</h2></legend>
                     <table class="pertable" border="1">
                         <tr>
                             <th>姓名</th>
-                            <td><%=name%></td>
+                            <td><input type="text" name="name" id="name" value = "<%=name%>"></td>
                         </tr>
                         <tr>
                             <th>性別</th>
-                            <td><%
-							if (gender.equalsIgnoreCase("male")){
-								out.print("男");
-							}else if (gender.equalsIgnoreCase("female")){
-								out.print("女");
-							}%>
+                            <td><input type="radio" class="sex" name="gender" value="male" <%if(gender.equals("male")){%> checked <%}%> >男
+								<input type="radio" class="sex" name="gender" value="female" <%if(gender.equals("female")){%> checked <%}%> >女
 							</td>
                         </tr>
                         <tr>
                             <th>生日</th>
-                            <td><%=birthday%></td>
+                            <td><input type="date" id="birthday" name="birthday" value="<%=birthday%>"></td>
                         </tr>
 
                         <tr>
                             <th>度數</th>
                             <td>
                                 左眼:
-								<%=left%>
+								<input type="text" name="left" id="left" value = "<%=left%>">
                                 右眼:
-                                <%=right%>
+                                <input type="text" name="right" id="right" value = "<%=right%>">
                             </td>
                         </tr>
                         <tr>
                             <th>Email</th>
-                            <td><%=email%></td>
+                            <td><input type="text" name="email" id="email" value = "<%=email%>"></td>
                         </tr>
                     </table>
-                    <a href="setMember.jsp">修改資料</a>
+                    <input type="submit" value="更新資料">
+
+					<%
+					if(returnMessage != "" || !returnMessage.equals("")){
+						out.print("<th>" + returnMessage + "</th>");
+					}
+					%>
                 </fieldset>
 				<%
 							}
@@ -104,24 +108,9 @@
 	} catch (ClassNotFoundException err) {
 		out.println("Class錯誤: " + err.toString());
 	}
-				%>      
+				%>
+            </form>       
         </div>    
-        <div class="shp" id="shoppingList"> <!--購物清單-->
-                <!--顯示紀錄位置-->
-        </div>
-        <div class="art">
-            <form class="textarea" id="textarea" action="" method=""> <!--記事本表單-->
-                <table class="arttable">
-                    <tr>
-                        <th style="text-align: left;">記事本</th>    
-                    </tr>
-                    <tr>
-                        <td><textarea></textarea></td>
-                    </tr>
-                </table>
-                <input type="button" value="記錄" onclick="updatetextarea()">
-            </form>
-        </div>
     </div>
 </body>
 </html>
