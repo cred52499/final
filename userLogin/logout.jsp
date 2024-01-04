@@ -27,6 +27,18 @@ for(int i=0; i < count; i++){
 		cookies[i].setValue("");
 		response.addCookie(cookies[i]);
 	}
+	if(cookies[i].getName().equals("memberID")){
+		cookies[i].setMaxAge(0);
+		cookies[i].setPath("/");
+		cookies[i].setValue("");
+		response.addCookie(cookies[i]);
+	}
+	if(cookies[i].getName().equals("cartID")){
+		cookies[i].setMaxAge(0);
+		cookies[i].setPath("/");
+		cookies[i].setValue("");
+		response.addCookie(cookies[i]);
+	}
 }
 
 response.sendRedirect("..");
