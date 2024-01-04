@@ -24,7 +24,7 @@
 			
 	<%
 	String memberID = "";
-	String returnMessage = request.getParameter("returnMessage");
+	//String returnMessage = request.getParameter("returnMessage");
 	
 	Cookie[] cookies = request.getCookies();
 	if(cookies != null){
@@ -91,12 +91,6 @@
                         </tr>
                     </table>
                     <input type="submit" value="更新資料">
-
-					<%
-					if(returnMessage != "" || !returnMessage.equals("")){
-						out.print("<th>" + returnMessage + "</th>");
-					}
-					%>
                 </fieldset>
 				<%
 							}
