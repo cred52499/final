@@ -236,9 +236,9 @@ CREATE TABLE `order` (
   `orderDate` varchar(30) NOT NULL,
   `productName` varchar(45) NOT NULL,
   `orderQty` int NOT NULL,
-  `clientID` varchar(45) NOT NULL,
-  `clientAddress` varchar(45) NOT NULL,
-  `clientPhoneNum` int DEFAULT NULL,
+  `memberID` varchar(45) NOT NULL,
+  `memberAddress` varchar(45) NOT NULL,
+  `memberPhoneNum` int DEFAULT NULL,
   `status` varchar(45) NOT NULL,
   `subtotal` int NOT NULL,
   `orderDetail` varchar(45) DEFAULT NULL,
@@ -319,4 +319,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-01-04 18:12:42
+-- Dump completed on 2024-01-04 18:37:15
