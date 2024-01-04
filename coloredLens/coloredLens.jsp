@@ -35,7 +35,7 @@
         </form>
         </a></li>
 		<li><a href="../location/location.html"><h3>門市據點</h3></a></li>
-        <li><a href="../cart/cart.html"><h3>購物車</h3></a></li>
+        <li><a href="../cart/cart.jsp"><h3>購物車</h3></a></li>
 		<%
 		Cookie[] cookies = request.getCookies();
 		String memberName = "";
@@ -54,7 +54,7 @@
 		else{
 		%>
 		<li><a><h3>你好，<%=memberName%></h3></a></li>
-		<li><a href="member/member.html"><h3>會員</h3></a></li>
+		<li><a href="../member/member.jsp"><h3>會員</h3></a></li>
 		<li><a href="../userLogin/logout.jsp"><h3>登出</h3></a></li>
 		<%
 		}
