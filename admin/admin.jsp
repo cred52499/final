@@ -104,6 +104,15 @@
                 <button type="submit">修改</button>
             </form>
         </section>
+        <section class="campaign-add">
+            <h2>新增活動</h2>
+            <form action="add_campaign.jsp" method="post">
+                <input type="text" name="href" placeholder="頁面路徑">
+                <input type="text" name="img" placeholder="圖片路徑">
+                <input name="text" placeholder="活動跑馬燈文字"><br>
+                <button type="submit">新增</button>
+            </form>
+        </section>
         <section class="order-receiving">
             <h2>接收訂單</h2>
          
