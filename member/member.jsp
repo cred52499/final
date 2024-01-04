@@ -58,6 +58,7 @@
 	%>  
 				<fieldset>
                     <legend><h2>會員基本資料</h2></legend>
+					<a href="../index.jsp"">回首頁</a>
                     <table class="pertable" border="1">
                         <tr>
                             <th>姓名</th>
