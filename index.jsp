@@ -253,7 +253,40 @@
             <p>關於品牌</p>
             <p>客服中心</p>
             <p>聯絡方式</p>
-            <p>訪客人數</p>
+			<%
+			try {
+					Class.forName("com.mysql.jdbc.Driver");
+				try {
+					url = "jdbc:mysql://localhost/?serverTimezone=UTC";
+					con = DriverManager.getConnection(url, "root", "1234");
+					if (con.isClosed()) {
+						out.println("連線建立失敗");
+					} else {
+						con.createStatement().execute("use `opticshop`");
+						String sql = "SELECT * FROM visitorcounter ";
+						ResultSet resultSet = con.createStatement().executeQuery(sql);
+						
+						if (resultSet.next()) {
+							String countString = resultSet.getString(1);
+							Integer count = Integer.parseInt(countString);
+							if (session.isNew()){
+								count++;
+								countString = String.valueOf(count);
+								sql = "UPDATE visitorcounter SET visitorNum = " + countString;
+								con.createStatement().execute(sql);
+							}
+							out.print("訪客人數:"+count);
+						}
+						con.close();
+					}
+				} catch (SQLException e) {
+					out.println("SQL錯誤: " + e.toString());
+				}
+				} catch (ClassNotFoundException err) {
+					out.println("Class錯誤: " + err.toString());
+				}
+
+			%>
             </div>
             <div class="contantimg">
             <a href="https://instagram.com/chouiiin?igshid=MzMyNGUyNmU2YQ%3D%3D&utm_source=qr" target="_blank">

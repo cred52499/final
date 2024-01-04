@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `opticshop` /*!40100 DEFAULT CHARACTER SET utf8mb3 */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `opticshop`;
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
--- Host: localhost    Database: opticshop
+-- Host: 127.0.0.1    Database: opticshop
 -- ------------------------------------------------------
--- Server version	8.2.0
+-- Server version	8.0.34
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -57,7 +55,7 @@ CREATE TABLE `cart` (
   PRIMARY KEY (`cartID`),
   UNIQUE KEY `cartID_UNIQUE` (`cartID`),
   UNIQUE KEY `customerID_UNIQUE` (`customerID`)
-) ENGINE=InnoDB AUTO_INCREMENT=87 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,7 +64,7 @@ CREATE TABLE `cart` (
 
 LOCK TABLES `cart` WRITE;
 /*!40000 ALTER TABLE `cart` DISABLE KEYS */;
-INSERT INTO `cart` VALUES (1,'D8A2360524D9A42B0CD21B01B6CDDF6A','2024-01-03'),(6,'B2FAA88CA667BD54F2B8141CE671B149','2024-01-03'),(14,'5A8D62FB21CE1C32B2F4834B5F848EF6','2024-01-03'),(15,'FD84A00459A9D2B0BBD6240F5B3F53CA','2024-01-03'),(34,'41','2024-01-03'),(35,'599328B84485D34429CAC9C6E11F25AA','2024-01-03'),(39,'E0E740CD595FDD6AAFA5282D77687F8A','2024-01-04'),(42,'37','2024-01-04');
+INSERT INTO `cart` VALUES (1,'D8A2360524D9A42B0CD21B01B6CDDF6A','2024-01-03'),(6,'B2FAA88CA667BD54F2B8141CE671B149','2024-01-03'),(14,'5A8D62FB21CE1C32B2F4834B5F848EF6','2024-01-03'),(15,'FD84A00459A9D2B0BBD6240F5B3F53CA','2024-01-03'),(34,'41','2024-01-03'),(35,'599328B84485D34429CAC9C6E11F25AA','2024-01-03'),(39,'E0E740CD595FDD6AAFA5282D77687F8A','2024-01-04'),(42,'37','2024-01-04'),(87,'C02097F7B2F211478A4998EE5571E6A0','2024-01-04'),(89,'2','2024-01-04'),(96,'60567C77E8BF66014A16B016C5FC0F92','2024-01-04');
 /*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -222,7 +220,7 @@ CREATE TABLE `member` (
 
 LOCK TABLES `member` WRITE;
 /*!40000 ALTER TABLE `member` DISABLE KEYS */;
-INSERT INTO `member` VALUES (2,'LewisHamilton','Lewis','password','ham44@fmail.com','1997-03-14','male',300,0),(3,'劉曦鴻','','password','ham44@fmail.com','1997-03-14','male',300,0),(37,'darren52499','Darren','abc','test@gmail.com','2023-12-13','female',156,0),(41,'test','張三','123','test@gmail.com','2023-12-01','male',12,13),(43,'asd','李四','asd','test@gmail.com','2023-12-01','male',12,13);
+INSERT INTO `member` VALUES (2,'LewisHamilton','Lewis','password','ham44@fmail.com','1985-01-07','male',300,350),(3,'劉曦鴻','','password','ham44@fmail.com','1997-03-14','male',300,0),(37,'darren52499','Darren','abc','test@gmail.com','2023-12-13','female',156,0),(41,'test','張三','123','test@gmail.com','2023-12-01','male',12,13),(43,'asd','李四','asd','test@gmail.com','2023-12-01','male',12,13);
 /*!40000 ALTER TABLE `member` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -257,6 +255,29 @@ LOCK TABLES `transparentlens` WRITE;
 INSERT INTO `transparentlens` VALUES (1,'Hydron海昌真水感濾藍光清透日拋30片裝',440.00,1,00000035.00,00000003.50,00000015.50,00000010.00,0),(2,'Hydron海昌真水感濾藍光清透日拋10片裝',190.00,2,00000035.70,00000004.50,00000017.00,00000011.00,0),(3,'LARGAN星歐透明日拋30片裝(升級版)',290.00,3,00000023.00,00000003.60,00000015.00,00000012.00,0),(4,'Hydron海昌純粹氧矽水膠日拋30片裝',499.00,0,00000023.00,00000005.00,00000011.00,00000013.20,0),(5,'Hydron海昌真水感透明日拋30片裝',399.00,4,00000050.00,00000007.40,00000011.50,00000015.50,0),(6,'Capell卡沛兒睛亮透明日拋30片裝',350.00,5,00000047.70,00000002.00,00000013.00,00000032.00,0),(7,'AQUAMAX水滋氧PMB透明日拋30片裝',350.00,4,00000055.00,00000045.00,00000022.00,00000013.00,0),(8,'CooperVision酷柏UltraFlex Air奧克拉優氧矽水膠日拋30片裝8.6mm',450.00,8,00000033.00,00000023.00,00000051.00,00000041.00,0),(9,'Ticon帝康光漾瞬間非球面透明日拋30片裝',390.00,3,00000044.20,00000022.00,00000014.00,00000012.50,0),(10,'Miacare美若康O2Cellence澄氧透明日拋20片裝',580.00,7,00000058.00,00000001.00,00000012.50,00000013.00,0),(11,'HBaush+Lomb博士倫ULTRA輕水氧奧澈矽水膠透明日拋30片裝',950.00,5,00000012.00,00000023.00,00000023.00,00000014.50,0),(12,'Ticon帝康國民日拋(非球面透明日拋)20片裝',260.00,5,00000075.00,00000002.00,00000023.00,00000015.00,0);
 /*!40000 ALTER TABLE `transparentlens` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `visitorcounter`
+--
+
+DROP TABLE IF EXISTS `visitorcounter`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `visitorcounter` (
+  `visitorNum` int NOT NULL,
+  PRIMARY KEY (`visitorNum`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `visitorcounter`
+--
+
+LOCK TABLES `visitorcounter` WRITE;
+/*!40000 ALTER TABLE `visitorcounter` DISABLE KEYS */;
+INSERT INTO `visitorcounter` VALUES (45);
+/*!40000 ALTER TABLE `visitorcounter` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -267,4 +288,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-01-04  7:56:17
+-- Dump completed on 2024-01-04 14:47:46
