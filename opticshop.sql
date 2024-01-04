@@ -225,6 +225,37 @@ INSERT INTO `member` VALUES (2,'LewisHamilton','Lewis','password','ham44@fmail.c
 UNLOCK TABLES;
 
 --
+-- Table structure for table `order`
+--
+
+DROP TABLE IF EXISTS `order`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `order` (
+  `orderID` int NOT NULL AUTO_INCREMENT,
+  `orderDate` varchar(30) NOT NULL,
+  `productName` varchar(45) NOT NULL,
+  `orderQty` int NOT NULL,
+  `clientID` varchar(45) NOT NULL,
+  `clientAddress` varchar(45) NOT NULL,
+  `clientPhoneNum` int DEFAULT NULL,
+  `status` varchar(45) NOT NULL,
+  `subtotal` int NOT NULL,
+  `orderDetail` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`orderID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `order`
+--
+
+LOCK TABLES `order` WRITE;
+/*!40000 ALTER TABLE `order` DISABLE KEYS */;
+/*!40000 ALTER TABLE `order` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `transparentlens`
 --
 
@@ -288,4 +319,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-01-04 14:47:46
+-- Dump completed on 2024-01-04 18:12:42
