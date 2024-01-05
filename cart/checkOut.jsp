@@ -11,7 +11,12 @@
 </head>
 <body>
 	<div class="a01">
-	<%
+		<div class="modal-content">
+			<form id="back" action="cart.jsp" method="POST"><input type="submit" value="上一步" form="back"></form>
+			<form method="post" action="">
+				<h2>結帳清單</h2>
+				<div id="selectedItemsContainer">
+		<%
 		try { 
 			String cartID = request.getParameter("cartID");
 			Class.forName("com.mysql.jdbc.Driver");	  
@@ -36,21 +41,19 @@
 						pstmt2.setString(2, cartID);
 						pstmt2.setString(3, cartDetailsID);
 						pstmt2.executeUpdate();
-						String sql3 = "SELECT `productPrice` FROM `"+dataset.getString(3)+"` WHERE productID = '"+dataset.getString(4)+"';";
+						String sql3 = "SELECT `productPrice`, `productName` FROM `"+dataset.getString(3)+"` WHERE productID = '"+dataset.getString(4)+"';";
 						ResultSet rs = con.createStatement().executeQuery(sql3);
 						while(rs.next()){
 							total += quantity * rs.getInt(1);
+							String productName = rs.getString(2);
+							out.print("<h4>"+productName+"<br>金額: $"+rs.getInt(1)+"<br>數量: "+quantity+"</h4>");
 						}
 					} catch (SQLException sExec2) {
 						out.println("something wrong2" + sExec2.toString());
 					} 
-				}						
-			
-			%>
-			<form method="post" action="">
-				<div class="modal-content">
-					<h2>結帳清單</h2>
-					<div id="selectedItemsContainer"></div>
+				}			
+						%>
+					</div>
 					<label for="paymentMethod">付款方式:</label>
 					<select name="paymentMethod">
 						<option value="cash" name="cash">現金付款</option>
@@ -59,9 +62,12 @@
 					<select name="shippingMethod">
 						<option value="home" name="home">宅配到家</option>
 					</select><br>
-					運送地址:<input type="text" name="address" required>
+					<label for="shippingAddr">運送地址:</label>
+					<input type="text" name="address" required><br>
+					<label for="contact">連絡電話:</label>
+					<input type="text" name="phone" required>
 					<div id="total-amount">總金額: $<%=total%></div>
-					<input type="submit" class="button" value="送出訂單" >
+					<input type="submit" class="button" value="送出訂單">
 				</div> 
 			</form>
 			<%
