@@ -5,16 +5,16 @@
 <head>
     <meta charset="UTF-8">
     <title>後台管理</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="admin.css">
+    <%-- <script src="admin.js"></script> --%>
+    <%-- <link rel="stylesheet" href="styles.css"> --%>
 </head>
 
 <body>
     <header>
         <h1>後台管理系統</h1>
     </header>
-    
     <main>
-        <p><%=System.currentTimeMillis()%></p>
         <section class="product-add">
             <h2>新增商品</h2>
             <h3>保養液</h3>
@@ -95,10 +95,7 @@
                     while( rs1.next() ) {
                         out.print("<option value=" + rs1.getString(1) + ">" + rs1.getString(2) + "</option>");
                     }
-                    con.close();
-                    } catch (ClassNotFoundException err){
-                        out.println("class錯誤"+err.toString());
-                    }
+                    
                     %>
                 </select><br>
                 <button type="submit">修改</button>
@@ -116,42 +113,26 @@
         <section class="order-receiving">
             <h2>接收訂單</h2>
          
-           
             <ul class="order-list">
-                <li>訂單標號: cyim01   商品A  $50  <button>更動訂單</button></li>
-                <li>訂單編號: cyim02   商品B  $30  <button>更動訂單</button></li>
+                <%
+                    sql1 = "SELECT * FROM `order` WHERE `status` = '0' ORDER BY `orderID`;";
+                    rs1 = con.createStatement().executeQuery(sql1);
+                    while( rs1.next() ) {
+                        String sql2 = "SELECT `productName`, `productPrice` FROM `"+rs1.getString(4)+"` WHERE `productID` = '"+rs1.getString(3)+"'";
+                        ResultSet rs2 =con.createStatement().executeQuery(sql2);
+                        rs2.next();
+                        out.print("<form action=\"update_order.jsp\" method=\"POST\">");
+                        out.print("<input type=\"hidden\" name=\"orderID\" value=\""+rs1.getString(1)+"\"");
+                        out.print("<li>訂單編號#"+rs1.getString(1)+"<br>商品："+rs2.getString(1)+"<br>價錢：$"+rs2.getInt(2)+" x"+rs1.getInt(5)+"   共: $"+rs1.getInt(10)+"<br>會員編號#"+rs1.getInt(6)+"<br>地址："+rs1.getString(7)+"<br>電話："+rs1.getString(8)+"<br><button>完成訂單</button></li>");
+                        out.print("</form>");
+                    }
+                    con.close();
+                } catch (ClassNotFoundException err){
+                    out.println("class錯誤"+err.toString());
+                }
+                %>
 
             </ul>
-        </section>
-
-        <section class="purchase-records">
-            <h2>購物紀錄</h2>
-
-            <table>
-                <thead>
-                    <tr>
-                        <th>編號</th>
-                        <th>姓名</th>
-                        <th>商品</th>
-                        <th>金额</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>cyim01</td>
-                        <td>AAA</td>
-                        <td>海昌彩色日拋</td>
-                        <td>$150</td>
-                    </tr>
-                    <tr>
-                        <td>cyim02</td>
-                        <td>BBB</td>
-                        <td>安儷透明月拋</td>
-                        <td>$130</td>
-                    </tr>
-                    
-                </tbody>
-            </table>
         </section>
     </main>
 

@@ -121,9 +121,9 @@
 					<input type="hidden" name="rate" id="rate">
 					<%
 						if(memberName == null || memberName.equals("")){
-							out.print("<input type=\"submit\" value=\"送出\"></form>");
-						} else {
 							out.print("</form><form method=\"POST\" action=\"../userLogin/login.jsp\"> <input type=\"submit\" value=\"請先登入\"> </form>");
+						} else {
+							out.print("<input type=\"submit\" value=\"送出\"></form>");
 						}
 					%>
             </div>

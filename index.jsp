@@ -52,7 +52,6 @@
 		for(int i=0; i < count; i++){
 			if(cookies[i].getName().equals("memberID")){
 				memberID = cookies[i].getValue();
-				out.print("get cookie memberID: " + memberID);
 			} else if(cookies[i].getName().equals("memberName")){
                 memberName = cookies[i].getValue();
             }
@@ -79,12 +78,10 @@
 						sql1+="VALUES('"+customerID+"','"+date+"')";      
 					
 						con.createStatement().executeUpdate(sql1);
-						out.print("已寫入購物車");
 					}
 					catch (SQLException sExec) {
 						out.println("1111 錯誤！"+sExec.toString()); 
 					}
-					out.println(customerID); 
 					String sql2 = "SELECT * FROM `cart` WHERE `customerID`=?";
 					PreparedStatement pstmt = null;
 					pstmt=con.prepareStatement(sql2);

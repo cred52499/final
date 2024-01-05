@@ -25,7 +25,7 @@ ul ul {
   position: absolute;
   left: 0;
   top: 100%;
-width: 150px;
+  width: 150px;
 }
 /* 顯示子清單 */
 ul li:hover > ul {
