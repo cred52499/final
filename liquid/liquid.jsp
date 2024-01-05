@@ -127,6 +127,7 @@
 			<input type="hidden" name="productID" value="<%=dataset.getString("productID")%>">
 			<input type="hidden" name="cartID" value="<%=cartID%>">
 			<input type="hidden" name="customerID" value="<%=customerID%>">
+			<input type="hidden" name="category" value="liquid">
 			</form>
 			<h3 class="text1">庫存數量:<%=dataset.getString("productStock")%></a></h3>
 		</section>  
