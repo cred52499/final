@@ -3,8 +3,8 @@
 <%@page import = "java.sql.*"%>
 
 <%	
-	String previousPage = "../liquid/liquid.jsp";
 	String productCategory = request.getParameter("productCategory");
+	String previousPage = "../"+productCategory+"/"+productCategory+".jsp";
 	String productID = request.getParameter("productID");
 	String customerID = request.getParameter("customerID");
 	String cartID = request.getParameter("cartID");
