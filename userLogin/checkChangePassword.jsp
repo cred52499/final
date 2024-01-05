@@ -28,16 +28,13 @@
 			}
 			
             else{	 
-				if(password == null && password.equals("")){
+				if(password == null && password.equals("")) {
 					response.sendRedirect("/final/changePassword.jsp?&message=Please type in the same password.");
-				}
-				else if(password2 == null && password2.equals("")){
+				} else if(password2 == null && password2.equals("")) {
 					response.sendRedirect("/final/changePassword.jsp?&message=Please type in the same password.");
-				}
-				else if(!password.equals(password2)){
+				} else if(!password.equals(password2)) {
 					response.sendRedirect("/final/changePassword.jsp?&message=Please type in the same password.");
-				}
-				else{
+				} else {
 					String sql = "UPDATE member SET password=? WHERE username=?";
 					PreparedStatement pstmt = null;
 					pstmt=con.prepareStatement(sql);
