@@ -143,24 +143,23 @@
             <div class="ad">
                 <div class="slideshow-container">
                     <div class="singleSlide fade">
-                        <img src="img/ad01.jpeg" style="width: 100%;">
+                        <a href="coloredLens/coloredLens.jsp"><img src="img/ad01.jpeg" style="width: 100%;"></a>
                         
                     </div>
                     <div class="singleSlide fade">
-                        <img src="img/ad02.jpeg"
-                        style="width: 100%">
+                        <a href="coloredLens/coloredLens.jsp"><img src="img/ad02.jpeg" style="width: 100%"></a>
                         
                     </div>
                     <div class="singleSlide fade">
-                        <img src="img/ad03.jpeg" style="width: 100%">
+                        <a href="liquid/liquid.jsp"><img src="img/ad03.jpeg" style="width: 100%"></a>
                         
                     </div>
                     <div class="singleSlide fade">
-                         <img src="img/ad04.jpeg" style="width: 100%">
+                         <a href="transparentLens/transparentLens.jsp"><img src="img/ad04.jpeg" style="width: 100%"></a>
                         
                     </div>
                     <div class="singleSlide fade">
-                        <img src="img/ad05.jpeg" style="width: 100%">
+                        <a href="transparentLens/transparentLens.jsp"><img src="img/ad05.jpeg" style="width: 100%"></a>
                         
                     </div>
                     <button class="prev" onclick="plusSlides(-1)">(</button>
