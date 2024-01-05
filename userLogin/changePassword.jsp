@@ -6,6 +6,7 @@
 <html>
 <head>
 <title>Login Successful</title>
+<link rel="stylesheet" href="login.css">
 <style>
 body {
   background-color: #fff;

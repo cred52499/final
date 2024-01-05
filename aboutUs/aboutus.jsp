@@ -35,7 +35,7 @@
                         <li><a href="../liquid/liquid.jsp">保養液</a></li>
                     </ul>
                     </li>
-                    <li><a href="aboutUs/aboutus.jsp">關於我們</a>
+                    <li><a>關於我們</a>
                     </li>
                         <%
                         if(memberName == null || memberName.equals("")){%>
@@ -49,11 +49,6 @@
                         <%
                         }
 					    %>
-                    <li><form class="search-form">
-                        <input type="text" class="search-input" placeholder="搜尋">
-                        <button type="submit" class="search-button"><img src="../img/search.jpg" style="height:40px; width:40px;"></button>
-                        </form>
-                    </li>
                     <li><a href="../cart/cart.jsp"><img src="../img/cart.png" style="height:50px; width:50px;"  ></a></li>
                 </ul>
             </div>

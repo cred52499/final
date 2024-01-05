@@ -1,18 +1,17 @@
 function minus(num){
     var number = Number(document.getElementsByClassName("item_num")[num].value);
-    if(number > 0){
+    if(number > 1){
         number -= 1;
         document.getElementsByClassName("item_num")[num].value = number;
-    } else window.alert("不得少於0")
+    } else window.alert("不得少於1")
 }
 
 function add(num){
     var number = Number(document.getElementsByClassName("item_num")[num].value);
-	var max = Number(document.getElementsByClassName("maximum")[num].value);
-    if(number < max){
+    if(number < 100){
         number += 1;
         document.getElementsByClassName("item_num")[num].value = number;
-    } else window.alert("不得多於庫存");
+    } else window.alert("不得多於100");
 }
 var additemId = 0;
 var totalAmount = 0;
