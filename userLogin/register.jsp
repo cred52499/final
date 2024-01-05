@@ -87,7 +87,7 @@ if(request.getParameter("duplicated") != null){
 <form action="checkRegister.jsp" method = "post">
   <h1>會員註冊</h1><br>
   <label for="username">帳號:</label>
-  <input class="a01" type="text" id="username" name="username" value="<%if(username != null)out.print(username);%>" placeholder="請輸入帳號" onfocus="this.placeholder=''" onblur="this.placeholder='請輸入帳號'"> 
+  <input class="a01" type="text" id="username" name="username" value="<%if(username != null)out.print(username);%>" placeholder="請輸入帳號" onfocus="this.placeholder=''" onblur="this.placeholder='請輸入帳號'" required> 
   <p style="color:red;"><%if(messageUsername != null && !messageUsername.isEmpty())
 		{out.print(messageUsername);
 		}
@@ -97,14 +97,14 @@ if(request.getParameter("duplicated") != null){
 	%> </p><br>
   
   <label for="password">密碼:</label>
-  <input class="a01" type="password" id="password" name="password" placeholder="請輸入密碼" onfocus="this.placeholder=''" onblur="this.placeholder='請輸入密碼'">
+  <input class="a01" type="password" id="password" name="password" placeholder="請輸入密碼" onfocus="this.placeholder=''" onblur="this.placeholder='請輸入密碼'" required>
   <p style="color:red;"><%if(messagePassword != null && !messagePassword.isEmpty())
 		{out.print(messagePassword);
 		} 
 	%> </p><br>
 
   <label for="email">E-mail:</label>
-  <input class="a01" type="text" id="email" name="email" value="<%if(email != null)out.print(email);%>" placeholder="輸入電子郵件" onfocus="this.placeholder=''" onblur="this.placeholder='輸入電子郵件'">
+  <input class="a01" type="text" id="email" name="email" value="<%if(email != null)out.print(email);%>" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" required placeholder="輸入電子郵件" onfocus="this.placeholder=''" onblur="this.placeholder='輸入電子郵件'">
   <p style="color:red;"><%if(messageEmail != null && !messageEmail.isEmpty())
 		{out.print(messageEmail);
 		}
