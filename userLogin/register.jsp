@@ -66,6 +66,7 @@ input[type="submit"]:hover {
 <body>
 <%
 String username=request.getParameter("username");
+String name=request.getParameter("name");
 String email=request.getParameter("email");
 String birthday=request.getParameter("birthday");
 String gender=request.getParameter("gender");
@@ -74,6 +75,7 @@ String rnearsighted=request.getParameter("rnearsighted");
 
 String messageUsername=request.getParameter("messageUsername");
 String messagePassword=request.getParameter("messagePassword");
+String messageName=request.getParameter("messageName");
 String messageEmail=request.getParameter("messageEmail");
 boolean isDup = false;
 if(request.getParameter("duplicated") != null){
@@ -87,7 +89,7 @@ if(request.getParameter("duplicated") != null){
 <form action="checkRegister.jsp" method = "post">
   <h1>會員註冊</h1><br>
   <label for="username">帳號:</label>
-  <input class="a01" type="text" id="username" name="username" value="<%if(username != null)out.print(username);%>" placeholder="請輸入帳號" onfocus="this.placeholder=''" onblur="this.placeholder='請輸入帳號'" required> 
+  <input class="a01" type="text" id="username" name="username" value="<%if(username != null)out.print(username);%>" placeholder="請輸入帳號" onfocus="this.placeholder=''" onblur="this.placeholder='請輸入帳號'" > 
   <p style="color:red;"><%if(messageUsername != null && !messageUsername.isEmpty())
 		{out.print(messageUsername);
 		}
@@ -97,21 +99,28 @@ if(request.getParameter("duplicated") != null){
 	%> </p><br>
   
   <label for="password">密碼:</label>
-  <input class="a01" type="password" id="password" name="password" placeholder="請輸入密碼" onfocus="this.placeholder=''" onblur="this.placeholder='請輸入密碼'" required>
+  <input class="a01" type="password" id="password" name="password" placeholder="請輸入密碼" onfocus="this.placeholder=''" onblur="this.placeholder='請輸入密碼'" >
   <p style="color:red;"><%if(messagePassword != null && !messagePassword.isEmpty())
 		{out.print(messagePassword);
 		} 
 	%> </p><br>
+	
+	<label for="name">姓名:</label>
+	<input class="a01" type="text" id="name" name="name" value="<%if(name != null)out.print(name);%>" placeholder="輸入您的姓名" onfocus="this.placeholder=''" onblur="this.placeholder='輸入您的姓名'">
+	<p style="color:red;"><%if(messageName != null && !messageName.isEmpty())
+		{out.print(messageName);
+		}
+	%> </p><br>
 
   <label for="email">E-mail:</label>
-  <input class="a01" type="text" id="email" name="email" value="<%if(email != null)out.print(email);%>" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" required placeholder="輸入電子郵件" onfocus="this.placeholder=''" onblur="this.placeholder='輸入電子郵件'">
+  <input class="a01" type="text" id="email" name="email" value="<%if(email != null)out.print(email);%>" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" placeholder="輸入電子郵件" onfocus="this.placeholder=''" onblur="this.placeholder='輸入電子郵件'">
   <p style="color:red;"><%if(messageEmail != null && !messageEmail.isEmpty())
 		{out.print(messageEmail);
 		}
 	%> </p><br>
 
   <label for="birthday">生日:</label>
-  <input class="a01" type="date" id="birthday" name="birthday" value="<%=birthday%>" ><br><br>
+  <input class="a01" type="date" id="birthday" name="birthday" required value="<%=birthday%>" ><br><br>
 
   <label for="gender">性別:</label>
   <select id="gender" name="gender">

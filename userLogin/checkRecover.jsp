@@ -34,7 +34,7 @@
 					response.sendRedirect("recover.jsp?&message=Incorrect credentials.");
 				}
 				else{
-					String sql = "SELECT * FROM `member` WHERE `username`=? AND `email`=? AND `birthday`=? AND `gender`=?";
+					String sql = "SELECT * FROM `member` WHERE `memberUsername`=? AND `memberEmail`=? AND `memberBirthday`=? AND `memberGender`=?";
 					PreparedStatement pstmt = null;
 					pstmt=con.prepareStatement(sql);
 					pstmt.setString(1,username);

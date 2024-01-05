@@ -35,7 +35,7 @@
 				} else if(!password.equals(password2)) {
 					response.sendRedirect("/final/changePassword.jsp?&message=Please type in the same password.");
 				} else {
-					String sql = "UPDATE member SET password=? WHERE username=?";
+					String sql = "UPDATE member SET memberPassword=? WHERE memberUsername=?";
 					PreparedStatement pstmt = null;
 					pstmt=con.prepareStatement(sql);
 					pstmt.setString(1,password);
@@ -43,7 +43,7 @@
 				
 					pstmt.executeUpdate();
 					con.close();//結束資料庫連結
-					out.print("Password changed successfully. Click <a href = '/final/user.jsp'>here</a> to proceed to main page");
+					out.print("Password changed successfully. Click <a href = '../userLogin/login.jsp'>here</a> to proceed to login page");
 					}
 				}
 			}        

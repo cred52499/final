@@ -11,6 +11,7 @@
 		String name = request.getParameter("name");
 		String email = request.getParameter("email");
 		String birthday = request.getParameter("birthday");
+		out.print(birthday);
 		String gender = request.getParameter("gender");
 		String strlnearsighted = request.getParameter("lnearsighted");
 		String strrnearsighted = request.getParameter("lnearsighted");

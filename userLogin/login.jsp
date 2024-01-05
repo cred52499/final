@@ -2,6 +2,7 @@
 <%@page contentType="text/html"%> 
 <%@page pageEncoding="UTF-8"%>
 <%@ page import = "java.sql.*" %>
+<%@ page import = "java.net.URLEncoder"%>
 
 <html>
 <head>
@@ -29,10 +30,16 @@ form {
 <body>
 <%
 String message=request.getParameter("message");
+String redirectUrl = request.getParameter("redirectUrl");
+if(redirectUrl == null || redirectUrl.equals("")){
+	redirectUrl = "..";
+}
+
+String encodedUrl = URLEncoder.encode(redirectUrl, "UTF-8");
 %>
 
 
-<form action="checkLogin.jsp" method = "post">
+<form action="checkLogin.jsp?&redirectUrl=<%=encodedUrl%>" method = "post">
    <h1>會員登入</h1><br> 
   <label for="username">帳號:</label>
   <input type="text" id="username" name="username" placeholder="請輸入帳號" onfocus="this.placeholder=''" onblur="" placeholder='請輸入帳號'"> 

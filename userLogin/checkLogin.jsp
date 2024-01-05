@@ -9,11 +9,11 @@
     <head><title>Login Success!</title></head>
     <body>
     <%
-		String memberUsername = request.getParameter("memberUsername");
-		String memberPassword = request.getParameter("memberPassword");
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
 		
 		String redirectUrl = request.getParameter("redirectUrl");
-			
+		out.print(redirectUrl);
 		try {
             Class.forName("com.mysql.jdbc.Driver");	  
 			String url="jdbc:mysql://localhost/opticshop";
@@ -24,22 +24,22 @@
 			}
 			
             else{	 
-				if(memberUsername == null || memberUsername.equals("")){
+				if(username == null || username.equals("")){
 					response.sendRedirect("login.jsp?&message=Please enter your username.");
 				}
-				else if(memberPassword == null || memberPassword.equals("")){
+				else if(password == null || password.equals("")){
 					response.sendRedirect("login.jsp?&message=Please enter your password.");
 				}
 				else{
 					String sql = "SELECT * FROM `member` WHERE `memberUsername`=? AND `memberPassword`=?";
 					PreparedStatement pstmt = null;
 					pstmt=con.prepareStatement(sql);
-					pstmt.setString(1,memberUsername);
-					pstmt.setString(2,memberPassword);
+					pstmt.setString(1,username);
+					pstmt.setString(2,password);
 				
 					ResultSet dataset = pstmt.executeQuery();
 					if(dataset.next()){
-						Cookie usernameCookie = new Cookie("memberUsername",memberUsername);
+						Cookie usernameCookie = new Cookie("memberUsername",username);
 						Cookie nameCookie = new Cookie("memberName",dataset.getString("memberName"));
 						Cookie idCookie = new Cookie("memberID",dataset.getString("memberID"));
 						usernameCookie.setMaxAge(-1);
@@ -53,11 +53,13 @@
 						response.addCookie(idCookie);
 
 						con.close();//結束資料庫連結
+						out.print(redirectUrl);
 						response.sendRedirect(redirectUrl);
 					}
 					
 					else{
 						con.close();//結束資料庫連結
+						out.print(redirectUrl);
 						response.sendRedirect("login.jsp?&message=Username or password incorrect, please try again.");
 						
 					}
