@@ -174,7 +174,7 @@
             <div class="m02">
                 <div class="gragh">
                     <div class="card-container">
-                        <a href="introduction/vippage.html"><img src="img/會員權益1.png" style="width: 300px;height: 300px;"></a>
+                        <a href="introduction/vippage.jsp"><img src="img/會員權益1.png" style="width: 300px;height: 300px;"></a>
                         <a href="introduction/teach.jsp"><img src="img/下單教學(1).png" style="width: 300px;height: 300px;"></a>
                         <a href="https://www.youtube.com/watch?v=K2XzOz_e9qI&t=31s"><img src="img/衛教保健1.png" style="width: 300px;height: 300px;"></a>
                     </div>
