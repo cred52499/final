@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css?time=<%=System.currentTimeMillis()%>">
-    <title>final project</title>
+    <title>穎新眼鏡</title>
     <script>
         window.onload = function() {
         <%
@@ -53,7 +53,9 @@
 			if(cookies[i].getName().equals("memberID")){
 				memberID = cookies[i].getValue();
 				out.print("get cookie memberID: " + memberID);
-			}
+			} else if(cookies[i].getName().equals("memberName")){
+                memberName = cookies[i].getValue();
+            }
 		}
 	}
 
@@ -67,12 +69,10 @@
 				if(con.isClosed())
 				   out.println("連線建立失敗！");
 				else{
-					if(memberID == null || memberID.equals("")){
+					if(memberID == null || memberID.equals(""))
 						customerID = sessionID;//注意，這邊應該是讀session存的ID
-					}
-					else{
+					else
 						customerID = memberID;
-					}
 					
 					try{
 						String sql1="INSERT IGNORE into `cart` (`customerID`,`dateCreated`)";//寫入購物車
@@ -121,24 +121,16 @@
                         <li><a href="liquid/liquid.jsp">保養液</a></li>
                     </ul>
                     </li>
-                    <li><a href="aboutUs/aboutus.html">關於我們</a>
+                    <li><a href="aboutUs/aboutus.jsp">關於我們</a>
                     </li>
                     <%
-                        if(cookies != null){
-                            int count = cookies.length;
-                            for(int i=0; i < count; i++){
-                                if(cookies[i].getName().equals("memberName")){
-                                    memberName = cookies[i].getValue();
-                                }
-                            }
-                        }
 					    if(memberName == null || memberName.equals("")){%>
-                    <li><a href="userLogin/login.jsp">登入</a></li>
+                        <li><a href="userLogin/login.jsp">登入</a></li>
 					    <%
 					    } else {
                         %>
                         <li><a href="">你好<%=memberName%></a></li>
-                        <li><a href="member/member.jsp">會員</a></li>
+                        <li><a href="member/member.jsp"><img src="img/profile.png" style="height:50px; width:50px;" ></a></li>
                         <li><a href="userLogin/logout.jsp">登出</a></li>
                         <%
                         }
@@ -148,8 +140,7 @@
                         <button type="submit" class="search-button"><img src="img/search.jpg" style="height:40px; width:40px;"></button>
                         </form>
                     </li>
-                    <li><a href="shpcart/shpcart copy.html"><img src="img/cart.png" style="height:50px; width:50px;"  ></a></li>
-                    <li><a href="member/member.html"><img src="img/profile.png" style="height:50px; width:50px;" ></a></li>
+                    <li><a href="cart/cart.jsp"><img src="img/cart.png" style="height:50px; width:50px;"  ></a></li>
                     <%-- <li><a href="location/location.html">門市據點</a></li>
                     <li><a href="cart/cart.jsp">購物車</a></li> --%>
                 </ul>
@@ -223,14 +214,13 @@
                 <div class="marquee">
                     <p><%=text%></p>
                 </div>
-                <script src="run.js"></script>
                 <div class="card-container1">
                     <a href="<%=href%>"><img src="<%=img%>" style="width:1000px ;height:300px"></a>
                 </div>
             </div>
                     <%
                             } catch (SQLException sExec) {
-                                out.println("1111 錯誤！"+sExec.toString()); 
+                                out.println("錯誤！"+sExec.toString()); 
                             }
                             con.close();
                         }
@@ -273,7 +263,7 @@
             </div>
         </main>
         <footer>
-            <div class="footertext">
+            <div class="foter">
             <table>
                 <tr>
                     <td>
@@ -317,12 +307,11 @@
                             try {
                                 Class.forName("com.mysql.jdbc.Driver");
                                 try {
-                                    url = "jdbc:mysql://localhost/?serverTimezone=UTC";
+                                    url="jdbc:mysql://localhost/opticshop";
                                     con = DriverManager.getConnection(url, "root", "1234");
                                     if (con.isClosed()) {
                                         out.println("連線建立失敗");
                                     } else {
-                                        con.createStatement().execute("use `opticshop`");
                                         String sql = "SELECT * FROM visitorcounter ";
                                         ResultSet resultSet = con.createStatement().executeQuery(sql);
                                         
@@ -374,8 +363,7 @@
                     </td>
                 </tr>
             </table>
-            </div>
+        </div>
         </footer>
-    </div>
 </body>
 </html>
