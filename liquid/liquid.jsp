@@ -8,11 +8,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>個人網頁排版</title>
-    <link rel="stylesheet" href="styles.css?time=<%=System.currentTimeMillis()%>">
+    <title>保養液專區</title>
+    <link rel="stylesheet" href="styles.css">
 	</head>
 
 	<%
+	request.setCharacterEncoding("UTF-8");
 	String searchString=request.getParameter("searchString");
 	if(searchString == null || searchString.equals("")){
 		searchString = "";
@@ -29,14 +30,13 @@
             <li><a href="../liquid/liquid.jsp"><h4>保養液</h4></a></li>
           </ul>
         </li>
-        <li><a href="../aboutUs/aboutus.html"><h3>關於我們</h3></a>
-        </li>
-        <li><form action="liquid.jsp" class="search-form" method="post">
-            <input type="text" class="search-input" placeholder="Search..." name="searchString" value="<%=searchString%>">
-            <button type="submit" class="search-button">Search</button>
-        </form>
+        <li><a href="../aboutUs/aboutus.jsp"><h3>關於我們</h3></a>
+        </li><li>
+          <form action="liquid.jsp" class="search-form" method="post">
+            <input type="text" class="search-input" placeholder="搜尋" name="searchString" value="<%=searchString%>">
+            <button type="submit" class="search-button"><img src="../img/search.jpg" alt="Search Icon" style="height:40px; width:40px;"></button>
+            </form>
         </a></li>
-		<li><a href="../location/location.html"><h3>門市據點</h3></a></li>
         <li><a href="../cart/cart.jsp"><h3>購物車</h3></a></li>
         <%
 		Cookie[] cookies = request.getCookies();
@@ -72,8 +72,7 @@
 		if(memberName == null || memberName.equals("")){%>
 		<li><a href="../userLogin/login.jsp?&redirectUrl=../liquid/liquid.jsp"><h3>登入</h3></a></li>
 		<%
-			}
-		else{
+		} else {
 		%>
 		<li><a><h3>你好，<%=memberName%></h3></a></li>
 		<li><a href="../member/member.jsp"><h3>會員</h3></a></li>
@@ -101,15 +100,12 @@
 			
 	        if(con.isClosed()){
                 out.println("連線建立失敗");
-			}
-			
-            else{
-				if(searchString != null && !searchString.equals("")){
-					sql = "SELECT * FROM `liquid` WHERE `productid` LIKE ? AND `productStock` > 0";			
+			} else {
+				if(searchString != null && !searchString.isEmpty()){
+					sql = "SELECT * FROM `liquid` WHERE `productName` LIKE ? AND `productStock` > 0";			
 					pstmt=con.prepareStatement(sql);
 					pstmt.setString(1, "%" + searchString + "%");
-				}
-				else{
+				} else{
 					sql = "SELECT * FROM `liquid` WHERE `productStock` > 0";
 					pstmt=con.prepareStatement(sql);
 				}
@@ -133,7 +129,6 @@
 			<input type="hidden" name="customerID" value="<%=customerID%>">
 			</form>
 			<h3 class="text1">庫存數量:<%=dataset.getString("productStock")%></a></h3>
-					
 		</section>  
 		<%
 	  				}
@@ -143,21 +138,6 @@
 		catch (ClassNotFoundException err) {
 			out.println("class錯誤"+err.toString());
 		}
-		%>
-      <footer>
-        <table>
-          <tr>
-            <td>
-              <a href="">關於品牌</a>
-            </td>
-            <td>
-              <a href="">客服中心</a>
-            </td>
-            <td>
-              <a href="">聯絡方式</a>
-            </td>
-          </tr>
-        </table>
-      </footer>
+		%> 
   </body>
 </html>
