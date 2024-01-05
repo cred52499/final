@@ -111,7 +111,7 @@
 								%>
 								<h4>庫存數量: <%=productStock%></h4>
 								<h4>價格: <span class="price<%=id%>">$<%=productPrice%></span></h4>
-								<label>數量:</label><input type="number" name="<%=cartDetailsID%>" max="<%=productStock%>" required value="1">
+								<label>數量:</label><input type="number" name="<%=cartDetailsID%>" min="0" max="<%=productStock%>" required value="1">
 							</div>
 						</div>
 					
@@ -128,7 +128,7 @@
 			out.println("something wrong");
 		} 
 		%>	
-			<br><div class="centered"><button>結賬</button></div>
+			<br><div class="centered"><button>結帳</button></div>
 		</form>
 		</div>
 	</div>

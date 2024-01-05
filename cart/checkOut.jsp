@@ -37,6 +37,11 @@
 						//out.println("Result: " + productCategory + productID);
 						PreparedStatement pstmt2 = con.prepareStatement(sql2);
 						int quantity = Integer.valueOf(request.getParameter(cartDetailsID));
+						if(quantity == 0){
+							String sql3="DELETE from `cartdetails` WHERE cartdetailsID=" + cartDetailsID; 
+							con.createStatement().execute(sql3);
+							continue;
+						}
 						pstmt2.setInt(1, quantity);
 						pstmt2.setString(2, cartID);
 						pstmt2.setString(3, cartDetailsID);
@@ -51,7 +56,7 @@
 					} catch (SQLException sExec2) {
 						out.println("something wrong2" + sExec2.toString());
 					} 
-				}			
+				}		
 						%>
 					</div>
 					<label for="paymentMethod">付款方式:</label>
@@ -70,11 +75,15 @@
 					<input type="text" name="phone" required>
 					
 					<div id="total-amount">總金額: $<%=total%></div>
-					
+					<%
+					if(total > 0){
+					%>
 					<input type="submit" class="button" value="送出訂單">
+					<%
+					}
+					%>
 					<input type="hidden" name="cartID" value="<%=cartID%>">
-					
-					
+
 				</div> 
 			</form>
 			<%

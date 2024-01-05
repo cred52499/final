@@ -89,10 +89,10 @@
 					pstmt.setString(1,customerID);
 					ResultSet dataset = pstmt.executeQuery();
 					if(dataset.next()){
-					cartID = dataset.getString("cartID");
-					Cookie cartCookie = new Cookie("cartID",cartID);
-					cartCookie.setMaxAge(-1);
-					response.addCookie(cartCookie);
+                        cartID = dataset.getString("cartID");
+                        Cookie cartCookie = new Cookie("cartID",cartID);
+                        cartCookie.setMaxAge(-1);
+                        response.addCookie(cartCookie);
 					}
 					con.close();
 				}

@@ -80,14 +80,14 @@
                             <th>度數</th>
                             <td>
                                 左眼:
-								<input type="text" name="left" id="left" value = "<%=left%>">
+								<input type="text" name="left" id="left" value = "<%=left%>" min="0">
                                 右眼:
-                                <input type="text" name="right" id="right" value = "<%=right%>">
+                                <input type="text" name="right" id="right" value = "<%=right%>" min="0">
                             </td>
                         </tr>
                         <tr>
                             <th>Email</th>
-                            <td><input type="text" name="email" id="email" value = "<%=email%>"></td>
+                            <td><input type="text" name="email" id="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" required value = "<%=email%>"></td>
                         </tr>
                     </table>
                     <input type="submit" value="更新資料">

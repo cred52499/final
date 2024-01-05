@@ -20,42 +20,42 @@
             <h2>新增商品</h2>
             <h3>保養液</h3>
             <form action="add_liquid.jsp" method="post">
-                <input type="text" name="name" placeholder="商品名稱">
-                <input type="number" name="price" placeholder="商品價格"><br>
+                <input type="text" name="name" placeholder="商品名稱" required>
+                <input type="number" name="price" placeholder="商品價格" required><br>
                 <input name="content" placeholder="商品內容">
                 <input name="features" placeholder="商品特性">
                 <input name="indications" placeholder="商品指示">
                 <input name="notes" placeholder="商品警示">
                 <br>
-                <input type="number" name="stock" placeholder="商品庫存">
+                <input type="number" name="stock" placeholder="商品庫存" required>
                 <button type="submit">新增</button>
             </form>
             </section>
             <section class="card">
             <h3>彩色隱眼</h3>
             <form action="add_coloredlens.jsp" method="post">
-                <input type="text" name="name" placeholder="商品名稱">
-                <input type="number" name="price" placeholder="商品價格"><br>
+                <input type="text" name="name" placeholder="商品名稱" required>
+                <input type="number" name="price" placeholder="商品價格" required><br>
                 <input name="watercontent" placeholder="含水量">
                 <input name="basecurve" placeholder="基弧">
                 <input name="diameter" placeholder="鏡片直徑">
                 <input name="graphicdiameter" placeholder="著色直徑">
                 <br>
-                <input type="number" name="stock" placeholder="商品庫存">
+                <input type="number" name="stock" placeholder="商品庫存" required>
                 <button type="submit">新增</button>
             </form>
             </section>
             <section class="card">
             <h3>透明隱眼</h3>
             <form action="add_transparentlens.jsp" method="post">
-                <input type="text" name="name" placeholder="商品名稱">
-                <input type="number" name="price" placeholder="商品價格"><br>
+                <input type="text" name="name" placeholder="商品名稱" required>
+                <input type="number" name="price" placeholder="商品價格" required><br>
                 <input name="watercontent" placeholder="含水量">
                 <input name="basecurve" placeholder="基弧">
                 <input name="diameter" placeholder="鏡片直徑">
                 <input name="graphicdiameter" placeholder="著色直徑">
                 <br>
-                <input type="number" name="stock" placeholder="商品庫存">
+                <input type="number" name="stock" placeholder="商品庫存" required>
                 <button type="submit">新增</button>
             </form>
             </section>
@@ -117,9 +117,9 @@
             <section class="card">
             <h2>新增活動</h2>
             <form action="add_campaign.jsp" method="post">
-                <input type="text" name="href" placeholder="頁面路徑">
-                <input type="text" name="img" placeholder="圖片路徑">
-                <input name="text" placeholder="活動跑馬燈文字"><br>
+                <input type="text" name="href" placeholder="頁面路徑" required>
+                <input type="text" name="img" placeholder="圖片路徑" required>
+                <input name="text" placeholder="活動跑馬燈文字" required><br>
                 <button type="submit">新增</button>
             </form>
             </section>
@@ -152,7 +152,7 @@
     </main>
 
     <footer>
-        <p>2023 cyim demo</p>
+        <p>2024 cyim demo</p>
     </footer>
 </body>
 
