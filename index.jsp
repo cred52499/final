@@ -123,30 +123,35 @@
                     </li>
                     <li><a href="aboutUs/aboutus.html">關於我們</a>
                     </li>
-                    <li><a href="location/location.html">門市據點</a></li>
-                    <li><a href="cart/cart.jsp">購物車</a></li>
-					<%
-					if(cookies != null){
-						int count = cookies.length;
-						for(int i=0; i < count; i++){
-							if(cookies[i].getName().equals("memberName")){
-								memberName = cookies[i].getValue();
-							}
-						}
-					}
-					if(memberName == null || memberName.equals("")){%>
+                    <%
+                        if(cookies != null){
+                            int count = cookies.length;
+                            for(int i=0; i < count; i++){
+                                if(cookies[i].getName().equals("memberName")){
+                                    memberName = cookies[i].getValue();
+                                }
+                            }
+                        }
+					    if(memberName == null || memberName.equals("")){%>
                     <li><a href="userLogin/login.jsp">登入</a></li>
-					<%
-						}
-					else{
-					%>
-					<li><a href="">你好<%=memberName%></a></li>
-					<li><a href="member/member.jsp">會員</a></li>
-					<li><a href="userLogin/logout.jsp">登出</a></li>
-					<%
-					}
-					%>
-					
+					    <%
+					    } else {
+                        %>
+                        <li><a href="">你好<%=memberName%></a></li>
+                        <li><a href="member/member.jsp">會員</a></li>
+                        <li><a href="userLogin/logout.jsp">登出</a></li>
+                        <%
+                        }
+					    %>
+                    <li><form class="search-form">
+                        <input type="text" class="search-input" placeholder="搜尋">
+                        <button type="submit" class="search-button"><img src="img/search.jpg" style="height:40px; width:40px;"></button>
+                        </form>
+                    </li>
+                    <li><a href="shpcart/shpcart copy.html"><img src="img/cart.png" style="height:50px; width:50px;"  ></a></li>
+                    <li><a href="member/member.html"><img src="img/profile.png" style="height:50px; width:50px;" ></a></li>
+                    <%-- <li><a href="location/location.html">門市據點</a></li>
+                    <li><a href="cart/cart.jsp">購物車</a></li> --%>
                 </ul>
             </div>
         </nav>
@@ -210,96 +215,165 @@
                                 sql="SELECT * FROM campaign WHERE id = '" + num +"';";
                                 rs = con.createStatement().executeQuery(sql);
                                 rs.next();
-                                %>
-                                    <div class="m03">
-                                <%
-                                out.print("<div class=\"marquee\"><ul><li>"+rs.getString(4)+"</li></ul></div>");
-                                %>
-                                        <div class="graph01">
-                                <%  
-                                out.print("<a href=\""+rs.getString(2)+"\"><img src=\""+rs.getString(3)+"\" style=\"width: 650px;height: 450px;\"></a>");
+                                String href = rs.getString(2);
+                                String img = rs.getString(3);
+                                String text = rs.getString(4);
+                    %>
+            <div class="runn">
+                <div class="marquee">
+                    <p><%=text%></p>
+                </div>
+                <script src="run.js"></script>
+                <div class="card-container1">
+                    <a href="<%=href%>"><img src="<%=img%>" style="width:1000px ;height:300px"></a>
+                </div>
+            </div>
+                    <%
                             } catch (SQLException sExec) {
                                 out.println("1111 錯誤！"+sExec.toString()); 
                             }
                             con.close();
                         }
                     %>
+             <div class="m03">
+                <div class="card-container">
+                    <a href="activity/activity/act01/act01.html"><img src="img/聖誕同樂.png" style="width: 400px;height: 400px; border-radius: 20px;"></a>
+                    <a href="activity/activity/act02/act02.html"><img src="img/2024你好.png" style="width: 400px;height: 400px; border-radius: 20px;"></a>
+                    <a href="activity/activity/act03/act03.html"><img src="img/情人節快樂.png" style="width: 400px;height: 400px; border-radius: 20px;"></a>
                 </div>
             </div>
-            
             <div class="act">
-                <div class="gragh">
-                    <div class="map">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1270.2788791790574!2d121.24351152577623!3d24.957450344334042!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346822143c046009%3A0x63e3ef21e3beebac!2z6LOH6KiK566h55CG5a2457O7!5e0!3m2!1szh-TW!2stw!4v1704098187362!5m2!1szh-TW!2stw" width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    </div>
-                    <div class="shpname">
-                        <section>
-                          <div class="outside">
-                              <img src="image/route.jpg" class="imgposition" />
-                              <img src="image/web.jpg" class="imgposition" />  
-                            <h2>中原資管店</h2>
-                            <p>營業時間11:00~20:00<br>
-                              中原大學資管樓</p>  
-                          </div>
-                        </section>
-                        <hr color="black">  
-                </div> 
+                <div class="acttitle">
+                  <h5>門市據點搶先看👓︎</h5>
+                </div>
+                 <div class="map">
+                    <table class="maptb">
+                        <tr>
+                            <td>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1270.2788791790574!2d121.24351152577623!3d24.957450344334042!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346822143c046009%3A0x63e3ef21e3beebac!2z6LOH6KiK566h55CG5a2457O7!5e0!3m2!1szh-TW!2stw!4v1704098187362!5m2!1szh-TW!2stw" width="750" height="750" style="border: solid 3px #c8b6ff; border-radius: 10px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </td>
+                            <td>
+                                <h3>  </h3>
+                            </td>
+                            <td>
+                                <h3>  </h3>
+                            </td>
+                            <td>
+                                <h3>  </h3>
+                            </td>
+                            <td>
+                            <h3>穎新眼鏡中原資管店</h3><br>
+                            <h3>🏪營業時間：上午9時~下午10時</h3><br>
+                            <h3>📍店面地址：桃園市中壢區中北路200號</h3><br>
+                            <h3>📞連絡電話：0900-123-456</h3>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </main>
         <footer>
-            <div class="left">
-            <h3>聯絡資訊</h3>
-            <p>好累阿這個作業真累</p>
-            <p>關於品牌</p>
-            <p>客服中心</p>
-            <p>聯絡方式</p>
-			<%
-			try {
-					Class.forName("com.mysql.jdbc.Driver");
-				try {
-					url = "jdbc:mysql://localhost/?serverTimezone=UTC";
-					con = DriverManager.getConnection(url, "root", "1234");
-					if (con.isClosed()) {
-						out.println("連線建立失敗");
-					} else {
-						con.createStatement().execute("use `opticshop`");
-						String sql = "SELECT * FROM visitorcounter ";
-						ResultSet resultSet = con.createStatement().executeQuery(sql);
-						
-						if (resultSet.next()) {
-							String countString = resultSet.getString(1);
-							Integer count = Integer.parseInt(countString);
-							if (session.isNew()){
-								count++;
-								countString = String.valueOf(count);
-								sql = "UPDATE visitorcounter SET visitorNum = " + countString;
-								con.createStatement().execute(sql);
-							}
-							out.print("訪客人數:"+count);
-						}
-						con.close();
-					}
-				} catch (SQLException e) {
-					out.println("SQL錯誤: " + e.toString());
-				}
-				} catch (ClassNotFoundException err) {
-					out.println("Class錯誤: " + err.toString());
-				}
+            <div class="footertext">
+            <table>
+                <tr>
+                    <td>
+                        <a href="">關於品牌</a>
+                    </td>
+                    <td>
 
-			%>
-            </div>
-            <div class="contantimg">
-            <a href="https://instagram.com/chouiiin?igshid=MzMyNGUyNmU2YQ%3D%3D&utm_source=qr" target="_blank">
-                <img class="contant" src="img/ig.png" >
-            </a>
+                    </td>
+                    <td>
+                        
+                    </td>
+                    <td>
+                        
+                    </td>
+                    <td>
+                        <a href="">客服中心</a>
+                    </td>
+                    <td>
+                        
+                    </td>
+                    <td>
+                        
+                    </td>
+                    <td>
+                        
+                    </td>
+                    <td>
+                        <a href="">聯絡方式</a>
+                    </td>
+                    <td>
+                        
+                    </td>
+                    <td>
+                        
+                    </td>
+                    <td>
+                        
+                    </td>
+                    <td>
+                        <%
+                            try {
+                                Class.forName("com.mysql.jdbc.Driver");
+                                try {
+                                    url = "jdbc:mysql://localhost/?serverTimezone=UTC";
+                                    con = DriverManager.getConnection(url, "root", "1234");
+                                    if (con.isClosed()) {
+                                        out.println("連線建立失敗");
+                                    } else {
+                                        con.createStatement().execute("use `opticshop`");
+                                        String sql = "SELECT * FROM visitorcounter ";
+                                        ResultSet resultSet = con.createStatement().executeQuery(sql);
+                                        
+                                        if (resultSet.next()) {
+                                            String countString = resultSet.getString(1);
+                                            Integer count = Integer.parseInt(countString);
+                                            if (session.isNew()){
+                                                count++;
+                                                countString = String.valueOf(count);
+                                                sql = "UPDATE visitorcounter SET visitorNum = " + countString;
+                                                con.createStatement().execute(sql);
+                                            }
+                                            out.print("<a href=\"\">訪客人數:"+count+"</a>");
+                                        }
+                                        con.close();
+                                    }
+                                } catch (SQLException e) {
+                                    out.println("SQL錯誤: " + e.toString());
+                                }
+                            } catch (ClassNotFoundException err) {
+                                out.println("Class錯誤: " + err.toString());
+                            }
 
-            <a href="https://line.me/ti/p/chj7qksWo3" target="_blank">
-                <img class="contant" src="img/line.png" >
-            </a>
-
-            <a href="mailto:tyes40415@gmail.com" target="_blank">
-                <img class="contant" src="img/mail.png" >
-            </a>
+			            %>
+                    </td>
+                    <td>
+                        
+                    </td>
+                    <td>
+                        
+                    </td>
+                    <td>
+                        
+                    </td>
+                    <td>
+                        <a href="https://instagram.com/chouiiin?igshid=MzMyNGUyNmU2YQ%3D%3D&utm_source=qr" target="_blank">
+                            <img class="contant" src="img/ig.png" >
+                        </a>
+                    </td>
+                    <td>
+                        <a href="https://line.me/ti/p/chj7qksWo3" target="_blank">
+                            <img class="contant" src="img/line.png" >
+                        </a>
+                    </td>
+                    <td>
+                        <a href="mailto:tyes40415@gmail.com" target="_blank">
+                            <img class="contant" src="img/mail.png" >
+                        </a>
+                    </td>
+                </tr>
+            </table>
             </div>
         </footer>
     </div>
