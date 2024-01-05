@@ -8,6 +8,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../img/ag7cf-drmwf-001.ico" type="image/x-icon">
     <link rel="stylesheet" href="index.css?time=<%=System.currentTimeMillis()%>">
     <title>穎新眼鏡</title>
     <script>
@@ -133,8 +134,6 @@
                         }
 					    %>
                     <li><a href="cart/cart.jsp"><img src="img/cart.png" style="height:50px; width:50px;"  ></a></li>
-                    <%-- <li><a href="location/location.html">門市據點</a></li>
-                    <li><a href="cart/cart.jsp">購物車</a></li> --%>
                 </ul>
             </div>
         </nav>
@@ -177,7 +176,7 @@
                 <div class="gragh">
                     <div class="card-container">
                         <a href="introduction/vippage.html"><img src="img/會員權益1.png" style="width: 300px;height: 300px;"></a>
-                        <a href="introduction/teach.html"><img src="img/下單教學(1).png" style="width: 300px;height: 300px;"></a>
+                        <a href="introduction/teach.jsp"><img src="img/下單教學(1).png" style="width: 300px;height: 300px;"></a>
                         <a href="https://www.youtube.com/watch?v=K2XzOz_e9qI&t=31s"><img src="img/衛教保健1.png" style="width: 300px;height: 300px;"></a>
                     </div>
                 </div>
