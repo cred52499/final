@@ -5,7 +5,7 @@
 .container01 {
     width: auto;
     display: grid;
-    grid-template: 700px 400px 500px 1000px /100%;
+    grid-template: 700px 400px 500px 600px /100%;
     /*grid-auto-flow: row;
 
     /*grid-template-areas: 
@@ -453,8 +453,4 @@ border-radius: 10px;
         transform: translateX(-100%);
         /* 結束位置 */
     }
-}
-
-.act{
-    margin-top: 100px;
 }
