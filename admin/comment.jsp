@@ -4,7 +4,6 @@
 <%@ page import = "java.sql.*" %>
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../styles.css">
 </head>
 
 <body>
@@ -15,6 +14,9 @@
                     String memberID = request.getParameter("memberID");
                     String type = request.getParameter("type");
                     String href = request.getParameter("href");
+                    if(rate==null || rate.isEmpty()){
+                        out.print("<script>alert('請添加評分!');location.href='../"+href+"'</script>");
+                    }
                     String productID = request.getParameter("productID");
                     String comment = request.getParameter("comment");
                     Class.forName("com.mysql.jdbc.Driver");
@@ -22,7 +24,7 @@
                     Connection con=DriverManager.getConnection(url,"root","1234");
                     String sql1 ="INSERT INTO `comment` (`productID`,`category`,`memberID`,`rate`,`content`) values ('"+productID+"', '"+type+"', '"+memberID+"','"+rate+"','"+comment+"')"; 
                     con.createStatement().executeUpdate(sql1);
-                    out.print("<script>alert('留言成功');location.href='../"+href+"'</script>");
+                    out.print("<script>alert('評分成功');location.href='../"+href+"'</script>");
                     con.close();
                 } catch (Exception e){ 
                     out.println(e.toString());

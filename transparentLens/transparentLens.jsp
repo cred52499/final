@@ -102,11 +102,11 @@
                 out.println("連線建立失敗");
 			} else {
 				if(searchString != null && !searchString.isEmpty()){
-					sql = "SELECT * FROM `transparentLens` WHERE `productName` LIKE ? AND `productStock` > 0";			
+					sql = "SELECT * FROM `transparentLens` WHERE `productName` LIKE ? AND `productStock` > 0 AND `instock` = 1";			
 					pstmt=con.prepareStatement(sql);
 					pstmt.setString(1, "%" + searchString + "%");
 				} else{
-					sql = "SELECT * FROM `transparentLens` WHERE `productStock` > 0";
+					sql = "SELECT * FROM `transparentLens` WHERE `productStock` > 0 AND `instock` = 1";
 					pstmt=con.prepareStatement(sql);
 				}
 				

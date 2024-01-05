@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <title>後台管理</title>
     <link rel="stylesheet" href="admin.css">
-    <%-- <script src="admin.js"></script> --%>
+    <script src="admin.js"></script>
     <%-- <link rel="stylesheet" href="styles.css"> --%>
 </head>
 
@@ -16,6 +16,7 @@
     </header>
     <main>
         <section class="product-add">
+            <section class="card">
             <h2>新增商品</h2>
             <h3>保養液</h3>
             <form action="add_liquid.jsp" method="post">
@@ -29,6 +30,8 @@
                 <input type="number" name="stock" placeholder="商品庫存">
                 <button type="submit">新增</button>
             </form>
+            </section>
+            <section class="card">
             <h3>彩色隱眼</h3>
             <form action="add_coloredlens.jsp" method="post">
                 <input type="text" name="name" placeholder="商品名稱">
@@ -41,6 +44,8 @@
                 <input type="number" name="stock" placeholder="商品庫存">
                 <button type="submit">新增</button>
             </form>
+            </section>
+            <section class="card">
             <h3>透明隱眼</h3>
             <form action="add_transparentlens.jsp" method="post">
                 <input type="text" name="name" placeholder="商品名稱">
@@ -53,8 +58,10 @@
                 <input type="number" name="stock" placeholder="商品庫存">
                 <button type="submit">新增</button>
             </form>
+            </section>
         </section>
         <section class="product-management">
+            <section class="card">
             <h2>商品管理</h2>
             <h3>保養液</h3>
             <form action="edit_liquid.jsp" method="post">
@@ -73,6 +80,8 @@
                 </select><br>
                 <button type="submit">修改</button>
             </form>
+            </section>
+            <section class="card">
             <h3>彩色隱眼</h3>
             <form action="edit_coloredlens.jsp" method="post">
                 <select name="goods">
@@ -86,6 +95,8 @@
                 </select><br>
                 <button type="submit">修改</button>
             </form>
+            </section>
+            <section class="card">
             <h3>透明隱眼</h3>
             <form action="edit_transparentlens.jsp" method="post">
                 <select name="goods">
@@ -100,8 +111,10 @@
                 </select><br>
                 <button type="submit">修改</button>
             </form>
+            </section>
         </section>
         <section class="campaign-add">
+            <section class="card">
             <h2>新增活動</h2>
             <form action="add_campaign.jsp" method="post">
                 <input type="text" name="href" placeholder="頁面路徑">
@@ -109,10 +122,11 @@
                 <input name="text" placeholder="活動跑馬燈文字"><br>
                 <button type="submit">新增</button>
             </form>
+            </section>
         </section>
         <section class="order-receiving">
+            <section class="card">
             <h2>接收訂單</h2>
-         
             <ul class="order-list">
                 <%
                     sql1 = "SELECT * FROM `order` WHERE `status` = '0' ORDER BY `orderID`;";
@@ -123,7 +137,7 @@
                         rs2.next();
                         out.print("<form action=\"update_order.jsp\" method=\"POST\">");
                         out.print("<input type=\"hidden\" name=\"orderID\" value=\""+rs1.getString(1)+"\"");
-                        out.print("<li>訂單編號#"+rs1.getString(1)+"<br>商品："+rs2.getString(1)+"<br>價錢：$"+rs2.getInt(2)+" x"+rs1.getInt(5)+"   共: $"+rs1.getInt(10)+"<br>會員編號#"+rs1.getInt(6)+"<br>地址："+rs1.getString(7)+"<br>電話："+rs1.getString(8)+"<br><button>完成訂單</button></li>");
+                        out.print("<li><h3>訂單編號#"+rs1.getString(1)+"</h3>商品："+rs2.getString(1)+"<br>價錢：$"+rs2.getInt(2)+" x"+rs1.getInt(5)+"   共: $"+rs1.getInt(10)+"<br>會員編號#"+rs1.getInt(6)+"<br>地址："+rs1.getString(7)+"<br>電話："+rs1.getString(8)+"<br><button>完成訂單</button></li>");
                         out.print("</form>");
                     }
                     con.close();
@@ -133,6 +147,7 @@
                 %>
 
             </ul>
+            </section>
         </section>
     </main>
 
