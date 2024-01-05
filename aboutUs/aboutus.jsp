@@ -35,7 +35,7 @@
                         <li><a href="../liquid/liquid.jsp">保養液</a></li>
                     </ul>
                     </li>
-                    <li><a href="aboutUs/aboutus.jsp">關於我們</a>
+                    <li><a>關於我們</a>
                     </li>
                         <%
                         if(memberName == null || memberName.equals("")){%>

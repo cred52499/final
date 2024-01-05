@@ -6,7 +6,6 @@ body {
 
 
 .a01 {
-    top: 30%;
     /*transform: translate(-50%, -50%);*/
     position: absolute;
     border-radius: 15px;
@@ -153,9 +152,8 @@ h2 {
 
 .shpall {
     position: relative;
-    top: 150px;
+    top: 100px;
     max-width: 100%;
-
 }
 
 header {
@@ -172,22 +170,20 @@ header {
     background-image: url('../img/logo1.jpg');
     background-size: contain;
     background-position: center;
-
 }
 
 .menu #sb {
     display: none;
     position: absolute;
     left: 0;
-    top: 50px;
+    top: 70px;
     /*將顯示的選單向下移到合適位置 owo*/
-    width: 160px;
+    width: 210px;
 }
 
 /* 顯示子清單 */
 .menu li:hover>#sb {
     display: block;
-
 }
 
 /* 修飾樣式 */
