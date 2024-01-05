@@ -14,22 +14,22 @@
 <body>
     <header>
 		<ul>
+			<li><a href=".."><h3>首頁</h3></a>
 			<li><a href="#"><h3>產品目錄</h3></h5></a>
 			<ul>
-				<li><a href="../brand_zone/brand_design/brand.html"><h3>品牌</h3></a></li>
 				<li><a href="../coloredLens/coloredLens.jsp"><h3>彩色隱形眼鏡</h3></a></li>
 				<li><a href="../transparentLens/transparentLens.jsp"><h3>透明隱形眼鏡</h3></a></li>
 				<li><a href="../liquid/liquid.jsp"><h3>保養液</h3></a></li>
 			</ul>
 			</li>
-			<li><a href="aboutUs/aboutus.html"><h3>關於我們</h3></a>
+			<li><a href="../aboutUs/aboutus.jsp"><h3>關於我們</h3></a>
 			</li>
-			<li><a href="location/location.html"><h3>門市據點</h3></a></li>
-			<li><a href="shpcart/shpcart copy.html"><h3>購物車</h3></a></li>
+			<li><a href="../location/location.html"><h3>門市據點</h3></a></li>
+			<li><a href="../cart/cart.jsp"><h3>購物車</h3></a></li>
 			<%
 			Cookie[] cookies = request.getCookies();
 			String memberName = "";
-      String memberID = "";
+			String memberID = "";
 			if(cookies != null){
 				int count = cookies.length;
 				for(int i=0; i < count; i++){
