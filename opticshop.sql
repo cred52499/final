@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `opticshop` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `opticshop`;
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: opticshop
@@ -18,8 +20,6 @@
 --
 -- Table structure for table `campaign`
 --
-
-USE opticshop;
 
 DROP TABLE IF EXISTS `campaign`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -57,7 +57,7 @@ CREATE TABLE `cart` (
   PRIMARY KEY (`cartID`),
   UNIQUE KEY `cartID_UNIQUE` (`cartID`),
   UNIQUE KEY `customerID_UNIQUE` (`customerID`)
-) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=111 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,7 +66,7 @@ CREATE TABLE `cart` (
 
 LOCK TABLES `cart` WRITE;
 /*!40000 ALTER TABLE `cart` DISABLE KEYS */;
-INSERT INTO `cart` VALUES (1,'D8A2360524D9A42B0CD21B01B6CDDF6A','2024-01-03'),(6,'B2FAA88CA667BD54F2B8141CE671B149','2024-01-03'),(14,'5A8D62FB21CE1C32B2F4834B5F848EF6','2024-01-03'),(15,'FD84A00459A9D2B0BBD6240F5B3F53CA','2024-01-03'),(34,'41','2024-01-03'),(35,'599328B84485D34429CAC9C6E11F25AA','2024-01-03'),(39,'E0E740CD595FDD6AAFA5282D77687F8A','2024-01-04'),(42,'37','2024-01-04'),(87,'C02097F7B2F211478A4998EE5571E6A0','2024-01-04'),(89,'2','2024-01-04'),(96,'60567C77E8BF66014A16B016C5FC0F92','2024-01-04');
+INSERT INTO `cart` VALUES (1,'D8A2360524D9A42B0CD21B01B6CDDF6A','2024-01-03'),(6,'B2FAA88CA667BD54F2B8141CE671B149','2024-01-03'),(14,'5A8D62FB21CE1C32B2F4834B5F848EF6','2024-01-03'),(15,'FD84A00459A9D2B0BBD6240F5B3F53CA','2024-01-03'),(34,'41','2024-01-03'),(35,'599328B84485D34429CAC9C6E11F25AA','2024-01-03'),(39,'E0E740CD595FDD6AAFA5282D77687F8A','2024-01-04'),(42,'37','2024-01-04'),(87,'C02097F7B2F211478A4998EE5571E6A0','2024-01-04'),(89,'2','2024-01-04'),(96,'60567C77E8BF66014A16B016C5FC0F92','2024-01-04'),(100,'52FBEAFF383B126660E1DF6875F10C4D','2024-01-04');
 /*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -86,7 +86,7 @@ CREATE TABLE `cartdetails` (
   PRIMARY KEY (`cartDetailsID`),
   UNIQUE KEY `cartDetailsID_UNIQUE` (`cartDetailsID`),
   UNIQUE KEY `cartID` (`cartID`,`productCategory`,`productID`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -95,7 +95,7 @@ CREATE TABLE `cartdetails` (
 
 LOCK TABLES `cartdetails` WRITE;
 /*!40000 ALTER TABLE `cartdetails` DISABLE KEYS */;
-INSERT INTO `cartdetails` VALUES (1,15,'liquid',1,NULL),(4,15,'liquid',3,NULL),(9,15,'liquid',4,NULL),(12,15,'liquid',5,NULL),(16,34,'liquid',6,NULL),(19,34,'liquid',9,NULL),(20,34,'liquid',1,NULL),(22,34,'liquid',3,NULL);
+INSERT INTO `cartdetails` VALUES (1,15,'liquid',1,NULL),(4,15,'liquid',3,NULL),(9,15,'liquid',4,NULL),(12,15,'liquid',5,NULL),(16,34,'liquid',6,1),(19,34,'liquid',9,1),(20,34,'liquid',1,1),(22,34,'liquid',3,2),(32,34,'liquid',4,1),(33,34,'liquid',7,1),(35,34,'liquid',8,1),(37,0,'null',0,NULL);
 /*!40000 ALTER TABLE `cartdetails` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -246,7 +246,7 @@ CREATE TABLE `order` (
   `subtotal` int NOT NULL,
   `cartID` int NOT NULL,
   PRIMARY KEY (`orderID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -255,6 +255,7 @@ CREATE TABLE `order` (
 
 LOCK TABLES `order` WRITE;
 /*!40000 ALTER TABLE `order` DISABLE KEYS */;
+INSERT INTO `order` VALUES (8,'2024-01-05',1,'liquid',1,'41','asd',123,'0',240,34),(9,'2024-01-05',3,'liquid',2,'41','asd',123,'0',440,34),(10,'2024-01-05',4,'liquid',1,'41','asd',123,'0',260,34),(11,'2024-01-05',6,'liquid',1,'41','asd',123,'0',220,34),(12,'2024-01-05',7,'liquid',1,'41','asd',123,'0',220,34),(13,'2024-01-05',8,'liquid',1,'41','asd',123,'0',220,34),(14,'2024-01-05',9,'liquid',1,'41','asd',123,'0',120,34);
 /*!40000 ALTER TABLE `order` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -309,7 +310,7 @@ CREATE TABLE `visitorcounter` (
 
 LOCK TABLES `visitorcounter` WRITE;
 /*!40000 ALTER TABLE `visitorcounter` DISABLE KEYS */;
-INSERT INTO `visitorcounter` VALUES (45);
+INSERT INTO `visitorcounter` VALUES (46);
 /*!40000 ALTER TABLE `visitorcounter` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -322,4 +323,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-01-04 18:46:59
+-- Dump completed on 2024-01-05 22:30:30
