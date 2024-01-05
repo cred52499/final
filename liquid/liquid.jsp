@@ -102,11 +102,11 @@
                 out.println("連線建立失敗");
 			} else {
 				if(searchString != null && !searchString.isEmpty()){
-					sql = "SELECT * FROM `liquid` WHERE `productName` LIKE ? AND `productStock` > 0";			
+					sql = "SELECT * FROM `liquid` WHERE `productName` LIKE ? AND `productStock` > 0 AND `instock` = 1";			
 					pstmt=con.prepareStatement(sql);
 					pstmt.setString(1, "%" + searchString + "%");
 				} else{
-					sql = "SELECT * FROM `liquid` WHERE `productStock` > 0";
+					sql = "SELECT * FROM `liquid` WHERE `productStock` > 0 AND `instock` = 1";
 					pstmt=con.prepareStatement(sql);
 				}
 				
@@ -127,6 +127,7 @@
 			<input type="hidden" name="productID" value="<%=dataset.getString("productID")%>">
 			<input type="hidden" name="cartID" value="<%=cartID%>">
 			<input type="hidden" name="customerID" value="<%=customerID%>">
+			<input type="hidden" name="category" value="liquid">
 			</form>
 			<h3 class="text1">庫存數量:<%=dataset.getString("productStock")%></a></h3>
 		</section>  

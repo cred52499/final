@@ -102,11 +102,11 @@
                 out.println("連線建立失敗");
 			} else {
 				if(searchString != null && !searchString.isEmpty()){
-					sql = "SELECT * FROM `coloredlens` WHERE `productName` LIKE ? AND `productStock` > 0";			
+					sql = "SELECT * FROM `coloredlens` WHERE `productName` LIKE ? AND `productStock` > 0 AND `instock` = 1";			
 					pstmt=con.prepareStatement(sql);
 					pstmt.setString(1, "%" + searchString + "%");
 				} else{
-					sql = "SELECT * FROM `coloredlens` WHERE `productStock` > 0";
+					sql = "SELECT * FROM `coloredlens` WHERE `productStock` > 0 AND `instock` = 1";
 					pstmt=con.prepareStatement(sql);
 				}
 				
@@ -123,7 +123,7 @@
 			<p> </p><br>
 			<form action="../cart/toCart.jsp" method="post">
 			<button class="add-to-cart-btn">加入購物車</button>
-			<input type="hidden" name="productCategory" value="coloredlens">
+			<input type="hidden" name="productCategory" value="coloredLens">
 			<input type="hidden" name="productID" value="<%=dataset.getString("productID")%>">
 			<input type="hidden" name="cartID" value="<%=cartID%>">
 			<input type="hidden" name="customerID" value="<%=customerID%>">

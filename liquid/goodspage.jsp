@@ -8,7 +8,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>商品頁</title>
-	<link rel="stylesheet" href="goodspage.css">
+	<link rel="stylesheet" href="goodspage.css?time=<%=System.currentTimeMillis()%>">
 </head>
 
 <body>
@@ -24,12 +24,11 @@
 			</li>
 			<li><a href="../aboutUs/aboutus.jsp"><h3>關於我們</h3></a>
 			</li>
-			<li><a href="../location/location.html"><h3>門市據點</h3></a></li>
 			<li><a href="../cart/cart.jsp"><h3>購物車</h3></a></li>
 			<%
 			Cookie[] cookies = request.getCookies();
 			String memberName = "";
-      String memberID = "";
+      		String memberID = "";
 			if(cookies != null){
 				int count = cookies.length;
 				for(int i=0; i < count; i++){
@@ -43,8 +42,7 @@
 			if(memberName == null || memberName.equals("")){%>
 			<li><a href="userLogin/login.jsp"><h3>登入</h3></a></li>
 			<%
-				}
-			else{
+			}else{
 			%>
 			<li><a href=""><h3>你好<%=memberName%></h3></a></li>
 			<li><a href="../member/member.jsp"><h3>會員</h3></a></li>
@@ -55,9 +53,6 @@
 			
 		</ul>
     </header>
-    <nav>
-    </nav>
-	
     <%
 	String productID = request.getParameter("productID");
 			
@@ -77,41 +72,41 @@
 				
 			ResultSet dataset = pstmt.executeQuery();
 			dataset.next();
-			
 	%>
+
 	<main>
 	<section>
 	<table class="infor">
 		<tr>
+		<td></td>
 		<td>
-			<img class="pp" src="image/<%=dataset.getString("productID")%>.png?time=<%=System.currentTimeMillis()%>" width="350px" height="400px">
+			<img class="pp" src="image/<%=dataset.getString("productID")%>.png?time=<%=System.currentTimeMillis()%>" width="350px" height="350px">
 		</td>
-			<td>
-			<ul class = "other">
-			<li><h3>商品名稱: <%=dataset.getString("productname")%><br> 
-				<br> 規格說明:<br>  
+		<td>
+			<ul class="other">
+			<li><h2><%=dataset.getString("productName")%></h2><br> 
+				<h4><br>規格說明:<br>  
 				<br>全成分:<%=dataset.getString("liquidContents")%><br>  
 				<br>產品特點:<%=dataset.getString("liquidFeatures")%><br>  
 				<br>適應症:<%=dataset.getString("liquidIndications")%><br>  
-				<br>注意事項:<%=dataset.getString("liquidNotes")%><br></h3></li>			
+				<br>注意事項:<%=dataset.getString("liquidNotes")%><br></h4></li>		
 			</ul>
 		</td>
 		</tr>
-
 	</table>
+	</section>
 		<section>
 			<div class="fedback">
                 <form id="feedback" action="../admin/comment.jsp" method="POST">
 					<h3>留言板</h3><br>
-					<h3>   </h3><br>
-					<h3>請對商品評分</h3>
+					<h4>請對商品評分</h4><br>
 					<span class="star" data-rating="1">&#9733;</span>
 					<span class="star" data-rating="2">&#9733;</span>
 					<span class="star" data-rating="3">&#9733;</span>
 					<span class="star" data-rating="4">&#9733;</span>
 					<span class="star" data-rating="5">&#9733;</span><br>
 					<h3>   </h3><br>
-					<h3>請給予我們您的寶貴意見:</h3>
+					<h4>請給予我們您的寶貴意見:</h4><br>
 					<textarea name="comment" cols="60" rows="6" form="feedback"></textarea><br>
 					<h3>    </h3><br>
 					<input type="hidden" name="type" value="liquid">
@@ -128,6 +123,7 @@
 					%>
             </div>
         </section>
+		<section>
             <div class="comments1">
                 <h3>顧客回饋</h3><br>
                 <div class="comments">
@@ -159,25 +155,36 @@
                 </div>
             </div>
 		</section>
-		<h3> </h3>
-		<h3> </h3>
-		<h3> </h3>
+	</main>
        
 	<footer>
         <table>
-			<tr>
+          <tr>
             <td>
-				<a href="">關於品牌</a>
+              <a href="">關於品牌</a>
             </td>
             <td>
-				<a href="">客服中心</a>
+              <a href="">客服中心</a>
             </td>
             <td>
-				<a href="">聯絡方式</a>
+              <a href="">聯絡方式</a>
             </td>
-			</tr>
+            <td>
+              <a href="https://instagram.com/chouiiin?igshid=MzMyNGUyNmU2YQ%3D%3D&utm_source=qr" target="_blank">
+                  <img class="contant" src="../img/ig.png" >
+              </a>
+            </td>
+            <td>
+              <a href="https://line.me/ti/p/chj7qksWo3" target="_blank">
+                  <img class="contant" src="../img/line.png" >
+              </a>
+            </td>
+            <td>
+              <a href="mailto:tyes40415@gmail.com" target="_blank">
+                  <img class="contant" src="../img/mail.png" >
+          </tr>
         </table>
-    </footer>
+      </footer>
 <script>
         const stars = Array.from(document.querySelectorAll('.star')).filter(star => star.getAttribute('data-rating') != null);
 		const ratingValue = document.getElementById('rating-value');
