@@ -13,7 +13,7 @@
 	<div class="a01">
 		<div class="modal-content">
 			<form id="back" action="cart.jsp" method="POST"><input type="submit" value="上一步" form="back"></form>
-			<form method="post" action="">
+			<form method="post" action="updateCart.jsp">
 				<h2>結帳清單</h2>
 				<div id="selectedItemsContainer">
 		<%
@@ -56,18 +56,25 @@
 					</div>
 					<label for="paymentMethod">付款方式:</label>
 					<select name="paymentMethod">
-						<option value="cash" name="cash">現金付款</option>
+						<option selected value="cash" name="cash">現金付款</option>
 					</select><br>
 					<label for="shippingMethod">運送方式:</label>
 					<select name="shippingMethod">
-						<option value="home" name="home">宅配到家</option>
+						<option selected value="home" name="home">宅配到家</option>
 					</select><br>
+
 					<label for="shippingAddr">運送地址:</label>
 					<input type="text" name="address" required><br>
+					
 					<label for="contact">連絡電話:</label>
 					<input type="text" name="phone" required>
+					
 					<div id="total-amount">總金額: $<%=total%></div>
+					
 					<input type="submit" class="button" value="送出訂單">
+					<input type="hidden" name="cartID" value="<%=cartID%>">
+					
+					
 				</div> 
 			</form>
 			<%

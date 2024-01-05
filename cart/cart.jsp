@@ -66,11 +66,11 @@
 	%>
         <div class="a02" id="item">
             <img src="../<%=productCategory%>/image/<%=productID%>.png" alt="" width="250px" height="250px">
-            <div class="title"><h1><%=productName%></h1></div>               <!-- 商品名稱 -->
+            <div class="title"><h1><%%></h1></div>               <!-- 商品名稱 -->
             <div> 
 				<%
 				if(!productCategory.equals("liquid")){
-					out.print("<h4>度數:</h4>");
+					out.print("<h4>度數:"+"</h4>");
 				}
 				%>
                 <h4>庫存數量: <%=productStock%></h4>
