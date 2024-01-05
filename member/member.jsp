@@ -11,30 +11,57 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>會員基本資料</title>
-    <link rel="stylesheet" href="member.css">
+    <link rel="stylesheet" href="member.css?time=1">
     <script src="member.js"></script>
 </head>
 
-<body onload="displayData(),displayShoppingList(shoppingData),displaytextarea()">
+<body onload="displayData(),displayShoppingList(shoppingData),displaytextarea() ">
     <header>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </header>
-    <div class="containermember">
-        <div class="per">
-    <%
-    String memberID = "";
-    String returnMessage = request.getParameter("returnMessage");
-
+	<%
+    String memberName = "";
+	String memberID = "";
     Cookie[] cookies = request.getCookies();
-    if(cookies != null) {
-        for(int i=0; i < cookies.length; i++) {
+	if(cookies != null){
+		int count = cookies.length;
+		for(int i=0; i < count; i++){
+			if(cookies[i].getName().equals("memberName")){
+				memberName = cookies[i].getValue();
+			}
             if(cookies[i].getName().equals("memberID")) {
                 memberID = cookies[i].getValue();
             }
-        }
-    }
+		}
+	}
+   %>
+        <nav>
+            <div class="florig">
+                <ul class="menu">
+                    <li><a href="#">產品目錄</a>
+                    <ul id="sb">
+                        <li><a href="../coloredLens/coloredLens.jsp">彩色隱形眼鏡</a></li>
+                        <li><a href="../transparentLens/transparentLens.jsp">透明隱形眼鏡</a></li>
+                        <li><a href="../liquid/liquid.jsp">保養液</a></li>
+                    </ul>
+                    </li>
+                    <li><a>關於我們</a>
+                    </li>
+                        <li><a href="">你好<%=memberName%></a></li>
+                        <li><a href="../member/member.jsp"><img src="../img/profile.png" style="height:50px; width:50px;" ></a></li>
+                        <li><a href="../userLogin/logout.jsp">登出</a></li>
+                    <li><a href="../cart/cart.jsp"><img src="../img/cart.png" style="height:50px; width:50px;"  ></a></li>
+                </ul>
+            </div>
+        </nav>
 
+    <div class="clear"></div>
+	
+    <div class="containermember">
+        <div class="per">
+    <%
+    String returnMessage = request.getParameter("returnMessage");
     Connection con = null;
-
     try {
         Class.forName("com.mysql.jdbc.Driver");
         try {
@@ -120,8 +147,9 @@
         }
     }
     %>
-        </div>    
-        <div class="shp" id="shoppingList"> <!--購物清單-->
+        <div class="shp">
+            <div class="shptitle"><h2>購物清單</h2></div>
+				<div class="inshp" id="shoppingList"> <!--購物清單-->
         <%
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -150,11 +178,16 @@
                         String memberAddress = resultSet.getString("memberAddress");
                         String memberPhoneNum = resultSet.getString("memberPhoneNum");
                         String status = resultSet.getString("status");
+						if (status.equals("0")){
+							status = "pending...";
+						}
+						else status = "Delivered!";	
                         String subtotal = resultSet.getString("subtotal");
                         String[] shoppingItem = {orderID, productID, productCategory, orderQty, memberAddress, memberPhoneNum, status, subtotal};
                         shoppingList.add(shoppingItem);
                     }
 
+					
                     out.println("<table border='1'>");
                     out.println("<tr><th>Order ID</th><th>Product ID</th><th>Product Category</th><th>Order Quantity</th><th>Member Address</th><th>Member Phone Number</th><th>Status</th><th>Subtotal</th></tr>");
 
@@ -186,14 +219,6 @@
         }
         %>
         </div>
-        <div class="art">
-            <form class="textarea" id="textarea" action="" method=""> <!--記事本表單-->
-                <table class="arttable">
-                    <tr>
-                        <th style="text-align: left;">記事本</th>    
-                    </tr>
-                    <tr>
-                        <td><textarea></textarea></td>
-                    </tr>
-                </table>
-                <input type="button" value="記錄"
+    </div>
+</body>
+</html>
