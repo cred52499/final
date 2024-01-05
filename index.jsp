@@ -135,11 +135,6 @@
                         <%
                         }
 					    %>
-                    <li><form class="search-form">
-                        <input type="text" class="search-input" placeholder="搜尋">
-                        <button type="submit" class="search-button"><img src="img/search.jpg" style="height:40px; width:40px;"></button>
-                        </form>
-                    </li>
                     <li><a href="cart/cart.jsp"><img src="img/cart.png" style="height:50px; width:50px;"  ></a></li>
                     <%-- <li><a href="location/location.html">門市據點</a></li>
                     <li><a href="cart/cart.jsp">購物車</a></li> --%>
