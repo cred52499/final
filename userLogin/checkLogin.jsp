@@ -12,6 +12,20 @@
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		
+		Cookie cookies[] = request.getCookies();
+		String cartID = "";
+		String memberID, sessionID;
+		if(cookies != null){
+			int count = cookies.length;
+			for(int i=0; i < count; i++){
+				if(cookies[i].getName().equals("cartID")){
+					cartID = cookies[i].getValue();
+					//out.print("<input type=\"hidden\" name=\"cartID\" value=\""+cartID+"\">");
+				}
+			}
+		}
+		
+		
 		String redirectUrl = request.getParameter("redirectUrl");
 		out.print(redirectUrl);
 		try {
@@ -51,6 +65,19 @@
 						response.addCookie(usernameCookie);
 						response.addCookie(nameCookie);
 						response.addCookie(idCookie);
+						
+						String sql2 = "DELETE from cart WHERE customerID =?";
+						PreparedStatement pstmt2 = null;
+						pstmt2=con.prepareStatement(sql2);
+						pstmt2.setString(1,dataset.getString("memberID"));
+						pstmt2.executeUpdate();
+						
+						String sql3 = "UPDATE cart SET customerID=? WHERE `cartID`=?";
+						PreparedStatement pstmt3 = null;
+						pstmt3=con.prepareStatement(sql3);
+						pstmt3.setString(1,dataset.getString("memberID"));
+						pstmt3.setString(2,cartID);
+						pstmt3.executeUpdate();
 
 						con.close();//結束資料庫連結
 						out.print(redirectUrl);
