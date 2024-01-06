@@ -15,6 +15,9 @@
 	<header>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </header>
+	<form id="deleteCart" action="deleteCart.jsp" method="POST">
+		<input type="hidden" id="deleteCartId" name="cartdetailsID"  value="">
+	</form>
 	<form action="checkOut.jsp" method = "post">
 	<%
 		Cookie[] cookies = request.getCookies();
@@ -111,7 +114,8 @@
 								%>
 								<h4>庫存數量: <%=productStock%></h4>
 								<h4>價格: <span class="price<%=id%>">$<%=productPrice%></span></h4>
-								<label>數量:</label><input type="number" name="<%=cartDetailsID%>" min="0" max="<%=productStock%>" required value="1">
+								<label>數量:</label><input type="number" name="<%=cartDetailsID%>" min="1" max="<%=productStock%>" required value="1">
+								<button type="button" name="btn" id="btn" onclick="submitForm('<%=cartDetailsID%>')">刪除</button> 
 							</div>
 						</div>
 					
