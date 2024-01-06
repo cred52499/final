@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>後台管理</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="admin.css?time=<%=System.currentTimeMillis()%>">
 </head>
 
 <body>
@@ -13,8 +13,8 @@
         <h1>後台管理系統</h1>
     </header>
     <main>
-        <p><%=System.currentTimeMillis()%></p>
         <section class="product-add">
+            <section class="card">
             <h2>產品管理 [彩色隱眼]</h2>
             <form action="edit_coloredlens.jsp" method="post">
             <%
@@ -46,6 +46,7 @@
                 <input type="hidden" name="id" value="<%=id%>">
                 <button type="submit">刪除此產品</button>
             </form>
+            </section>
         </section>
     </main>
     <%

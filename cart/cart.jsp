@@ -108,14 +108,10 @@
 							<img src="../<%=productCategory%>/image/<%=productID%>.png" alt="" width="250px" height="250px">
 							<div class="title"><h3><%=productName%></h3></div>               <!-- 商品名稱 -->
 							<div> 
-								<%
-								if(!productCategory.equals("liquid"))
-									out.print("<h4>度數:</h4>");
-								%>
 								<h4>庫存數量: <%=productStock%></h4>
 								<h4>價格: <span class="price<%=id%>">$<%=productPrice%></span></h4>
 								<label>數量:</label><input type="number" name="<%=cartDetailsID%>" min="1" max="<%=productStock%>" required value="1">
-								<button type="button" name="btn" id="btn" onclick="submitForm('<%=cartDetailsID%>')">刪除</button> 
+								<h3></h3><button type="button" name="btn" id="btn" onclick="submitForm('<%=cartDetailsID%>')">刪除</button> 
 							</div>
 						</div>
 					

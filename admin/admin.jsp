@@ -137,7 +137,7 @@
                         rs2.next();
                         out.print("<form action=\"update_order.jsp\" method=\"POST\">");
                         out.print("<input type=\"hidden\" name=\"orderID\" value=\""+rs1.getString(1)+"\"");
-                        out.print("<li><h3>訂單編號#"+rs1.getString(1)+"</h3>商品："+rs2.getString(1)+"<br>價錢：$"+rs2.getInt(2)+" x"+rs1.getInt(5)+"   共: $"+rs1.getInt(10)+"<br>會員編號#"+rs1.getInt(6)+"<br>地址："+rs1.getString(7)+"<br>電話："+rs1.getString(8)+"<br><button>完成訂單</button></li>");
+                        out.print("<li><h3>訂單編號#"+rs1.getString(1)+"</h3>商品："+rs2.getString(1)+"<br>價錢：$"+rs2.getInt(2)+" x"+rs1.getInt(5)+"   共: $"+rs1.getInt(10)+"<br>會員編號#"+rs1.getString(6)+"<br>地址："+rs1.getString(7)+"<br>電話："+rs1.getString(8)+"<br><button>完成訂單</button></li>");
                         out.print("</form>");
                     }
                     con.close();

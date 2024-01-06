@@ -6,8 +6,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cart</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>結帳頁面</title>
+	<link rel="stylesheet" href="shpcart.css?time=<%=System.currentTimeMillis()%>">
 </head>
 <body>
 	<div class="a01">
@@ -72,7 +72,7 @@
 					<input type="text" name="address" required><br>
 					
 					<label for="contact">連絡電話:</label>
-					<input type="text" name="phone" required>
+					<input type="number" name="phone" required>
 					
 					<div id="total-amount">總金額: $<%=total%></div>
 					<%
