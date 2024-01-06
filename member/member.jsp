@@ -45,20 +45,12 @@
                         <li><a href="../liquid/liquid.jsp">保養液</a></li>
                     </ul>
                     </li>
-                    <li><a>關於我們</a></li>        
-					<%
-					if(memberName == null || memberName.equals("")){%>
-					<li><a href="../userLogin/login.jsp?&redirectUrl=../coloredLens/coloredLens.jsp">登入</a></li>
-					<%
-					} else {
-					%>
-					<li><a href="">你好<%=memberName%></a></li>
-					<li><a href="../member/member.jsp"><img src="../img/profile.png" style="height:50px; width:50px;" ></a></li>
-					<li><a href="../userLogin/logout.jsp">登出</a></li>
-					<%
-					}
-					%>
-					<li><a href="../cart/cart.jsp"><img src="../img/cart.png" style="height:50px; width:50px;"  ></a></li>
+                    <li><a>關於我們</a>
+                    </li>
+                        <li><a href="">你好<%=memberName%></a></li>
+                        <li><a href="../member/member.jsp"><img src="../img/profile.png" style="height:50px; width:50px;" ></a></li>
+                        <li><a href="../userLogin/logout.jsp">登出</a></li>
+                    <li><a href="../cart/cart.jsp"><img src="../img/cart.png" style="height:50px; width:50px;"  ></a></li>
                 </ul>
             </div>
         </nav>
