@@ -41,6 +41,7 @@ for(int i=0; i < count; i++){
 	}
 }
 
+session.setMaxInactiveInterval(1);
 response.sendRedirect("..");
 %>
 </form>
