@@ -53,13 +53,13 @@
         String name = request.getParameter("name");
         if(name != null){
             String price = request.getParameter("price");
-            String content = request.getParameter("waterontent");
+            String content = request.getParameter("watercontent");
             String basecurve = request.getParameter("basecurve");
             String dia = request.getParameter("diameter");
             String gd = request.getParameter("graphicdiameter");
             String stock = request.getParameter("stock");
             String instock = request.getParameter("instock");
-            sql1 ="INSERT INTO `coloredlens` (`productID`,`productName`,`productPrice`,`coloredLensWaterContents`,`coloredLensBaseCurve`,`coloredLensDiameter`,`coloredLensGraphicDiameter`,`productStock`)"+"values('"+id+"','"+name+"','"+price+"','"+content+"','"+basecurve+"','"+dia+"','"+gd+"','"+stock+"')" + " ON DUPLICATE KEY UPDATE productName = '"+name+"', productPrice = '"+price+"', coloredLensWaterContents = '"+content+"', coloredLensBaseCurve = '"+basecurve+"', coloredLensDiameter = '"+dia+"', coloredLensGraphicDiameter = '"+gd+"', productStock = '"+stock+"', instock = '"+(instock==null ? "0" : "1")+"';"; 
+            sql1 ="INSERT INTO `coloredlens` (`productID`,`productName`,`productPrice`,`coloredLensWaterContent`,`coloredLensBaseCurve`,`coloredLensDiameter`,`coloredLensGraphicDiameter`,`productStock`)"+"values('"+id+"','"+name+"','"+price+"','"+content+"','"+basecurve+"','"+dia+"','"+gd+"','"+stock+"')" + " ON DUPLICATE KEY UPDATE productName = '"+name+"', productPrice = '"+price+"', coloredLensWaterContent = '"+content+"', coloredLensBaseCurve = '"+basecurve+"', coloredLensDiameter = '"+dia+"', coloredLensGraphicDiameter = '"+gd+"', productStock = '"+stock+"', instock = '"+(instock==null ? "0" : "1")+"';"; 
             con.createStatement().executeUpdate(sql1);
             out.print("<script>alert('修改成功');location.href='admin.jsp'</script>");
         }

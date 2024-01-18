@@ -53,13 +53,13 @@
         String name = request.getParameter("name");
         if(name != null){
             String price = request.getParameter("price");
-            String content = request.getParameter("waterontent");
+            String content = request.getParameter("watercontent");
             String basecurve = request.getParameter("basecurve");
             String dia = request.getParameter("diameter");
             String gd = request.getParameter("graphicdiameter");
             String stock = request.getParameter("stock");
             String instock = request.getParameter("instock");
-            sql1 ="INSERT INTO `transparentlens` (`productID`,`productName`,`productPrice`,`transparentLensWaterContents`,`transparentLensBaseCurve`,`transparentLensDiameter`,`transparentLensGraphicDiameter`,`transparentLensStock`)"+"values('"+id+"','"+name+"','"+price+"','"+content+"','"+basecurve+"','"+dia+"','"+gd+"','"+stock+"')" + " ON DUPLICATE KEY UPDATE productName = '"+name+"', productPrice = '"+price+"', transparentLensWaterContents = '"+content+"', transparentLensBaseCurve = '"+basecurve+"', transparentLensDiameter = '"+dia+"', transparentLensGraphicDiameter = '"+gd+"', productStock = '"+stock+"', instock = '"+(instock==null ? "0" : "1")+"';"; 
+            sql1 ="INSERT INTO `transparentlens` (`productID`,`productName`,`productPrice`,`transparentLensWaterContent`,`transparentLensBaseCurve`,`transparentLensDiameter`,`transparentLensGraphicDiameter`,`productStock`)"+"values('"+id+"','"+name+"','"+price+"','"+content+"','"+basecurve+"','"+dia+"','"+gd+"','"+stock+"')" + " ON DUPLICATE KEY UPDATE productName = '"+name+"', productPrice = '"+price+"', transparentLensWaterContent = '"+content+"', transparentLensBaseCurve = '"+basecurve+"', transparentLensDiameter = '"+dia+"', transparentLensGraphicDiameter = '"+gd+"', productStock = '"+stock+"', instock = '"+(instock==null ? "0" : "1")+"';"; 
             con.createStatement().executeUpdate(sql1);
             out.print("<script>alert('修改成功');location.href='admin.jsp'</script>");
         }

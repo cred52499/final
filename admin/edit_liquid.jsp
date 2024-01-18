@@ -59,7 +59,7 @@
             String note = request.getParameter("notes");
             String stock = request.getParameter("stock");
             String instock = request.getParameter("instock");
-            sql1 ="INSERT INTO `liquid` (`productID`,`productName`,`productPrice`,`liquidContents`,`liquidFeatures`,`liquidIndications`,`liquidNotes`,`liquidStock`)"+"values('"+id+"','"+name+"','"+price+"','"+content+"','"+features+"','"+indi+"','"+note+"','"+stock+"')" + " ON DUPLICATE KEY UPDATE productName = '"+name+"', productPrice = '"+price+"', liquidContents = '"+content+"', liquidFeatures = '"+features+"', liquidIndications = '"+indi+"', liquidNotes = '"+note+"', productStock = '"+stock+"', instock = '"+(instock==null ? "0" : "1")+"';"; 
+            sql1 ="INSERT INTO `liquid` (`productID`,`productName`,`productPrice`,`liquidContents`,`liquidFeatures`,`liquidIndications`,`liquidNotes`,`productStock`)"+"values('"+id+"','"+name+"','"+price+"','"+content+"','"+features+"','"+indi+"','"+note+"','"+stock+"')" + " ON DUPLICATE KEY UPDATE productName = '"+name+"', productPrice = '"+price+"', liquidContents = '"+content+"', liquidFeatures = '"+features+"', liquidIndications = '"+indi+"', liquidNotes = '"+note+"', productStock = '"+stock+"', instock = '"+(instock==null ? "0" : "1")+"';"; 
             con.createStatement().executeUpdate(sql1);
             out.print("<script>alert('修改成功');location.href='admin.jsp'</script>");
         }
